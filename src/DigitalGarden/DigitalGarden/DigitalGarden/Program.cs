@@ -29,6 +29,6 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(DigitalGarden.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(DigitalGarden.Client.Components._Imports).Assembly);
 
 app.Run();
