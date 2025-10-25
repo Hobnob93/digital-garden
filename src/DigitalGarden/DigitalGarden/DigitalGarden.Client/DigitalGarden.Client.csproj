@@ -16,4 +16,9 @@
     <Folder Include="Components\Pages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\DigitalGarden.Shared.Components\DigitalGarden.Shared.Components.csproj" />
+    <ProjectReference Include="..\..\DigitalGarden.Shared\DigitalGarden.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
