@@ -15,6 +15,9 @@ public static class SitemapVersionHelper
     /// <returns>A "stable" hex SHA-256 based on the url-ordered lines in the format 'url|ticks'</returns>
     public static string Compute(IEnumerable<(string Url, DateTimeOffset? LastModified)> linkData)
     {
+        if (!linkData.Any())
+            return string.Empty;
+
         using var sha = SHA256.Create();
 
         var orderedLinkData = linkData
