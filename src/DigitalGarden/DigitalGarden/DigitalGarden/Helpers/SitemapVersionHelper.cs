@@ -35,7 +35,8 @@ public static class SitemapVersionHelper
             streamWriter.WriteLine($"{url}|{invariantTicks}");
         }
 
-        memoryStream.Position = 0;
+        streamWriter.Flush();
+        memoryStream.Seek(0, SeekOrigin.Begin);
 
         var hash = sha.ComputeHash(memoryStream);
         return Convert.ToHexString(hash);
