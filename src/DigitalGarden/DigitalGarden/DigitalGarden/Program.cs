@@ -1,4 +1,6 @@
 using DigitalGarden.Components;
+using DigitalGarden.Services.Implementations;
+using DigitalGarden.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddControllers();
+
+builder.Services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
 
 var app = builder.Build();
 
@@ -22,6 +28,7 @@ else
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
@@ -29,6 +36,7 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(DigitalGarden.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(DigitalGarden.Client.Components._Imports).Assembly)
+    .AddAdditionalAssemblies(typeof(DigitalGarden.Shared.Components._Imports).Assembly);
 
 app.Run();

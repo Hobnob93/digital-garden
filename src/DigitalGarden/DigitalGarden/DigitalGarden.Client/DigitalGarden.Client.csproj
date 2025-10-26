@@ -12,4 +12,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.21" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DigitalGarden.Shared.Components\DigitalGarden.Shared.Components.csproj" />
+    <ProjectReference Include="..\..\DigitalGarden.Shared\DigitalGarden.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

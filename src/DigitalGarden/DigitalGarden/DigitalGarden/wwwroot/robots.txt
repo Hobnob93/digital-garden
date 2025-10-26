@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /family
+Disallow: /obituaries
+Sitemap: https://www.khobdey.co.uk/sitemap.xml
