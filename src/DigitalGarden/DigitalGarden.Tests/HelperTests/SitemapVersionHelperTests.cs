@@ -1,6 +1,6 @@
 ﻿using DigitalGarden.Helpers;
 
-namespace DigitalGarden.Tests.Helpers;
+namespace DigitalGarden.Tests.HelperTests;
 
 public class SitemapVersionHelperTests
 {

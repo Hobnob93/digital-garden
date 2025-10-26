@@ -1,10 +1,13 @@
 ﻿using DigitalGarden.Controllers;
+using DigitalGarden.Services.Interfaces;
+using DigitalGarden.Tests.Helpers;
+using DigitalGarden.Tests.Suts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.Reflection;
 
-namespace DigitalGarden.Tests.Controllers;
+namespace DigitalGarden.Tests.ControllerTests;
 
 public class SeoControllerTests
 {
@@ -27,9 +30,9 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsContentResult_WhenBasicRequest()
     {
-        var sut = CreateSut();
+        var sut = SeoControllerSut.Create();
 
-        var result = sut.Sitemap();
+        var result = sut.Controller.Sitemap();
 
         Assert.IsType<ContentResult>(result);
     }
@@ -40,9 +43,9 @@ public class SeoControllerTests
     [InlineData("https://www.foo.co.uk")]
     public void Sitemap_ReturnsSitemapXmlContent_WhenBasicRequest(string siteAddress)
     {
-        var sut = CreateSut(siteAddress);
+        var sut = SeoControllerSut.Create(siteAddress: siteAddress);
 
-        var result = (ContentResult)sut.Sitemap();
+        var result = (ContentResult)sut.Controller.Sitemap();
 
         result.ContentType.Should().Be("application/xml");
         result.Content.Should().Contain("<urlset");
@@ -53,10 +56,10 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsEntityTag_WhenBasicRequest()
     {
-        var sut = CreateSut();
+        var sut = SeoControllerSut.Create();
 
-        sut.Sitemap();
-        var entityTag = sut.GetResponseEntityTag();
+        _ = sut.Controller.Sitemap();
+        var entityTag = sut.Controller.GetResponseEntityTag();
 
         entityTag.Should().NotBeNullOrWhiteSpace();
         entityTag.Should().StartWith("W/\"");
@@ -66,10 +69,10 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsStatusCodeResult_WhenRequestHasIfNoneMatchWildcard()
     {
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = "*";
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = "*";
 
-        var result = sut.Sitemap();
+        var result = sut.Controller.Sitemap();
 
         Assert.IsType<StatusCodeResult>(result);
     }
@@ -77,10 +80,10 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_Returns304_WhenRequestHasIfNoneMatchWildcard()
     {
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = "*";
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = "*";
 
-        var result = (StatusCodeResult)sut.Sitemap();
+        var result = (StatusCodeResult)sut.Controller.Sitemap();
 
         result.StatusCode.Should().Be(StatusCodes.Status304NotModified);
     }
@@ -88,11 +91,11 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsEchoedEntityTag_WhenRequestHasIfNoneMatchWildcard()
     {
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = "*";
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = "*";
 
-        sut.Sitemap();
-        var entityTag = sut.GetResponseEntityTag();
+        _ = sut.Controller.Sitemap();
+        var entityTag = sut.Controller.GetResponseEntityTag();
 
         entityTag.Should().NotBeNullOrWhiteSpace();
     }
@@ -103,10 +106,10 @@ public class SeoControllerTests
     public void Sitemap_Returns304_WhenRequestHasMatchingIfNoneMatch(bool isStrongClient)
     {
         var clientProvidedTag = GetClientProvidedTag(isStrongClient);
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = clientProvidedTag;
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = clientProvidedTag;
 
-        var result = sut.Sitemap();
+        var result = sut.Controller.Sitemap();
 
         var statusResult = Assert.IsType<StatusCodeResult>(result);
         statusResult.StatusCode.Should().Be(StatusCodes.Status304NotModified);
@@ -118,10 +121,10 @@ public class SeoControllerTests
     public void Sitemap_Returns304_WhenRequestHasAnyMatchingIfNoneMatch(bool isStrongClient)
     {
         var clientProvidedTag = GetClientProvidedTag(isStrongClient);
-        var sut = CreateSut();
-        sut.Request.Headers.Append(HeaderNames.IfNoneMatch, new[] { "\"FOO\"", clientProvidedTag, "\"BAR\"" });
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.Append(HeaderNames.IfNoneMatch, new[] { "\"FOO\"", clientProvidedTag, "\"BAR\"" });
 
-        var result = sut.Sitemap();
+        var result = sut.Controller.Sitemap();
 
         var statusResult = Assert.IsType<StatusCodeResult>(result);
         statusResult.StatusCode.Should().Be(StatusCodes.Status304NotModified);
@@ -133,11 +136,11 @@ public class SeoControllerTests
     public void Sitemap_ReturnsEchoedEntityTag_WhenRequestHasMatchingIfNoneMatch(bool isStrongClient)
     {
         var clientProvidedTag = GetClientProvidedTag(isStrongClient);
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = clientProvidedTag;
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = clientProvidedTag;
 
-        sut.Sitemap();
-        var entityTag = sut.GetResponseEntityTag();
+        _ = sut.Controller.Sitemap();
+        var entityTag = sut.Controller.GetResponseEntityTag();
 
         entityTag.Should().Contain(clientProvidedTag);
     }
@@ -145,10 +148,10 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsContentResult_WhenNonMatchingIfNoneMatch()
     {
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = "\"WrongHash\"";
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = "\"WrongHash\"";
 
-        var result = sut.Sitemap();
+        var result = sut.Controller.Sitemap();
 
         Assert.IsType<ContentResult>(result);
     }
@@ -159,10 +162,10 @@ public class SeoControllerTests
     [InlineData("https://www.foo.co.uk")]
     public void Sitemap_ReturnsSitemapXmlContent_WhenNonMatchingIfNoneMatch(string siteAddress)
     {
-        var sut = CreateSut(siteAddress);
-        sut.Request.Headers.IfNoneMatch = "\"WrongHash\"";
+        var sut = SeoControllerSut.Create(siteAddress: siteAddress);
+        sut.Controller.Request.Headers.IfNoneMatch = "\"WrongHash\"";
 
-        var result = (ContentResult)sut.Sitemap();
+        var result = (ContentResult)sut.Controller.Sitemap();
 
         result.ContentType.Should().Be("application/xml");
         result.Content.Should().Contain("<urlset");
@@ -173,32 +176,40 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ReturnsEntityTag_WhenNonMatchingIfNoneMatch()
     {
-        var sut = CreateSut();
-        sut.Request.Headers.IfNoneMatch = "\"WrongHash\"";
+        var sut = SeoControllerSut.Create();
+        sut.Controller.Request.Headers.IfNoneMatch = "\"WrongHash\"";
 
-        sut.Sitemap();
-        var entityTag = sut.GetResponseEntityTag();
+        _ = sut.Controller.Sitemap();
+        var entityTag = sut.Controller.GetResponseEntityTag();
 
         entityTag.Should().NotBeNullOrWhiteSpace();
         entityTag.Should().StartWith("W/\"");
         entityTag.Should().EndWith("\"");
     }
 
-    private SeoController CreateSut()
+    [Theory]
+    [InlineData("https://example.com", new string[] { "/", "/foo" })]
+    [InlineData("https://different-example.com", new string[] { "/", "/foo", "/bar?foo=yes" })]
+    [InlineData("https://different-example.com", new string[] { "/", "/some-address", "/some-other-address", "/some/deep/address" })]
+    public void Sitemap_ReturnsEveryPublicUrl_GivenByUrlsProvider(string baseAddress, string[] relativeUrls)
     {
-        return ControllerTestHelper.CreateController<SeoController>();
-    }
+        var sut = SeoControllerSut.Create(siteAddress: baseAddress);
+        sut.UrlsProvider.GetPublicRelativeUrls().Returns(relativeUrls);
 
-    private SeoController CreateSut(string siteAddress)
-    {
-        return ControllerTestHelper.CreateController<SeoController>(siteAddress);
+        var result = (ContentResult)sut.Controller.Sitemap();
+
+        foreach (var relativeUrl in relativeUrls)
+        {
+            var fullUrl = $"{baseAddress}{relativeUrl}";
+            result.Content.Should().Contain($"<loc>{fullUrl}</loc>");
+        }
     }
 
     private string GetClientProvidedTag(bool isStrongClient)
     {
-        var tempController = CreateSut();
-        var initialResult = tempController.Sitemap();
-        var entityTag = tempController.GetResponseEntityTag();
+        var tempSut = SeoControllerSut.Create();
+        _ = tempSut.Controller.Sitemap();
+        var entityTag = tempSut.Controller.GetResponseEntityTag();
         Assert.NotNull(entityTag);     // Not part of test, but test case needs to ensure valid entity tag
 
         var tagHash = entityTag.Trim().TrimStart('W', '/');

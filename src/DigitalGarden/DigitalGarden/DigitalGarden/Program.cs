@@ -1,4 +1,6 @@
 using DigitalGarden.Components;
+using DigitalGarden.Services.Implementations;
+using DigitalGarden.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddControllers();
+
+builder.Services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
 
 var app = builder.Build();
 

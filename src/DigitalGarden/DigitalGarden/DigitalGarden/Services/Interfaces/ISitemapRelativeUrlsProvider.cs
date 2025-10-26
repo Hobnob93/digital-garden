@@ -2,4 +2,5 @@
 
 public interface ISitemapRelativeUrlsProvider
 {
+    string[] GetPublicRelativeUrls();
 }
