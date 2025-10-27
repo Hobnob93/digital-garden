@@ -1,5 +1,4 @@
 ﻿using DigitalGarden.Controllers;
-using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Tests.Helpers;
 using DigitalGarden.Tests.Suts;
 using Microsoft.AspNetCore.Http;
