@@ -44,13 +44,6 @@ services:
       traefik.http.routers.seq.middlewares: seq-auth@docker,seq-ips@docker
     networks: [traefik]
 
-  watchtower:
-    image: containrrr/watchtower
-    restart: unless-stopped
-    command: --interval 60 web
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
 volumes:
   seq-data:
 

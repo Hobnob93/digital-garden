@@ -1,0 +1,84 @@
+name: Build Docker & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: "0 3 * * 1"   # Mondays 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write   # needed to push to GHCR
+
+jobs:
+  build:
+    name: Build & Push image to GHCR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+  
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest
+            type=sha
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    name: Deploy via SSH (docker compose up)
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Construct the .env file using project secrets and variables
+      - name: Create .env
+        run: |
+          cat > .env << 'EOF'
+          GARDEN_DOMAIN=${{ secrets.GARDEN_DOMAIN }}
+          SEQ_BASIC_AUTH=${{ secrets.SEQ_BASIC_AUTH }}
+          SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
+          EOF
+          
+      # Send files to Ubuntu server using SSH
+      - name: Upload files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "docker-compose.yml,.env"
+          target: "/srv/digital-garden"
+
+      # Run compose remotely: pull new image + recreate the web container
+      - name: Remote compose up
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -euo pipefail
+            cd /srv/digital-garden
+            docker compose pull
+            docker compose up -d

@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{B59399D9-4A4E-4EE5-A03C-C8AD308B9216}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\.github\workflows\docker.yml = ..\..\.github\workflows\docker.yml
+		..\..\.github\workflows\ci-deploy.yml = ..\..\.github\workflows\ci-deploy.yml
 	EndProjectSection
 EndProject
 Global
