@@ -3,6 +3,8 @@ name: Build Docker & Deploy
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule:
     - cron: "0 3 * * 1"   # Mondays 03:00 UTC
   workflow_dispatch:
@@ -12,8 +14,36 @@ permissions:
   packages: write   # needed to push to GHCR
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: '8.0.x' }
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test (xUnit) ? TRX
+        run: dotnet test --no-build --configuration Release \
+               --logger "trx;LogFileName=testresults.trx" \
+               --results-directory ./TestResults
+
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: .NET tests
+          path: '**/TestResults/*.trx'
+          reporter: dotnet-trx
+          fail-on-error: false
+
   build:
     name: Build & Push image to GHCR
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +76,7 @@ jobs:
 
   deploy:
     name: Deploy via SSH (docker compose up)
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     steps:
