@@ -1,4 +1,4 @@
-name: Build Docker & Deploy
+﻿name: Build Docker & Deploy
 
 on:
   push:
@@ -12,6 +12,10 @@ on:
 permissions:
   contents: read
   packages: write   # needed to push to GHCR
+
+concurrency:
+  group: prod-deploy
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -27,7 +31,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
-      - name: Test (xUnit) ? TRX
+      - name: Test (xUnit) → TRX
         run: dotnet test --no-build --configuration Release \
                --logger "trx;LogFileName=testresults.trx" \
                --results-directory ./TestResults
@@ -43,6 +47,7 @@ jobs:
 
   build:
     name: Build & Push image to GHCR
+    needs: test
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -76,8 +81,8 @@ jobs:
 
   deploy:
     name: Deploy via SSH (docker compose up)
-    if: github.event_name != 'pull_request'
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

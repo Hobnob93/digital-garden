@@ -7,10 +7,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://0.0.0.0:8080
-      # Serilog -> Seq (ingestion endpoint is 5341)
-      SERILOG__WRITETO__0__NAME: Seq
-      SERILOG__WRITETO__0__ARGS__SERVERURL: http://seq:5341
-      SERILOG__WRITETO__0__ARGS__APIKEY: ${SEQ_API_KEY:-}
+      SERILOG__WRITETO__2__ARGS__APIKEY: ${SEQ_API_KEY:-}
     volumes:
       - file-logs:/app/logs
     depends_on: [seq]
