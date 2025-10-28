@@ -27,6 +27,7 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.UseWebAssemblyDebugging();
+        app.UseExceptionHandler("/Error");
     }
     else
     {

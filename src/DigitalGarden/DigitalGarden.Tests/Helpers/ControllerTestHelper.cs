@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DigitalGarden.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace DigitalGarden.Tests.Helpers;
 
@@ -32,5 +34,13 @@ public static class ControllerTestHelper
     public static string? GetResponseEntityTag(this ControllerBase controller)
     {
         return controller.Response.Headers.ETag.FirstOrDefault();
+    }
+
+    public static MethodInfo GetControllerMethod<TController>(string methodName) where TController : ControllerBase
+    {
+        var method = typeof(TController).GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
+        Assert.NotNull(method);
+
+        return method;
     }
 }

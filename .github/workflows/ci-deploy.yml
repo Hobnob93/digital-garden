@@ -26,13 +26,13 @@ jobs:
         with: { dotnet-version: '8.0.x' }
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore ./src/DigitalGarden/DigitalGarden.sln
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build ./src/DigitalGarden/DigitalGarden.sln --no-restore --configuration Release
 
       - name: Test (xUnit) → TRX
-        run: dotnet test --no-build --configuration Release \
+        run: dotnet test ./src/DigitalGarden/DigitalGarden.Tests/DigitalGarden.Tests.csproj --no-build --configuration Release \
                --logger "trx;LogFileName=testresults.trx" \
                --results-directory ./TestResults
 
