@@ -95,6 +95,8 @@ jobs:
           GARDEN_DOMAIN=${{ secrets.GARDEN_DOMAIN }}
           SEQ_BASIC_AUTH=${esc_basic_auth}
           SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
+          SEQ_ADMIN_USERNAME=${{ secrets.SEQ_ADMIN_USERNAME }}
+          SEQ_ADMIN_PASSWORD=${{ secrets.SEQ_ADMIN_PASSWORD }}
           EOF
           
       # Send files to Ubuntu server using SSH
