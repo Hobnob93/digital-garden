@@ -21,8 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalGarden.Tests", "Digi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{66D28F1C-6CBA-4539-8DCD-81BB768EE89C}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\.dockerignore = ..\..\.dockerignore
 		..\..\.env.example = ..\..\.env.example
 		..\..\docker-compose.yml = ..\..\docker-compose.yml
+		..\..\Dockerfile = ..\..\Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{B59399D9-4A4E-4EE5-A03C-C8AD308B9216}"
