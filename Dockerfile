@@ -2,15 +2,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy sln & csproj into the same relative paths for better layer caching
-COPY src/DigitalGarden/DigitalGarden.sln src/DigitalGarden/DigitalGarden.sln
-COPY src/DigitalGarden/DigitalGarden.csproj src/DigitalGarden/DigitalGarden.csproj
-
-# Restore (project or solution — either is fine)
-RUN dotnet restore ./src/DigitalGarden/DigitalGarden.sln
-
-# Copy the rest of the repo and publish
+# Copy EVERYTHING first (TODO: optimise later)
 COPY . .
+
+#Restore & publish
+RUN dotnet restore ./src/DigitalGarden/DigitalGarden.sln
 RUN dotnet publish ./src/DigitalGarden/DigitalGarden/DigitalGarden.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 # ===== Runtime stage =====
