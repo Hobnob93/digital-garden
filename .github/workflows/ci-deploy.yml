@@ -88,16 +88,23 @@ jobs:
       # Construct the .env file using project secrets and variables
       - name: Create .env
         shell: bash
+        env:
+          GARDEN_DOMAIN: ${{ secrets.GARDEN_DOMAIN }}
+          SEQ_BASIC_AUTH_SECRET: ${{ secrets.SEQ_BASIC_AUTH }}
+          SEQ_API_KEY: ${{ secrets.SEQ_API_KEY }}
+          SEQ_ADMIN_USERNAME: ${{ secrets.SEQ_ADMIN_USERNAME }}
+          SEQ_ADMIN_PASSWORD: ${{ secrets.SEQ_ADMIN_PASSWORD }}
         run: |
           # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
-          esc_basic_auth=$(printf '%s' "${{ secrets.SEQ_BASIC_AUTH }}" | sed 's/\$/$$/g')
-          cat > .env <<EOF
-          GARDEN_DOMAIN=${{ secrets.GARDEN_DOMAIN }}
-          SEQ_BASIC_AUTH=${esc_basic_auth}
-          SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
-          SEQ_ADMIN_USERNAME=${{ secrets.SEQ_ADMIN_USERNAME }}
-          SEQ_ADMIN_PASSWORD=${{ secrets.SEQ_ADMIN_PASSWORD }}
-          EOF
+          esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
+        
+          {
+            echo "GARDEN_DOMAIN=$GARDEN_DOMAIN"
+            echo "SEQ_BASIC_AUTH=$esc_basic_auth"
+            echo "SEQ_API_KEY=$SEQ_API_KEY"
+            echo "SEQ_ADMIN_USERNAME=$SEQ_ADMIN_USERNAME"
+            echo "SEQ_ADMIN_PASSWORD=$SEQ_ADMIN_PASSWORD"
+          } > .env
           
       # Send files to Ubuntu server using SSH
       - name: Upload files
