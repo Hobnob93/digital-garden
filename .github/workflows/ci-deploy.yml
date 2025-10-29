@@ -87,10 +87,13 @@ jobs:
       
       # Construct the .env file using project secrets and variables
       - name: Create .env
+        shell: bash
         run: |
-          cat > .env << 'EOF'
+          # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
+          esc_basic_auth=$(printf '%s' "${{ secrets.SEQ_BASIC_AUTH }}" | sed 's/\$/$$/g')
+          cat > .env <<EOF
           GARDEN_DOMAIN=${{ secrets.GARDEN_DOMAIN }}
-          SEQ_BASIC_AUTH=${{ secrets.SEQ_BASIC_AUTH }}
+          SEQ_BASIC_AUTH=${esc_basic_auth}
           SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
           EOF
           

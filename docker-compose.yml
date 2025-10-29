@@ -1,8 +1,6 @@
-version: "3.9"
-
 services:
   web:
-    image: ghcr.io/Hobnob93/digital-garden:latest
+    image: ghcr.io/hobnob93/digital-garden:latest
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production
