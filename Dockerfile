@@ -7,7 +7,7 @@ COPY . .
 
 #Restore & publish
 RUN dotnet restore ./src/DigitalGarden/DigitalGarden.sln
-RUN dotnet publish ./src/DigitalGarden/DigitalGarden/DigitalGarden.csproj -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish ./src/DigitalGarden/DigitalGarden/DigitalGarden/DigitalGarden.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 # ===== Runtime stage =====
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
