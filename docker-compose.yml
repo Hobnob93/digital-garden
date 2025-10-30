@@ -16,10 +16,11 @@ services:
       traefik.http.routers.garden.entrypoints: websecure
       traefik.http.routers.garden.tls: "true"
       traefik.http.routers.garden.tls.certresolver: mytlschallenge
+      traefik.http.routers.garden.middlewares: garden-www2apex@docker
+      traefik.http.routers.garden.service: garden
+      traefik.http.services.garden.loadbalancer.server.port: "8080"
       traefik.http.middlewares.garden-www2apex.redirectregex.regex: ^https?://www\.${GARDEN_DOMAIN}/(.*)
       traefik.http.middlewares.garden-www2apex.redirectregex.replacement: https://${GARDEN_DOMAIN}/$1
-      traefik.http.routers.garden.middlewares: garden-www2apex@docker
-      traefik.http.services.garden.loadbalancer.server.port: "8080"
     networks: [traefik]
 
   seq:
