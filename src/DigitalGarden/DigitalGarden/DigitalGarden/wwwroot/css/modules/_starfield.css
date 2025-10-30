@@ -10,58 +10,58 @@ html {
     overflow: hidden;
 }
 
-#stars,
-#stars::after {
+#stars-small,
+#stars-small::after {
     width: 1px;
     height: 1px;
     background: transparent;
     box-shadow: var(--stars-small);
 }
 
-#stars {
+#stars-small {
     animation: animStar 50s linear infinite;
 }
 
-    #stars::after {
+    #stars-small::after {
         content: " ";
         position: absolute;
-        top: 2000px;
+        top: -2000px;
     }
 
-#stars2,
-#stars2::after {
+#stars-medium,
+#stars-medium::after {
     width: 2px;
     height: 2px;
     background: transparent;
     box-shadow: var(--stars-medium);
 }
 
-#stars2 {
+#stars-medium {
     animation: animStar 100s linear infinite;
 }
 
-    #stars2::after {
+    #stars-medium::after {
         content: " ";
         position: absolute;
-        top: 2000px;
+        top: -2000px;
     }
 
-#stars3,
-#stars3::after {
+#stars-large,
+#stars-large::after {
     width: 3px;
     height: 3px;
     background: transparent;
     box-shadow: var(--stars-big);
 }
 
-#stars3 {
+#stars-large {
     animation: animStar 150s linear infinite;
 }
 
-    #stars3::after {
+    #stars-large::after {
         content: " ";
         position: absolute;
-        top: 2000px;
+        top: -2000px;
     }
 
 @keyframes animStar {
@@ -70,6 +70,6 @@ html {
     }
 
     to {
-        transform: translateY(-2000px);
+        transform: translateY(2000px);
     }
 }

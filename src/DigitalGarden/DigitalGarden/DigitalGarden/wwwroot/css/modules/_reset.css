@@ -1,5 +1,4 @@
-﻿/* === Hard Reset (start from scratch) ===================================== */
-*,
+﻿*,
 *::before,
 *::after {
     box-sizing: border-box;
