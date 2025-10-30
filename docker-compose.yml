@@ -12,7 +12,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: root_default
-      traefik.http.routers.garden.rule: Host(`${GARDEN_DOMAIN}`,`www.${GARDEN_DOMAIN}`)
+      traefik.http.routers.garden.rule: Host(`${GARDEN_DOMAIN}`) || Host(`www.${GARDEN_DOMAIN}`)
       traefik.http.routers.garden.entrypoints: websecure
       traefik.http.routers.garden.tls: "true"
       traefik.http.routers.garden.tls.certresolver: mytlschallenge
