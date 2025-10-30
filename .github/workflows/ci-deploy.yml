@@ -1,0 +1,132 @@
+﻿name: Build Docker & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: "0 3 * * 1"   # Mondays 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  checks: write
+  pull-requests: write
+
+concurrency:
+  group: prod-deploy
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: '8.0.x' }
+
+      - name: Restore
+        run: dotnet restore ./src/DigitalGarden/DigitalGarden.sln
+
+      - name: Build
+        run: dotnet build ./src/DigitalGarden/DigitalGarden.sln --no-restore --configuration Release
+
+      - name: Test (xUnit) → TRX
+        run: dotnet test ./src/DigitalGarden/DigitalGarden.Tests/DigitalGarden.Tests.csproj --no-build --configuration Release --logger "trx;LogFileName=testresults.trx" --results-directory ./TestResults
+
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: .NET tests
+          path: '**/TestResults/*.trx'
+          reporter: dotnet-trx
+          fail-on-error: false
+
+  build:
+    name: Build & Push image to GHCR
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+  
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest
+            type=sha
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    name: Deploy via SSH (docker compose up)
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Construct the .env file using project secrets and variables
+      - name: Create .env
+        shell: bash
+        env:
+          GARDEN_DOMAIN: ${{ secrets.GARDEN_DOMAIN }}
+          SEQ_BASIC_AUTH_SECRET: ${{ secrets.SEQ_BASIC_AUTH }}
+          SEQ_API_KEY: ${{ secrets.SEQ_API_KEY }}
+          SEQ_ADMIN_USERNAME: ${{ secrets.SEQ_ADMIN_USERNAME }}
+          SEQ_ADMIN_PASSWORD: ${{ secrets.SEQ_ADMIN_PASSWORD }}
+        run: |
+          # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
+          esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
+        
+          {
+            echo "GARDEN_DOMAIN=$GARDEN_DOMAIN"
+            echo "SEQ_BASIC_AUTH=$esc_basic_auth"
+            echo "SEQ_API_KEY=$SEQ_API_KEY"
+            echo "SEQ_ADMIN_USERNAME=$SEQ_ADMIN_USERNAME"
+            echo "SEQ_ADMIN_PASSWORD=$SEQ_ADMIN_PASSWORD"
+          } > .env
+          
+      # Send files to Ubuntu server using SSH
+      - name: Upload files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "docker-compose.yml,.env"
+          target: "/srv/digital-garden"
+
+      # Run compose remotely: pull new image + recreate the web container
+      - name: Remote compose up
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -euo pipefail
+            cd /srv/digital-garden
+            docker compose pull
+            docker compose up -d

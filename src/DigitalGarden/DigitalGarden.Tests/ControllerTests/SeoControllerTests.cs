@@ -1,11 +1,9 @@
 ﻿using DigitalGarden.Controllers;
-using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Tests.Helpers;
 using DigitalGarden.Tests.Suts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using System.Reflection;
 
 namespace DigitalGarden.Tests.ControllerTests;
 
@@ -14,10 +12,9 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ResponseCacheMetaData_ShouldBeAsExpected()
     {
-        var method = typeof(SeoController).GetMethod(nameof(SeoController.Sitemap), BindingFlags.Instance | BindingFlags.Public);
-        Assert.NotNull(method);         // Not the test itself; just ensure the method is fetched as expected
+        var sitemapMethod = ControllerTestHelper.GetControllerMethod<SeoController>(nameof(SeoController.Sitemap));
 
-        var attribute = method
+        var attribute = sitemapMethod
             .GetCustomAttributes(typeof(ResponseCacheAttribute), inherit: false)
             .Cast<ResponseCacheAttribute>()
             .Single();

@@ -1,7 +1,6 @@
 ﻿using DigitalGarden.Controllers;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Tests.Helpers;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DigitalGarden.Tests.Suts;
@@ -24,13 +23,15 @@ public static class SeoControllerSut
     /// </summary>
     /// <param name="urlsProvider">A dependency providing relative URLs to be shown in the sitemap output</param>
     /// <param name="siteAddress">Determine the controller's scheme and host values</param>
-    /// <returns></returns>
+    /// <returns>The SUT instance</returns>
     public static Sut Create(
         ISitemapRelativeUrlsProvider? urlsProvider = null,
         string siteAddress = "https://example.com")
     {
         urlsProvider ??= Substitute.For<ISitemapRelativeUrlsProvider>();
-        urlsProvider.GetPublicRelativeUrls().Returns([ "/" ]);
+        urlsProvider
+            .GetPublicRelativeUrls()
+            .Returns([ "/" ]);
 
         var controller = ControllerTestHelper.CreateController<SeoController>(
             services =>
