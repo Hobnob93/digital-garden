@@ -19,7 +19,7 @@ html {
 }
 
 #stars-small {
-    animation: animStar 50s linear infinite;
+    animation: animStar 250s linear infinite;
 }
 
     #stars-small::after {
@@ -37,7 +37,7 @@ html {
 }
 
 #stars-medium {
-    animation: animStar 100s linear infinite;
+    animation: animStar 500s linear infinite;
 }
 
     #stars-medium::after {
@@ -55,7 +55,7 @@ html {
 }
 
 #stars-large {
-    animation: animStar 150s linear infinite;
+    animation: animStar 750s linear infinite;
 }
 
     #stars-large::after {
