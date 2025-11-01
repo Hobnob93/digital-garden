@@ -13,8 +13,8 @@ public class SiteConfigurationProvider : ISiteConfigurationProvider
         _flagOptionsMonitor = flagOptionsMonitor;
     }
 
-    public GeneralFlagOptions GetSiteFlagOptions()
+    public Task<GeneralFlagOptions> GetSiteFlagOptionsAsync()
     {
-        return _flagOptionsMonitor.CurrentValue;
+        return Task.FromResult(_flagOptionsMonitor.CurrentValue);
     }
 }
