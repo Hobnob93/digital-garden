@@ -14,23 +14,23 @@ public class ErrorControllerTests
     [Fact]
     public void Controller_HiddenFromApiExplorers()
     {
-        var apiExplorerAttribute = typeof(ErrorController)
+        var attribute = typeof(ErrorController)
             .GetAttributes<ApiExplorerSettingsAttribute>()
             .Single();
 
-        apiExplorerAttribute.IgnoreApi.Should().BeTrue();
+        attribute.IgnoreApi.Should().BeTrue();
     }
 
     [Fact]
     public void Handle_RoutesToAbsoluteSlashError()
     {
-        var handleMethod = ControllerTestHelper.GetControllerMethod<ErrorController>(nameof(ErrorController.Handle));
+        var methodIndo = ControllerTestHelper.GetControllerMethod<ErrorController>(nameof(ErrorController.Handle));
 
-        var routeAttribute = handleMethod
+        var attribute = methodIndo
             .GetAttributes<RouteAttribute>()
             .Single();
 
-        routeAttribute.Template.Should().BeEquivalentTo("/error", because: "Error handler set up in Program.cs is expecting this address");
+        attribute.Template.Should().BeEquivalentTo("/error", because: "Error handler set up in Program.cs is expecting this address");
     }
 
     [Fact]

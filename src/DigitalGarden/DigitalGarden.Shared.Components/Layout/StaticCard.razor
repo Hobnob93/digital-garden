@@ -1,0 +1,20 @@
+﻿<div class="@CardClasses">
+    <div class="header mt-4">
+        @if (HeaderFragment is not null)
+        {
+            @HeaderFragment
+        }
+    </div>
+
+    @if (!HideHorizontalRules)
+    {
+        <hr />
+    }
+
+    <div class="body m-4">
+        @if (BodyFragment is not null)
+        {
+            @BodyFragment
+        }
+    </div>
+</div>
