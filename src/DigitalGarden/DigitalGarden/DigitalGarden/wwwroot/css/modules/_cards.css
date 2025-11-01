@@ -35,7 +35,7 @@
         background-color: var(--card-line-color);
     }
 
-.card.styled {
+.card.sheen {
     background: var(--card-background);
     border-width: 2px;
 }
