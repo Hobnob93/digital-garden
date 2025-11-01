@@ -1,24 +1,19 @@
 using DigitalGarden.Components;
-using DigitalGarden.Services.Implementations;
-using DigitalGarden.Services.Interfaces;
+using DigitalGarden.Extensions;
 using Serilog;
 using Serilog.Events;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-    Log.Logger = new LoggerConfiguration()
-        .ReadFrom.Configuration(builder.Configuration)
-        .CreateLogger();
-    builder.Host.UseSerilog();
+    var services = builder.Services;
+    var configuration = builder.Configuration;
 
-    Log.Information("Setting up services");
-    builder.Services.AddRazorComponents()
-        .AddInteractiveServerComponents()
-        .AddInteractiveWebAssemblyComponents();
-
-    builder.Services.AddControllers();
-    builder.Services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
+    services
+        .SetupLogging(configuration, builder.Host)
+        .AddInteractiveAutoBlazorWithControllers()
+        .ConfigureOptions(configuration)
+        .AddInternalDependencies();
 
     Log.Information("Building app");
     var app = builder.Build();

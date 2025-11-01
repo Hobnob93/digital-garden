@@ -1,0 +1,55 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+
+    --font-line: 1.6;
+    --font-size: 16px;
+    --font-spacing: 0.01em;
+    --font-default-color: white;
+}
+
+body {
+    font-family: var(--font);
+    line-height: var(--font-line);
+    letter-spacing: var(--font-spacing);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
+    color: var(--font-default-color);
+}
+
+h1 {
+    font-weight: 700;
+    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+    line-height: 1.15;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    line-height: 1.2;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+    line-height: 1.25;
+}
+
+p, li {
+    font-weight: 400;
+}
+
+.small {
+    font-size: 0.875rem;
+}
+
+.muted {
+    opacity: .75;
+}
+
+.button, nav, .label {
+    letter-spacing: var(--font-spacing);
+    font-weight: 600;
+}
