@@ -12,9 +12,9 @@ public class SeoControllerTests
     [Fact]
     public void Sitemap_ResponseCacheMetaData_ShouldBeAsExpected()
     {
-        var sitemapMethod = ControllerTestHelper.GetControllerMethod<SeoController>(nameof(SeoController.Sitemap));
+        var methodInfo = ControllerTestHelper.GetControllerMethod<SeoController>(nameof(SeoController.Sitemap));
 
-        var attribute = sitemapMethod
+        var attribute = methodInfo
             .GetCustomAttributes(typeof(ResponseCacheAttribute), inherit: false)
             .Cast<ResponseCacheAttribute>()
             .Single();
