@@ -1,0 +1,11 @@
+﻿#wip {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#wip h1 {
+    margin-bottom: 1em;
+}
