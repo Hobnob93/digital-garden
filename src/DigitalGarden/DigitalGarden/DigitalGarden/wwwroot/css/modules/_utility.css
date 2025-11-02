@@ -155,3 +155,155 @@
 .mr-6 {
     margin-right: var(--rspacing-6) !important;
 }
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.p-1 {
+    padding: var(--rspacing-1) !important;
+}
+
+.p-2 {
+    padding: var(--rspacing-2) !important;
+}
+
+.p-3 {
+    padding: var(--rspacing-3) !important;
+}
+
+.p-4 {
+    padding: var(--rspacing-4) !important;
+}
+
+.p-5 {
+    padding: var(--rspacing-5) !important;
+}
+
+.p-6 {
+    padding: var(--rspacing-6) !important;
+}
+
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+.pt-1 {
+    padding-top: var(--rspacing-1) !important;
+}
+
+.pt-2 {
+    padding-top: var(--rspacing-2) !important;
+}
+
+.pt-3 {
+    padding-top: var(--rspacing-3) !important;
+}
+
+.pt-4 {
+    padding-top: var(--rspacing-4) !important;
+}
+
+.pt-5 {
+    padding-top: var(--rspacing-5) !important;
+}
+
+.pt-6 {
+    padding-top: var(--rspacing-6) !important;
+}
+
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+
+.pb-1 {
+    padding-bottom: var(--rspacing-1) !important;
+}
+
+.pb-2 {
+    padding-bottom: var(--rspacing-2) !important;
+}
+
+.pb-3 {
+    padding-bottom: var(--rspacing-3) !important;
+}
+
+.pb-4 {
+    padding-bottom: var(--rspacing-4) !important;
+}
+
+.pb-5 {
+    padding-bottom: var(--rspacing-5) !important;
+}
+
+.pb-6 {
+    padding-bottom: var(--rspacing-6) !important;
+}
+
+.pl-0 {
+    padding-left: 0 !important;
+}
+
+.pl-1 {
+    padding-left: var(--rspacing-1) !important;
+}
+
+.pl-2 {
+    padding-left: var(--rspacing-2) !important;
+}
+
+.pl-3 {
+    padding-left: var(--rspacing-3) !important;
+}
+
+.pl-4 {
+    padding-left: var(--rspacing-4) !important;
+}
+
+.pl-5 {
+    padding-left: var(--rspacing-5) !important;
+}
+
+.pl-6 {
+    padding-left: var(--rspacing-6) !important;
+}
+
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.pr-1 {
+    padding-right: var(--rspacing-1) !important;
+}
+
+.pr-2 {
+    padding-right: var(--rspacing-2) !important;
+}
+
+.pr-3 {
+    padding-right: var(--rspacing-3) !important;
+}
+
+.pr-4 {
+    padding-right: var(--rspacing-4) !important;
+}
+
+.pr-5 {
+    padding-right: var(--rspacing-5) !important;
+}
+
+.pr-6 {
+    padding-right: var(--rspacing-6) !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.w-75 {
+    width: 75% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
