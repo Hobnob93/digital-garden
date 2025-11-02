@@ -17,9 +17,13 @@ public partial class StaticCard
     [Parameter]
     public bool ShowSheen { get; set; }
 
+    [Parameter]
+    public string? AppendClasses { get; set; }
+
     private string CardClasses => new ClassBuilder()
         .Add("card")
         .Add("sheen", condition: ShowSheen)
         .Add("m-4")
+        .Add(AppendClasses!, condition: !string.IsNullOrWhiteSpace(AppendClasses))
         .Build();
 }

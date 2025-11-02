@@ -2,4 +2,63 @@
 @import "./modules/_starfield.css";
 @import "./modules/_utility.css";
 @import "./modules/_topography.css";
+@import "./modules/_nav.css";
 @import "./modules/_cards.css";
+
+ul.gift-list {
+    width: 100%;
+}
+
+    ul.gift-list li {
+        width: 100%;
+        position: relative;
+        padding: var(--rspacing-1) 0 var(--rspacing-2);
+        transition: color 0.2s ease-in-out;
+    }
+
+    ul.gift-list li a:hover {
+        color: var(--hover-color);
+    }
+
+        ul.gift-list li:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 55%;
+            border-bottom: 1px solid var(--outline-color);
+        }
+
+@media all and (min-width: 1000px) {
+    .gift-title {
+        margin-left: var(--rspacing-6);
+    }
+
+    ul.gift-list li {
+        padding-inline-start: 20%;
+        padding-inline-end: 20%;
+    }
+}
+
+@media all and (min-width: 700px) and (max-width: 999px) {
+    .gift-title {
+        margin-left: var(--rspacing-4);
+    }
+
+    ul.gift-list li {
+        padding-inline-start: 15%;
+        padding-inline-end: 15%;
+    }
+}
+
+@media all and (max-width: 699px) {
+    .gift-title {
+        margin-left: var(--rspacing-2);
+    }
+
+    ul.gift-list li {
+        padding-inline-start: 10%;
+        padding-inline-end: 10%;
+    }
+}
