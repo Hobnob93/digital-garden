@@ -8,8 +8,11 @@
 }
 
 html {
-    background: radial-gradient(ellipse at bottom, var(--background-color-lightest) 0%, var(--background-color-darkest) 80%);
-    overflow: hidden;
+    background-color: var(--background-color-darkest);
+}
+
+body {
+    background: radial-gradient(ellipse at top left, var(--background-color-lightest) 0%, var(--background-color-darkest) 65%) no-repeat;
 }
 
 #stars-small,

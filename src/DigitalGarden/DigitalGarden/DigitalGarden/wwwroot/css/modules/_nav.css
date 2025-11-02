@@ -1,0 +1,63 @@
+﻿/* Inspired by, and reverse engineered from, https://codepen.io/albizan/pen/mMWdWZ */
+:root {
+    --avatar-border-color: var(--outline-color);
+}
+
+nav {
+    height: 4.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    line-height: 4.5rem;
+    text-align: center;
+    z-index: 1000;
+    background-color: var(--transparent-white);
+    border-bottom: 2px solid var(--transparent-white);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+    nav .avatar {
+        float: left;
+        width: auto;
+        height: auto;
+        padding-left: var(--rspacing-6);
+        padding-top: var(--rspacing-4);
+        transition: padding-left 0.5s ease-in-out, padding-top 0.5s ease-in-out;
+    }
+
+        nav .avatar a {
+            --avatar-border-color: var(--outline-color);
+        }
+
+            nav .avatar a:hover {
+                --avatar-border-color: var(--hover-color);
+            }
+
+            nav .avatar a img {
+                width: 5.5rem;
+                height: 5.5rem;
+                border: 2px solid var(--avatar-border-color);
+                border-radius: 50%;
+                box-shadow: 0 0 6px 3px var(--avatar-border-color);
+                transition: width 0.5s ease-in-out, height 0.5s ease-in-out, border-color 0.2s ease-in-out;
+            }
+
+nav.affix {
+    background-color: rgb(from var(--background-color-darkest) r g b / 0.75);
+    border-color: var(--outline-color);
+    backdrop-filter: blur(4px);
+}
+
+    nav.affix .avatar {
+        padding-left: var(--rspacing-5);
+        padding-top: var(--rspacing-2);
+    }
+
+        nav.affix .avatar a img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border: 2px solid var(--avatar-border-color);
+            border-radius: 50%;
+            box-shadow: 0 0 6px 3px var(--avatar-border-color);
+        }

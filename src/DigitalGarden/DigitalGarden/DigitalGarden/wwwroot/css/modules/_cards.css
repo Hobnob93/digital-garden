@@ -1,7 +1,7 @@
 ﻿:root {
     --card-dark-main: #00000085;
     --card-dark-top: #12121285;
-    --card-line-color: #FFFFFF20;
+    --card-line-color: var(--outline-color);
     --card-background: linear-gradient(6deg, var(--card-dark-main) 70%, var(--card-dark-top) 70.5%);
 }
 
@@ -22,10 +22,8 @@
     flex-direction: column;
     align-items: center;
     backdrop-filter: blur(1px);
-    border-width: 1px;
-    border-color: var(--card-line-color);
+    border: 1px solid var(--card-line-color);
     border-radius: var(--rspacing-4);
-    border-style: solid;
 }
 
     .card hr {
