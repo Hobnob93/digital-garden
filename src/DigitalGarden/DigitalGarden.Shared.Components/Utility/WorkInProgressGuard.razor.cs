@@ -28,22 +28,23 @@ public partial class WorkInProgressGuard
         
             if (!Navigation.Uri.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
             {
-                Navigation.NavigateTo("/wip", replace: true, forceLoad: true);
+                Navigation.NavigateTo("/wip", replace: true);
             }
         }
     }
 
     private void OnNavigationChanging(LocationChangingContext context)
     {
-        if (context.TargetLocation.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
-        {
+        if (_siteIsWip)
             return;
-        }
-        
-        if (_siteIsWip && !context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
+
+        if (context.TargetLocation.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase) ||
+            context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
+            return;
+
+        if (!Navigation.Uri.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
         {
-            context.PreventNavigation();
-            Navigation.NavigateTo("/wip", replace: true, forceLoad: true);
+            Navigation.NavigateTo("/wip", replace: true);
         }
     }
 }
