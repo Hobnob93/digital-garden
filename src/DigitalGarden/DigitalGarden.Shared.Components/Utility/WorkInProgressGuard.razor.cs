@@ -16,34 +16,34 @@ public partial class WorkInProgressGuard
 
     protected override async Task OnInitializedAsync()
     {
-        var siteFlags = await ConfigurationProvider.GetSiteFlagOptionsAsync();
-        _siteIsWip = siteFlags.IsWip;
-
-        if (_siteIsWip)
-        {
-            if (Navigation.Uri.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
-            {
-                return;
-            }
-
-            if (!Navigation.Uri.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
-            {
-                Navigation.NavigateTo("/wip", replace: true);
-            }
-        }
+        //var siteFlags = await ConfigurationProvider.GetSiteFlagOptionsAsync();
+        //_siteIsWip = siteFlags.IsWip;
+        //
+        //if (_siteIsWip)
+        //{
+        //    if (Navigation.Uri.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        return;
+        //    }
+        //
+        //    if (!Navigation.Uri.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        Navigation.NavigateTo("/wip", replace: true);
+        //    }
+        //}
     }
 
     private void OnNavigationChanging(LocationChangingContext context)
     {
-        if (context.TargetLocation.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
-        {
-            return;
-        }
-
-        if (_siteIsWip && !context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
-        {
-            context.PreventNavigation();
-            Navigation.NavigateTo("/wip", replace: true);
-        }
+        //if (context.TargetLocation.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
+        //{
+        //    return;
+        //}
+        //
+        //if (_siteIsWip && !context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
+        //{
+        //    context.PreventNavigation();
+        //    Navigation.NavigateTo("/wip", replace: true);
+        //}
     }
 }
