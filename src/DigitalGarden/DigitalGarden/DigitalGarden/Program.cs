@@ -41,7 +41,9 @@ try
         };
     });
 
+    app.UseWorkInProgressMiddleware();
     app.UseHttpsRedirection();
+
     app.MapControllers();
 
     app.UseStaticFiles();

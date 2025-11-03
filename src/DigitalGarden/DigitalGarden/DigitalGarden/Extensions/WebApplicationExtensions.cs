@@ -21,10 +21,11 @@ public static class WebApplicationExtensions
             }
             else if (flagOptions.IsWip)
             {
+                var isGiftsAccess = accessedPath.StartsWith("/xmas");
                 var isApiCall = accessedPath.StartsWith("/api");
                 var pathIsStaticFile = accessedPath.IsStaticFile();
 
-                if (!pathIsWipPage && !pathIsStaticFile && !isApiCall)
+                if (!pathIsWipPage && !pathIsStaticFile && !isApiCall && !isGiftsAccess)
                 {
                     httpContext.Response.Redirect("/wip", permanent: false);
 

@@ -1,15 +1,22 @@
 ﻿/* Inspired by, and reverse engineered from, https://codepen.io/albizan/pen/mMWdWZ */
 :root {
     --avatar-border-color: var(--outline-color);
+    --nav-height: 3.5rem;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --nav-height: 4.5rem;
+    }
 }
 
 nav {
-    height: 4.5rem;
+    height: var(--nav-height);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    line-height: 4.5rem;
+    line-height: var(--nav-height);
     text-align: center;
     z-index: 1000;
     background-color: var(--transparent-white);
@@ -35,8 +42,8 @@ nav {
             }
 
             nav .avatar a img {
-                width: 5.5rem;
-                height: 5.5rem;
+                width: calc(var(--nav-height) + 1rem);
+                height: calc(var(--nav-height) + 1rem);
                 border: 2px solid var(--avatar-border-color);
                 border-radius: 50%;
                 box-shadow: 0 0 6px 3px var(--avatar-border-color);
@@ -55,8 +62,8 @@ nav.affix {
     }
 
         nav.affix .avatar a img {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: calc(var(--nav-height) - 1rem);
+            height: calc(var(--nav-height) - 1rem);
             border: 2px solid var(--avatar-border-color);
             border-radius: 50%;
             box-shadow: 0 0 6px 3px var(--avatar-border-color);

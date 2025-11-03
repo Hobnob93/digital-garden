@@ -38,7 +38,7 @@ h3 {
 }
 
 p, li {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .small {
@@ -51,5 +51,5 @@ p, li {
 
 .button, nav, .label {
     letter-spacing: var(--font-spacing);
-    font-weight: 600;
+    font-weight: 400;
 }
