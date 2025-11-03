@@ -1,9 +1,11 @@
-﻿<nav>
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+<nav>
     <div class="nav-container">
         <div class="avatar">
-            <a href="./">
+            <NavLink href="/" Match="NavLinkMatch.All">
                 <img alt="Avatar" src="/Avatar.png" />
-            </a>
+            </NavLink>
         </div>
     </div>
 </nav>
