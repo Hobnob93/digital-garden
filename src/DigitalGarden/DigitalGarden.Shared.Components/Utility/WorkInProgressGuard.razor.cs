@@ -42,9 +42,15 @@ public partial class WorkInProgressGuard
             context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
             return;
 
-        if (!Navigation.Uri.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
-        {
-            Navigation.NavigateTo("/wip", replace: true);
-        }
+        context.PreventNavigation();
+        _ = RedirectToWipAsync();
+    }
+
+    private async Task RedirectToWipAsync()
+    {
+        // Let the navigation pipeline unwind first
+        await Task.Yield();
+
+        Navigation.NavigateTo("/wip", replace: true);
     }
 }
