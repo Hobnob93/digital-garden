@@ -21,7 +21,7 @@ public partial class WorkInProgressGuard
         
         if (_siteIsWip)
         {
-            if (Navigation.Uri.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase))
+            if (Navigation.Uri.EndsWith("/xmas", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
@@ -38,7 +38,7 @@ public partial class WorkInProgressGuard
         if (_siteIsWip)
             return;
 
-        if (context.TargetLocation.EndsWith("/gift-list", StringComparison.OrdinalIgnoreCase) ||
+        if (context.TargetLocation.EndsWith("/xmas", StringComparison.OrdinalIgnoreCase) ||
             context.TargetLocation.EndsWith("/wip", StringComparison.OrdinalIgnoreCase))
             return;
 

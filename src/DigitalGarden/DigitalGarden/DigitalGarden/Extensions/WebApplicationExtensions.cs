@@ -21,7 +21,7 @@ public static class WebApplicationExtensions
             }
             else if (flagOptions.IsWip)
             {
-                var isGiftsAccess = accessedPath.StartsWith("/gift-list");
+                var isGiftsAccess = accessedPath.StartsWith("/xmas");
                 var isApiCall = accessedPath.StartsWith("/api");
                 var pathIsStaticFile = accessedPath.IsStaticFile();
 

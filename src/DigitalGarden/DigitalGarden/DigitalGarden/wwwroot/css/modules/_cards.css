@@ -5,21 +5,7 @@
     --card-background: linear-gradient(6deg, var(--card-dark-main) 70%, var(--card-dark-top) 70.5%);
 }
 
-.container.centered {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container.centered-x {
-    display: flex;
-    justify-content: center;
-}
-
 .card {
-    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +22,7 @@
     .card hr {
         height: 2px;
         margin: var(--rspacing-2);
-        width: 75%;
+        width: calc(100% - var(--rspacing-5) - var(--rspacing-5));
         background-color: var(--card-line-color);
     }
 

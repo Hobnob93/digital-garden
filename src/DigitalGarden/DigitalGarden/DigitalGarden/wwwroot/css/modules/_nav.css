@@ -1,15 +1,16 @@
 ﻿/* Inspired by, and reverse engineered from, https://codepen.io/albizan/pen/mMWdWZ */
 :root {
     --avatar-border-color: var(--outline-color);
+    --nav-height: 4.5rem;
 }
 
 nav {
-    height: 4.5rem;
+    height: var(--nav-height);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    line-height: 4.5rem;
+    line-height: var(--nav-height);
     text-align: center;
     z-index: 1000;
     background-color: var(--transparent-white);
