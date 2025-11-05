@@ -38,7 +38,7 @@ nav {
         }
 
             nav .avatar a:hover {
-                --avatar-border-color: var(--hover-color);
+                --avatar-border-color: var(--border-hover-color);
             }
 
             nav .avatar a img {
