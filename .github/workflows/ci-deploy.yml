@@ -48,7 +48,7 @@ jobs:
   build:
     name: Build & Push image to GHCR
     needs: test
-    if: github.event_name != 'pull_request'
+    #if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -82,7 +82,7 @@ jobs:
   deploy:
     name: Deploy via SSH (docker compose up)
     needs: build
-    if: github.event_name != 'pull_request'
+    #if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -96,9 +96,11 @@ jobs:
           SEQ_API_KEY: ${{ secrets.SEQ_API_KEY }}
           SEQ_ADMIN_USERNAME: ${{ secrets.SEQ_ADMIN_USERNAME }}
           SEQ_ADMIN_PASSWORD: ${{ secrets.SEQ_ADMIN_PASSWORD }}
+          FILEBROWSER_BASIC_AUTH_SECRET: ${{ secrets.FILEBROWSER_BASIC_AUTH }}
         run: |
           # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
           esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
+          esc_fb_basic_auth=$(printf '%s' "$FILEBROWSER_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
         
           {
             echo "GARDEN_DOMAIN=$GARDEN_DOMAIN"
@@ -106,6 +108,7 @@ jobs:
             echo "SEQ_API_KEY=$SEQ_API_KEY"
             echo "SEQ_ADMIN_USERNAME=$SEQ_ADMIN_USERNAME"
             echo "SEQ_ADMIN_PASSWORD=$SEQ_ADMIN_PASSWORD"
+            echo "FILEBROWSER_BASIC_AUTH=$esc_fb_basic_auth"
           } > .env
           
       # Send files to Ubuntu server using SSH
