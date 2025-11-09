@@ -12,7 +12,7 @@ try
     services
         .SetupLogging(configuration, builder.Host)
         .AddInteractiveAutoBlazorWithControllers()
-        .ConfigureOptions(configuration)
+        .ConfigureApplication(configuration)
         .AddInternalDependencies();
 
     Log.Information("Building app");
@@ -40,6 +40,8 @@ try
             diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
         };
     });
+
+    await app.InitializeDbMigrationAndSeeding();
 
     app.UseWorkInProgressMiddleware();
     app.UseHttpsRedirection();

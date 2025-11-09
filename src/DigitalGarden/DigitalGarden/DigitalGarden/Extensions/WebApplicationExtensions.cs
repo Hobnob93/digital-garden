@@ -1,5 +1,8 @@
-﻿using DigitalGarden.Shared.Models.Options;
+﻿using DigitalGarden.Data;
+using DigitalGarden.Shared.Models.Options;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DigitalGarden.Extensions;
 
@@ -35,6 +38,18 @@ public static class WebApplicationExtensions
 
             await nextDelegate();
         });
+    }
+
+    public static async Task InitializeDbMigrationAndSeeding(this WebApplication app)
+    {
+        Log.Information("DB Migrations and seeding...");
+
+        var scope = app.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        await dbContext.Database.MigrateAsync();
+
+        await dbContext.SaveChangesAsync();
     }
 
     private static bool IsStaticFile(this string path)
