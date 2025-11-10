@@ -40,18 +40,6 @@ public static class WebApplicationExtensions
         });
     }
 
-    public static async Task InitializeDbMigrationAndSeeding(this WebApplication app)
-    {
-        Log.Information("DB Migrations and seeding...");
-
-        var scope = app.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-        await dbContext.Database.MigrateAsync();
-
-        await dbContext.SaveChangesAsync();
-    }
-
     private static bool IsStaticFile(this string path)
     {
         return Path.HasExtension(path)

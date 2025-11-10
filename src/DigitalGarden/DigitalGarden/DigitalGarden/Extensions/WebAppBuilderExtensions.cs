@@ -52,6 +52,7 @@ public static class WebAppBuilderExtensions
     {
         Log.Information("Adding internal dependencies to DI");
 
+        services.AddTransient<ContentSyncService>();
         services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
 

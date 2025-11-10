@@ -1,4 +1,5 @@
 using DigitalGarden.Components;
+using DigitalGarden.Data;
 using DigitalGarden.Extensions;
 using Serilog;
 using Serilog.Events;
@@ -17,6 +18,19 @@ try
 
     Log.Information("Building app");
     var app = builder.Build();
+
+    // Sync content when requested and exit application
+    if (args.Contains("sync-content", StringComparer.OrdinalIgnoreCase))
+    {
+        using var scope = app.Services.CreateScope();
+        var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
+
+        Log.Information("Synchronising DB Data...");
+        await syncService.SyncAsync();
+
+        Log.Information("Sync done! Exiting...");
+        return;
+    }
 
     Log.Information("Configuring HTTP pipeline");
     if (app.Environment.IsDevelopment())
@@ -40,8 +54,6 @@ try
             diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
         };
     });
-
-    await app.InitializeDbMigrationAndSeeding();
 
     app.UseWorkInProgressMiddleware();
     app.UseHttpsRedirection();

@@ -146,3 +146,6 @@ jobs:
             cd /srv/digital-garden
             docker compose pull
             docker compose up -d
+
+            # Run content sync in a one-off container
+            docker compose run --rm web sync-content
