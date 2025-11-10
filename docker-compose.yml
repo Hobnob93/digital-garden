@@ -6,9 +6,10 @@ services:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://0.0.0.0:8080
       SERILOG__WRITETO__2__ARGS__APIKEY: ${SEQ_API_KEY:-}
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=${PG_DB};Username=${PG_USER};Password=${PG_PASSWORD}
     volumes:
       - file-logs:/app/logs
-    depends_on: [seq]
+    depends_on: [seq, postgres]
     labels:
       traefik.enable: "true"
       traefik.docker.network: root_default
@@ -45,9 +46,78 @@ services:
       traefik.http.routers.seq.middlewares: seq-auth@docker,seq-ips@docker
     networks: [traefik]
 
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks: [traefik]
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    depends_on:
+      - postgres
+    networks: [traefik]
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: root_default
+      traefik.http.routers.pgadmin.rule: Host(`db.${GARDEN_DOMAIN}`)
+      traefik.http.routers.pgadmin.entrypoints: websecure
+      traefik.http.routers.pgadmin.tls: "true"
+      traefik.http.routers.pgadmin.tls.certresolver: mytlschallenge
+      traefik.http.services.pgadmin.loadbalancer.server.port: "80"
+      traefik.http.middlewares.pgadmin-auth.basicauth.users: ${PGADMIN_BASIC_AUTH}
+      traefik.http.middlewares.pgadmin-ips.ipwhitelist.sourcerange: ${ADMIN_IPS:-0.0.0.0/0}
+      traefik.http.routers.pgadmin.middlewares: pgadmin-auth@docker,pgadmin-ips@docker
+
+  media:
+    image: nginx:alpine
+    restart: unless-stopped
+    volumes:
+      - /srv/media:/usr/share/nginx/html:ro
+    networks: [traefik]
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: root_default
+      traefik.http.routers.media.rule: Host(`media.${GARDEN_DOMAIN}`)
+      traefik.http.routers.media.entrypoints: websecure
+      traefik.http.routers.media.tls: "true"
+      traefik.http.routers.media.tls.certresolver: mytlschallenge
+      traefik.http.services.media.loadbalancer.server.port: "80"
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    volumes:
+      - /srv/media:/srv
+      - filebrowser-db:/database
+    networks: [traefik]
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: root_default
+      traefik.http.routers.files.rule: Host(`files.${GARDEN_DOMAIN}`)
+      traefik.http.routers.files.entrypoints: websecure
+      traefik.http.routers.files.tls: "true"
+      traefik.http.routers.files.tls.certresolver: mytlschallenge
+      traefik.http.services.files.loadbalancer.server.port: "80"
+      traefik.http.middlewares.files-auth.basicauth.users: ${FILEBROWSER_BASIC_AUTH}
+      traefik.http.middlewares.files-ips.ipwhitelist.sourcerange: ${ADMIN_IPS:-0.0.0.0/0}
+      traefik.http.routers.files.middlewares: files-auth@docker,files-ips@docker
+
 volumes:
   file-logs:
   seq-data:
+  pg-data:
+  filebrowser-db:
 
 networks:
   traefik:

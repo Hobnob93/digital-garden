@@ -1,0 +1,28 @@
+services:
+  postgres-dev:
+    image: postgres:16-alpine
+    container_name: postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: digitalgarden
+      POSTGRES_USER: dg_admin
+      POSTGRES_PASSWORD: supersecret_dev_pw
+    ports:
+      - "5432:5432"   # host:container
+    volumes:
+      - pg-dev-data:/var/lib/postgresql/data
+
+  pgadmin-dev:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-dev
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: dev_pgadmin_pw
+    ports:
+      - "5050:80"   # http://localhost:5050
+    depends_on:
+      - postgres-dev
+
+volumes:
+  pg-dev-data:

@@ -1,5 +1,8 @@
-﻿using DigitalGarden.Shared.Models.Options;
+﻿using DigitalGarden.Data;
+using DigitalGarden.Shared.Models.Options;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace DigitalGarden.Extensions;
 
