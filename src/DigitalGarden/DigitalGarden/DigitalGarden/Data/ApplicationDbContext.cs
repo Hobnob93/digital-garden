@@ -1,10 +1,14 @@
-﻿using DigitalGarden.Shared.Models.Data;
+﻿using DigitalGarden.Data.Dtos;
+using DigitalGarden.Shared.Models.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalGarden.Data;
 
 public class ApplicationDbContext : DbContext
 {
+    public DbSet<BeaconCategoryDto> BeaconCategories => Set<BeaconCategoryDto>();
+    public DbSet<BeaconDto> Beacons => Set<BeaconDto>();
+
     public DbSet<ContentCategory> ContentCategories => Set<ContentCategory>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -16,6 +20,8 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         modelBuilder.Entity<ContentCategory>(entity =>
         {
