@@ -16,11 +16,17 @@ try
         .ConfigureApplication(configuration)
         .AddInternalDependencies();
 
+    var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
+    if (isSyncContent)
+    {
+        services.AddDataSynchronisation();
+    }
+
     Log.Information("Building app");
     var app = builder.Build();
 
     // Sync content when requested and exit application
-    if (args.Contains("sync-content", StringComparer.OrdinalIgnoreCase))
+    if (isSyncContent)
     {
         using var scope = app.Services.CreateScope();
         var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();

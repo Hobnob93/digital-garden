@@ -8,7 +8,7 @@ using Serilog;
 
 namespace DigitalGarden.Extensions;
 
-public static class WebAppBuilderExtensions
+public static class ServiceCollectionExtensions
 {
     public static IServiceCollection SetupLogging(this IServiceCollection services, IConfiguration configuration, IHostBuilder host)
     {
@@ -52,9 +52,15 @@ public static class WebAppBuilderExtensions
     {
         Log.Information("Adding internal dependencies to DI");
 
-        services.AddTransient<ContentSyncService>();
         services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddDataSynchronisation(this IServiceCollection services)
+    {
+        services.AddTransient<ContentSyncService>();
 
         return services;
     }
