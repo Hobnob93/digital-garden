@@ -22,14 +22,14 @@ public class ContentSyncService
         _contentSyncs = contentSyncs;
     }
 
-    public async Task SyncAsync()
+    public async Task SyncAsync(CancellationToken cancellationToken)
     {
-        await _dbContext.Database.MigrateAsync();
+        await _dbContext.Database.MigrateAsync(cancellationToken);
 
         var contentRootPath = Path.Combine(_hostEnv.ContentRootPath, "Data", "_content");
         foreach (var contentSync in _contentSyncs)
-            await contentSync.SynchronizeAsync(_serializerOptions, contentRootPath);
+            await contentSync.SynchronizeAsync(_serializerOptions, contentRootPath, cancellationToken);
 
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

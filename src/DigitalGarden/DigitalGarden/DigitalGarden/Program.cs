@@ -32,7 +32,7 @@ try
         var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
 
         Log.Information("Synchronising DB Data...");
-        await syncService.SyncAsync();
+        await syncService.SyncAsync(CancellationToken.None);
 
         Log.Information("Sync done! Exiting...");
         return;
