@@ -1,4 +1,5 @@
 ﻿using DigitalGarden.Data;
+using DigitalGarden.Data.Sync;
 using DigitalGarden.Services.Implementations;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Models.Options;
@@ -61,6 +62,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDataSynchronisation(this IServiceCollection services)
     {
         services.AddTransient<ContentSyncService>();
+        services.AddTransient<ISyncContent, SyncBeaconsContent>();
 
         return services;
     }

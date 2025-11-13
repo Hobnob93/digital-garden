@@ -1,5 +1,5 @@
 using DigitalGarden.Components;
-using DigitalGarden.Data;
+using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
 using Serilog;
 using Serilog.Events;
