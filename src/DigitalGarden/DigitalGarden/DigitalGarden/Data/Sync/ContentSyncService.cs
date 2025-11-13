@@ -28,7 +28,7 @@ public class ContentSyncService
 
         var contentRootPath = Path.Combine(_hostEnv.ContentRootPath, "Data", "_content");
         foreach (var contentSync in _contentSyncs)
-            await contentSync.Synchronize(_serializerOptions, contentRootPath);
+            await contentSync.SynchronizeAsync(_serializerOptions, contentRootPath);
 
         await _dbContext.SaveChangesAsync();
     }

@@ -4,5 +4,5 @@ namespace DigitalGarden.Data.Sync;
 
 public interface ISyncContent
 {
-    Task Synchronize(JsonSerializerOptions serializerOptions, string contentRootPath);
+    Task SynchronizeAsync(JsonSerializerOptions serializerOptions, string contentRootPath, CancellationToken cancellationToken);
 }

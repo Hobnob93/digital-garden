@@ -31,6 +31,13 @@ public class BeaconConfiguration : IEntityTypeConfiguration<BeaconDto>
             .HasForeignKey(e => e.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.Property(e => e.Slug)
+            .IsRequired()
+            .HasMaxLength(100);
+
         builder.HasIndex(e => e.CategoryId);
+
+        builder.HasIndex(e => e.Slug)
+            .IsUnique();
     }
 }
