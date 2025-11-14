@@ -47,7 +47,7 @@ public class SyncBeaconsContent : ISyncContent
             categorySlugs.Add(categoryToSync.UrlSlug);
 
             var category = await _dbContext.BeaconCategories
-                .FirstOrDefaultAsync(bc => string.Equals(bc.Slug, categoryToSync.UrlSlug, StringComparison.OrdinalIgnoreCase), cancellationToken);
+                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, categoryToSync.UrlSlug), cancellationToken);
 
             if (category is null)
             {
@@ -59,7 +59,7 @@ public class SyncBeaconsContent : ISyncContent
                     SortOrder = categoryToSync.SortOrder
                 };
 
-                await _dbContext.AddAsync(category, cancellationToken);
+                await _dbContext.BeaconCategories.AddAsync(category, cancellationToken);
             }
             else
             {
@@ -87,7 +87,7 @@ public class SyncBeaconsContent : ISyncContent
             var categorySlug = beaconsInCategoryToSync.Key.ToSlugString();
 
             var category = await _dbContext.BeaconCategories
-                .FirstOrDefaultAsync(bc => string.Equals(bc.Slug, categorySlug, StringComparison.OrdinalIgnoreCase), cancellationToken);
+                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, categorySlug), cancellationToken);
 
             if (category is null)
             {
@@ -100,7 +100,7 @@ public class SyncBeaconsContent : ISyncContent
                 beaconSlugs.Add(beaconToSync.UrlSlug);
 
                 var beacon = await _dbContext.Beacons
-                    .FirstOrDefaultAsync(b => string.Equals(b.Slug, beaconToSync.UrlSlug, StringComparison.OrdinalIgnoreCase), cancellationToken);
+                    .FirstOrDefaultAsync(b => EF.Functions.ILike(b.Slug, beaconToSync.UrlSlug), cancellationToken);
 
                 if (beacon is null)
                 {
@@ -113,6 +113,8 @@ public class SyncBeaconsContent : ISyncContent
                         Slug = beaconToSync.UrlSlug,
                         AddedAtUtc = DateTime.UtcNow
                     };
+
+                    await _dbContext.Beacons.AddAsync(beacon, cancellationToken);
                 }
                 else
                 {

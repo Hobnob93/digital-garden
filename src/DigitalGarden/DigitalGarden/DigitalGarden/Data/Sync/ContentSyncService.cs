@@ -7,7 +7,7 @@ public class ContentSyncService
 {
     private readonly IHostEnvironment _hostEnv;
     private readonly ApplicationDbContext _dbContext;
-    private readonly ISyncContent[] _contentSyncs;
+    private readonly IEnumerable<ISyncContent> _contentSyncs;
 
     private readonly JsonSerializerOptions _serializerOptions = new()
     {
@@ -15,7 +15,7 @@ public class ContentSyncService
     };
 
 
-    public ContentSyncService(IHostEnvironment hostEnv, ApplicationDbContext dbContext, ISyncContent[] contentSyncs)
+    public ContentSyncService(IHostEnvironment hostEnv, ApplicationDbContext dbContext, IEnumerable<ISyncContent> contentSyncs)
     {
         _hostEnv = hostEnv;
         _dbContext = dbContext;
