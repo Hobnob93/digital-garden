@@ -61,11 +61,17 @@ nav {
         align-content: center;
         font-size: var(--font-size-h5);
         padding-right: var(--rspacing-6);
-        transition: padding-right 0.5s ease, height 0.5s ease, font-size 0.6s ease;
+        transition: padding-right 0.5s ease, height 0.5s ease, font-size 0.5s ease;
     }
 
         nav .items a:hover {
             color: var(--hover-color);
+        }
+
+        nav .items a.active {
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-color: var(--active-color);
         }
 
 nav.affix {

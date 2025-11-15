@@ -76,3 +76,7 @@ p, li {
     letter-spacing: var(--font-spacing);
     font-weight: 400;
 }
+
+.center-text {
+    text-align: center !important;
+}

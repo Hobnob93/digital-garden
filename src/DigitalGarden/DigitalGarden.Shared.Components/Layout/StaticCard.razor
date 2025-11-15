@@ -1,5 +1,5 @@
 ﻿<div class="@CardClasses">
-    <div class="header pl-5 pr-5 pt-4">
+    <div class="@HeaderClasses">
         @if (HeaderFragment is not null)
         {
             @HeaderFragment
@@ -11,7 +11,7 @@
         <hr />
     }
 
-    <div class="body p-5 pt-4">
+    <div class="@BodyClasses">
         @if (BodyFragment is not null)
         {
             @BodyFragment

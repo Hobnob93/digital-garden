@@ -18,6 +18,9 @@ public partial class StaticCard
     public bool ShowSheen { get; set; }
 
     [Parameter]
+    public bool CenterBodyText { get; set; }
+
+    [Parameter]
     public string? AppendClasses { get; set; }
 
     private string CardClasses => new ClassBuilder()
@@ -25,5 +28,19 @@ public partial class StaticCard
         .Add("sheen", condition: ShowSheen)
         .Add("m-4")
         .Add(AppendClasses!, condition: !string.IsNullOrWhiteSpace(AppendClasses))
+        .Build();
+
+    private string HeaderClasses => new ClassBuilder()
+        .Add("header")
+        .Add("pl-5")
+        .Add("pr-5")
+        .Add("pt-4")
+        .Build();
+
+    private string BodyClasses => new ClassBuilder()
+        .Add("body")
+        .Add("p-5")
+        .Add("pt-4")
+        .Add("center-text", condition: CenterBodyText)
         .Build();
 }
