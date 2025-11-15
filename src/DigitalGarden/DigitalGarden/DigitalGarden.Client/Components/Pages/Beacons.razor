@@ -1,4 +1,6 @@
-﻿@page "/beacons"
+﻿@using DigitalGarden.Shared.Components.Controls
+
+@page "/beacons"
 @rendermode InteractiveAuto
 
 <PageTitle>Beacons</PageTitle>
@@ -12,3 +14,54 @@
         <p>Figured if I find them useful then others may, too!</p>
     </BodyFragment>
 </PageHeroCard>
+
+<div class="grid-12 mt-4">
+    @if (CategoryItems is null)
+    {
+        <div class="col-s-12 col-start-m-2 col-m-8">
+            <StaticCard HideHorizontalRules CenterBodyText>
+                <HeaderFragment>
+                    <h2>Playing Fetch</h2>
+                </HeaderFragment>
+                <BodyFragment>
+                    Fetching my beacons...
+                </BodyFragment>
+            </StaticCard>
+        </div>
+    }
+    else if (CategoryItems.Count == 0)
+    {
+        <div class="col-s-12 col-start-m-2 col-m-8">
+            <StaticCard HideHorizontalRules CenterBodyText>
+                <HeaderFragment>
+                    <h2>No Beacons</h2>
+                </HeaderFragment>
+                <BodyFragment>
+                    <p>Sorry, looks like there's no beacons to be found!</p>
+                </BodyFragment>
+            </StaticCard>
+        </div>
+    }
+    else
+    {
+        @foreach (var category in CategoryItems)
+        {
+            <div class="col-s-12 col-m-6">
+                    <StaticCard>
+                    <HeaderFragment>
+                        <h2>@category.Name</h2>
+                    </HeaderFragment>
+                    <BodyFragment>
+                        @foreach (var beacon in category.Beacons)
+                        {
+                            <h3>@beacon.Title</h3>
+                            <p>@beacon.Description</p>
+                            <Anchor Url="@beacon.Url" Text="GO" />
+                        }
+                    </BodyFragment>
+                </StaticCard>
+            </div>
+        }
+    }
+
+</div>
