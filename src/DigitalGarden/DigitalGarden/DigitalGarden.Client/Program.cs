@@ -14,6 +14,7 @@ services.AddHttpClient(ApiClientNames.AnonymousClientName,
     });
 
 services.AddTransient<ISiteConfigurationProvider, SiteConfigurationClient>();
+services.AddTransient<IBeaconProvider, BeaconClient>();
 
 await builder.Build().RunAsync();
 
