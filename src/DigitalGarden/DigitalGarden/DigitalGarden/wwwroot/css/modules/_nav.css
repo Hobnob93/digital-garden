@@ -24,6 +24,10 @@ nav {
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
+    nav .nav-container {
+        height: 100%;
+    }
+
     nav .avatar {
         float: left;
         width: auto;
@@ -50,6 +54,20 @@ nav {
                 transition: width 0.5s ease-in-out, height 0.5s ease-in-out, border-color 0.2s ease-in-out;
             }
 
+    nav .items {
+        float: right;
+        width: auto;
+        height: calc(var(--nav-height) + 1rem);
+        align-content: center;
+        font-size: var(--font-size-h5);
+        padding-right: var(--rspacing-6);
+        transition: padding-right 0.5s ease, height 0.5s ease, font-size 0.6s ease;
+    }
+
+        nav .items a:hover {
+            color: var(--hover-color);
+        }
+
 nav.affix {
     background-color: rgb(from var(--background-color-darkest) r g b / 0.75);
     border-color: var(--outline-color);
@@ -68,3 +86,9 @@ nav.affix {
             border-radius: 50%;
             box-shadow: 0 0 6px 3px var(--avatar-border-color);
         }
+
+    nav.affix .items {
+        height: calc(var(--nav-height) - 1rem);
+        padding-right: var(--rspacing-5);
+        font-size: var(--font-size-h6);
+    }
