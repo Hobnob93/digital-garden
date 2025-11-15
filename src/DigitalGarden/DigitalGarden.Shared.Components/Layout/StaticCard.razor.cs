@@ -26,7 +26,6 @@ public partial class StaticCard
     private string CardClasses => new ClassBuilder()
         .Add("card")
         .Add("sheen", condition: ShowSheen)
-        .Add("m-4")
         .Add(AppendClasses!, condition: !string.IsNullOrWhiteSpace(AppendClasses))
         .Build();
 
