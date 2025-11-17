@@ -18,6 +18,7 @@ public class BeaconProvider : IBeaconProvider
     public async Task<ICollection<BeaconCategoryItems>> GetAllItems()
     {
         var data = await _dbContext.BeaconCategories
+            .Include(bc => bc.Beacons)
             .ToListAsync();
 
         return data

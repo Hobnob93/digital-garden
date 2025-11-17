@@ -6,11 +6,11 @@ namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class BeaconController : ControllerBase
+public class BeaconsController : ControllerBase
 {
     private readonly IBeaconProvider _beaconProvider;
 
-    public BeaconController(IBeaconProvider beaconProvider)
+    public BeaconsController(IBeaconProvider beaconProvider)
     {
         _beaconProvider = beaconProvider;
     }

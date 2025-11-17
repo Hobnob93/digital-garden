@@ -15,13 +15,13 @@
     </BodyFragment>
 </PageHeroCard>
 
-<div class="grid-12 mt-4">
+<div class="grid-12 mt-4 mb-6">
     @if (CategoryItems is null)
     {
-        <div class="col-s-12 col-start-m-2 col-m-8">
+        <div class="col-s-12 col-start-m-3 col-m-8">
             <StaticCard HideHorizontalRules CenterBodyText>
                 <HeaderFragment>
-                    <h2>Playing Fetch</h2>
+                    <h3>Playing Fetch</h3>
                 </HeaderFragment>
                 <BodyFragment>
                     Fetching my beacons...
@@ -34,7 +34,7 @@
         <div class="col-s-12 col-start-m-2 col-m-8">
             <StaticCard HideHorizontalRules CenterBodyText>
                 <HeaderFragment>
-                    <h2>No Beacons</h2>
+                    <h3>No Beacons</h3>
                 </HeaderFragment>
                 <BodyFragment>
                     <p>Sorry, looks like there's no beacons to be found!</p>
@@ -44,24 +44,28 @@
     }
     else
     {
-        @foreach (var category in CategoryItems)
-        {
-            <div class="col-s-12 col-m-6">
-                    <StaticCard>
-                    <HeaderFragment>
-                        <h2>@category.Name</h2>
-                    </HeaderFragment>
-                    <BodyFragment>
+        <div class="col-s-12 col-start-m-2 col-m-10">
+            <AccordionOfItems Items="@CategoryItems" Context="category">
+                <TabHeaderFragment>
+                    <div class="data-label-area">
+                        <span class="count-pill">@category.Beacons.Count items</span>
+                        <label>@category.Name</label>
+                    </div>
+                </TabHeaderFragment>
+                <TabContentFragment>
+                    <div class="tab-content-container">
                         @foreach (var beacon in category.Beacons)
                         {
-                            <h3>@beacon.Title</h3>
-                            <p>@beacon.Description</p>
-                            <Anchor Url="@beacon.Url" Text="GO" />
+                            <div class="link-title-container">
+                                <h5>@beacon.Title</h5>
+                                <Anchor Url="@beacon.Url" Text="⟹" />
+                            </div>
+                            <p class="muted">@beacon.Description</p>
                         }
-                    </BodyFragment>
-                </StaticCard>
-            </div>
-        }
+                    </div>
+                </TabContentFragment>
+            </AccordionOfItems>
+        </div>
     }
 
 </div>

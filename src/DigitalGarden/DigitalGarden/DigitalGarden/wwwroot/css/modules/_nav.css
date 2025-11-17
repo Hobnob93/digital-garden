@@ -1,6 +1,7 @@
 ﻿/* Inspired by, and reverse engineered from, https://codepen.io/albizan/pen/mMWdWZ */
 :root {
-    --avatar-border-color: var(--outline-color);
+    --avatar-border-color: var(--border-color);
+    --transparent-nav-color: rgb(from var(--white) r g b / 0.0);
     --nav-height: 3.5rem;
 }
 
@@ -19,8 +20,8 @@ nav {
     line-height: var(--nav-height);
     text-align: center;
     z-index: 1000;
-    background-color: var(--transparent-white);
-    border-bottom: 2px solid var(--transparent-white);
+    background-color: var(--transparent-nav-color);
+    border-bottom: 2px solid var(--transparent-nav-color);
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
@@ -38,7 +39,7 @@ nav {
     }
 
         nav .avatar a {
-            --avatar-border-color: var(--outline-color);
+            --avatar-border-color: var(--border-color);
         }
 
             nav .avatar a:hover {
@@ -92,7 +93,7 @@ nav {
 
 nav.affix {
     background-color: rgb(from var(--background-color-darkest) r g b / 0.75);
-    border-color: var(--outline-color);
+    border-color: var(--border-color);
     backdrop-filter: blur(4px);
 }
 
