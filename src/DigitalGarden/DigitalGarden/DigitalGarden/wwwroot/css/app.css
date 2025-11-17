@@ -1,9 +1,12 @@
 @import "./modules/_reset.css";
 @import "./modules/_starfield.css";
 @import "./modules/_utility.css";
-@import "./modules/_topography.css";
+@import "./modules/_typography.css";
 @import "./modules/_nav.css";
 @import "./modules/_cards.css";
+@import "./modules/_accordion.css";
+
+/* GIFTS - Temp (remove when done) */
 
 ul.gift-list li {
     position: relative;
@@ -22,5 +25,31 @@ ul.gift-list li {
         right: 0;
         bottom: 0;
         width: 75%;
-        border-bottom: 1px solid var(--outline-color);
+        border-bottom: 1px solid var(--border-color);
     }
+
+.beacon-content:not(:last-child) {
+    margin-bottom: var(--rspacing-3);
+}
+
+.link-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .link-title-container .link-favicon {
+        height: 16px;
+        width: 16px;
+        transition: margin-right 0.3s ease-in-out;
+    }
+
+    .link-title-container:hover {
+        cursor: pointer;
+        color: var(--hover-color);
+    }
+
+        .link-title-container:hover .link-favicon {
+            margin-right: var(--rspacing-3);
+        }

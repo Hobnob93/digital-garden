@@ -1,0 +1,70 @@
+﻿@using DigitalGarden.Shared.Components.Controls
+
+@page "/beacons"
+@rendermode InteractiveAuto
+
+<PageTitle>Beacons</PageTitle>
+
+<PageHeroCard>
+    <HeaderFragment>
+        <h1>Beacons</h1>
+    </HeaderFragment>
+    <BodyFragment>
+        <p>A collection of links for various tools, sources, resources, and other content that I make use of.</p>
+        <p>Figured if I find them useful then others may, too!</p>
+    </BodyFragment>
+</PageHeroCard>
+
+<div class="grid-12 mt-4 mb-6">
+    @if (CategoryItems is null)
+    {
+        <div class="col-12 col-start-m-3 col-m-8">
+            <StaticCard HideHorizontalRules CenterBodyText>
+                <HeaderFragment>
+                    <h3>Playing Fetch</h3>
+                </HeaderFragment>
+                <BodyFragment>
+                    Fetching my beacons...
+                </BodyFragment>
+            </StaticCard>
+        </div>
+    }
+    else if (CategoryItems.Count == 0)
+    {
+        <div class="col-12 col-start-m-2 col-m-8">
+            <StaticCard HideHorizontalRules CenterBodyText>
+                <HeaderFragment>
+                    <h3>No Beacons</h3>
+                </HeaderFragment>
+                <BodyFragment>
+                    <p>Sorry, looks like there's no beacons to be found!</p>
+                </BodyFragment>
+            </StaticCard>
+        </div>
+    }
+    else
+    {
+        <div class="col-12 col-start-m-2 col-m-10">
+            <AccordionOfItems Items="@CategoryItems" Context="category">
+                <TabHeaderFragment>
+                    <div class="data-label-area">
+                        <span class="count-pill">@category.Beacons.Count items</span>
+                        <label>@category.Name</label>
+                    </div>
+                </TabHeaderFragment>
+                <TabContentFragment>
+                    <div class="tab-content-container">
+                        @foreach (var beacon in category.Beacons)
+                        {
+                            <div class="beacon-content">
+                                <TitleWithLink Title="@beacon.Title" Url="@beacon.Url" />
+                                <p class="muted">@beacon.Description</p>
+                            </div>                            
+                        }
+                    </div>
+                </TabContentFragment>
+            </AccordionOfItems>
+        </div>
+    }
+
+</div>

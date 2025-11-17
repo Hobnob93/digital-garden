@@ -1,4 +1,5 @@
 ﻿using DigitalGarden.Data;
+using DigitalGarden.Data.Sync;
 using DigitalGarden.Services.Implementations;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Models.Options;
@@ -8,7 +9,7 @@ using Serilog;
 
 namespace DigitalGarden.Extensions;
 
-public static class WebAppBuilderExtensions
+public static class ServiceCollectionExtensions
 {
     public static IServiceCollection SetupLogging(this IServiceCollection services, IConfiguration configuration, IHostBuilder host)
     {
@@ -52,9 +53,17 @@ public static class WebAppBuilderExtensions
     {
         Log.Information("Adding internal dependencies to DI");
 
-        services.AddTransient<ContentSyncService>();
         services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
+        services.AddTransient<IBeaconProvider, BeaconProvider>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddDataSynchronisation(this IServiceCollection services)
+    {
+        services.AddTransient<ContentSyncService>();
+        services.AddTransient<ISyncContent, SyncBeaconsContent>();
 
         return services;
     }

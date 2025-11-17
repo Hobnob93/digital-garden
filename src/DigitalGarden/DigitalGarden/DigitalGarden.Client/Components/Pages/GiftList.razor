@@ -1,0 +1,45 @@
+﻿@using DigitalGarden.Shared.Components.Controls
+
+@page "/xmas"
+@rendermode InteractiveAuto
+
+<PageTitle>Gift List</PageTitle>
+<NoRobotsHeadContent />
+
+<div class="grid-12">
+    <div class="col-12">
+        <StaticCard ShowSheen CenterBodyText HideHorizontalRules>
+            <HeaderFragment>
+                <h1>🎁 Gift List Plz 🎁</h1>
+            </HeaderFragment>
+            <BodyFragment>
+            </BodyFragment>
+        </StaticCard>
+    </div>
+</div>
+
+<div class="grid-12 mt-4 mb-6">
+    <div class="col-12 col-start-m-2 col-m-10">
+        <AccordionOfItems Items="@CategoryItems" Context="category">
+            <TabHeaderFragment>
+                <div class="data-label-area">
+                    <span class="count-pill">@category.Beacons.Count items</span>
+                    <label>@category.Name</label>
+                </div>
+            </TabHeaderFragment>
+            <TabContentFragment>
+                <div class="tab-content-container">
+                    @foreach (var beacon in category.Beacons)
+                    {
+                        <div class="beacon-content">
+                            <TitleWithLink Title="@beacon.Title" Url="@beacon.Url" />
+                            <p class="muted">@beacon.Description</p>
+                        </div>
+                    }
+                </div>
+            </TabContentFragment>
+        </AccordionOfItems>
+    </div>
+</div>
+
+

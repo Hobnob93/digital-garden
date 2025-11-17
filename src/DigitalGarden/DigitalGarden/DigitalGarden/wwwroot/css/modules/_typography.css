@@ -2,9 +2,14 @@
 
 :root {
     --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-
     --font-line: 1.6;
     --font-size: 16px;
+    --font-size-h1: clamp(2.00rem, 1.40rem + 2.00vw, 3.00rem);
+    --font-size-h2: clamp(1.75rem, 1.20rem + 1.20vw, 2.50rem);
+    --font-size-h3: clamp(1.45rem, 1.10rem + 0.60vw, 2.00rem);
+    --font-size-h4: clamp(1.25rem, 1.00rem + 0.60vw, 1.60rem);
+    --font-size-h5: clamp(1.10rem, 0.95rem + 0.60vw, 1.30rem);
+    --font-size-h6: clamp(1.00rem, 0.90rem + 0.60vw, 1.10rem);
     --font-spacing: 0.01em;
     --font-default-color: white;
 }
@@ -21,19 +26,37 @@ body {
 
 h1 {
     font-weight: 700;
-    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+    font-size: var(--font-size-h1);
     line-height: 1.15;
 }
 
 h2 {
     font-weight: 700;
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    font-size: var(--font-size-h2);
     line-height: 1.2;
 }
 
 h3 {
     font-weight: 600;
-    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+    font-size: var(--font-size-h3);
+    line-height: 1.25;
+}
+
+h4 {
+    font-weight: 600;
+    font-size: var(--font-size-h4);
+    line-height: 1.25;
+}
+
+h5 {
+    font-weight: 500;
+    font-size: var(--font-size-h5);
+    line-height: 1.25;
+}
+
+h6 {
+    font-weight: 500;
+    font-size: var(--font-size-h6);
     line-height: 1.25;
 }
 
@@ -52,4 +75,8 @@ p, li {
 .button, nav, .label {
     letter-spacing: var(--font-spacing);
     font-weight: 400;
+}
+
+.center-text {
+    text-align: center !important;
 }

@@ -1,0 +1,85 @@
+{
+  "Categories": [
+    {
+      "Name": "Tools",
+      "Description": "General online tools that are useful for various things tasks; most are free to some extent."
+    },
+    {
+      "Name": "Games Dev",
+      "Description": "Learning material and/or sources for games development."
+    },
+    {
+      "Name": "Ukraine",
+      "Description": "Commentators and other content to help keep up to date with the Russia's invasion of Ukraine."
+    }
+  ],
+
+  "BeaconsInCategories": {
+    "Tools": [
+      {
+        "Name": "World Anvil",
+        "Description": "A tool with a free tier, allowing users to document their diverse worlds in as much detail as they fancy. I'm using it to build my \"Perversion of Victory\" world.",
+        "Url": "https://www.worldanvil.com/best-of-world-anvil"
+      },
+      {
+        "Name": "Codepen",
+        "Description": "Allows users to sandbox their web development ideas, and browse other developer's implementations for inspiration.",
+        "Url": "https://codepen.io"
+      },
+      {
+        "Name": "Codecks",
+        "Description": "A kanban baord-style application intended to make the process easier and prettier. I use it for many of my projects, though perhaps not as much as I should.",
+        "Url": "https://www.codecks.io/showcase/"
+      }
+    ],
+    "Games Dev": [
+      {
+        "Name": "Git Amend",
+        "Description": "Covers intermediate and advanced concepts within the Unity game engine.",
+        "Url": "https://www.youtube.com/@git-amend"
+      },
+      {
+        "Name": "Game AI Pro",
+        "Description": "Steve Rabin's books on AI in games, free to everyone.",
+        "Url": "https://www.gameaipro.com"
+      },
+      {
+        "Name": "NotPresident35's Content Curation",
+        "Description": "A huge curation of sources for wide variety of topics around games development, many of which are engine-agnostic.",
+        "Slug": "np35-content-curation",
+        "Url": "https://github.com/dawdle-deer/awesome-learn-gamedev?tab=readme-ov-file#gameplay"
+      }
+    ],
+    "Ukraine": [
+      {
+        "Name": "Institute for the Study of War",
+        "Description": "Analytical coverage of Putin's war of conquest in Ukraine.",
+        "Slug": "isw",
+        "Url": "https://understandingwar.org/analysis/russia-ukraine/"
+      },
+      {
+        "Name": "Jake Broe",
+        "Description": "A (mostly political) commentator on the war in Ukraine from Las Vegas, USA. Tends to focus on the political side, be it his presidents' administration's stance; Europe's telegraphing; or Russia's rhetoric.",
+        "Slug": "jake-broe",
+        "Url": "https://www.youtube.com/@JakeBroe"
+      },
+      {
+        "Name": "Denys Davydov",
+        "Description": "A Ukrainian himself, Denys covers the day-to-day military antics on the territory of Russia and Ukraine, with some political analysis.",
+        "Slug": "denys-davydov",
+        "Url": "https://www.youtube.com/@DenysDavydov"
+      },
+      {
+        "Name": "Ukraine Matters",
+        "Description": "A dual-meaning name, covering matters happening within Ukraine, and spreading the message that the fate of Ukraine matters to us all. Analysis by Georgie of Denmark.",
+        "Slug": "ukraine-matters",
+        "Url": "https://www.youtube.com/@UkraineMatters"
+      },
+      {
+        "Name": "DeepState Map",
+        "Description": "A map, that's usually a few days behind reports, showing estimated control of territory based on many publicly avialable sources. These sources include reports from soldiers, civilians, press, drone footage, etc.",
+        "Url": "https://deepstatemap.live/en#6/49.4383200/32.0526800"
+      }
+    ]
+  }
+}
