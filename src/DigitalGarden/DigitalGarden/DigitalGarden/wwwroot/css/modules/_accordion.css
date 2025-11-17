@@ -40,8 +40,6 @@
     .accordion .tab .tab-content {
         height: fit-content;
         overflow: hidden;
-        border-left: var(--rspacing-3) solid var(--background-black);
-        border-right: var(--rspacing-3) solid var(--background-black);
         transition: max-height 0.5s ease-in-out;
     }
 
@@ -54,28 +52,36 @@
     }
 
     .accordion .tab .tab-content .tab-content-container {
-        margin: var(--rspacing-3);
+        padding: var(--rspacing-3);
+        border-left: var(--rspacing-3) solid var(--background-black);
+        border-right: var(--rspacing-3) solid var(--background-black);
     }
 
-.tab-header .data-label-area {
-    padding: var(--rspacing-2);
-    text-align: center;
-}
+        .accordion .tab .tab-content .tab-content-container:not(:last-child) {
+            background-color: green;
+        }
+
+    .tab-header .data-label-area {
+        padding: var(--rspacing-2);
+        text-align: center;
+    }
 
     .tab-header .data-label-area label {
         display: inline-block;
         font-size: var(--font-size-h4);
     }
 
-.tab-header .data-label-area .count-pill {
-    align-items: center;
-    justify-content: center;
-    padding: 0.1rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    background-color: var(--accent-color, #28a745);
-    color: var(--pill-text-color, #ffffff);
-    text-align: center;
-    white-space: nowrap;
-    float: right;
-}
+        .tab-header .data-label-area .count-pill {
+            position: absolute;
+            right: var(--rspacing-2);
+            align-items: center;
+            justify-content: center;
+            padding: 0.1rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background-color: var(--accent-color, #28a745);
+            color: var(--pill-text-color, #ffffff);
+            text-align: center;
+            white-space: nowrap;
+            float: right;
+        }

@@ -3,8 +3,8 @@
 <div class="accordion">
     @foreach (var item in Items)
     {
-        <div class="tab @GetItemActiveClass(item)" @onclick="_ => OnItemClicked(item)">
-            <div class="tab-header">
+        <div class="tab @GetItemActiveClass(item)">
+            <div class="tab-header" @onclick="_ => OnItemClicked(item)">
                 @if (TabHeaderFragment is not null)
                 {
                     @TabHeaderFragment(item)

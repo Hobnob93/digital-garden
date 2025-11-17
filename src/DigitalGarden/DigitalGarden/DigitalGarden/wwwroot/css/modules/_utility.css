@@ -335,12 +335,6 @@
     padding-right: var(--rspacing-4);
 }
 
-.grid-12 {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: var(--rspacing-2);
-}
-
 @media (min-width: 768px) {
     .page {
         padding-left: 16%;
@@ -355,51 +349,57 @@
     }
 }
 
-.col-s-1 {
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: var(--rspacing-2);
+}
+
+.col-1 {
     grid-column-end: span 1;
 }
 
-.col-s-2 {
+.col-2 {
     grid-column-end: span 2;
 }
 
-.col-s-3 {
+.col-3 {
     grid-column-end: span 3;
 }
 
-.col-s-4 {
+.col-4 {
     grid-column-end: span 4;
 }
 
-.col-s-5 {
+.col-5 {
     grid-column-end: span 5;
 }
 
-.col-s-6 {
+.col-6 {
     grid-column-end: span 6;
 }
 
-.col-s-7 {
+.col-7 {
     grid-column-end: span 7;
 }
 
-.col-s-8 {
+.col-8 {
     grid-column-end: span 8;
 }
 
-.col-s-9 {
+.col-9 {
     grid-column-end: span 9;
 }
 
-.col-s-10 {
+.col-10 {
     grid-column-end: span 10;
 }
 
-.col-s-11 {
+.col-11 {
     grid-column-end: span 11;
 }
 
-.col-s-12 {
+.col-12 {
     grid-column-end: span 12;
 }
 
@@ -503,51 +503,51 @@
     }
 }
 
-.col-start-s-1 {
+.col-start-1 {
     grid-column-start: 1;
 }
 
-.col-start-s-2 {
+.col-start-2 {
     grid-column-start: 2;
 }
 
-.col-start-s-3 {
+.col-start-3 {
     grid-column-start: 3;
 }
 
-.col-start-s-4 {
+.col-start-4 {
     grid-column-start: 4;
 }
 
-.col-start-s-5 {
+.col-start-5 {
     grid-column-start: 5;
 }
 
-.col-start-s-6 {
+.col-start-6 {
     grid-column-start: 6;
 }
 
-.col-start-s-7 {
+.col-start-7 {
     grid-column-start: 7;
 }
 
-.col-start-s-8 {
+.col-start-8 {
     grid-column-start: 8;
 }
 
-.col-start-s-9 {
+.col-start-9 {
     grid-column-start: 9;
 }
 
-.col-start-s-10 {
+.col-start-10 {
     grid-column-start: 10;
 }
 
-.col-start-s-11 {
+.col-start-11 {
     grid-column-start: 11;
 }
 
-.col-start-s-12 {
+.col-start-12 {
     grid-column-start: 12;
 }
 
@@ -649,4 +649,24 @@
     .col-start-l-12 {
         grid-column-start: 12;
     }
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1;
 }
