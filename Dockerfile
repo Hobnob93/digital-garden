@@ -1,5 +1,5 @@
 # ===== Build stage =====
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy EVERYTHING first (TODO: optimise later)
@@ -10,7 +10,7 @@ RUN dotnet restore ./src/DigitalGarden/DigitalGarden.sln
 RUN dotnet publish ./src/DigitalGarden/DigitalGarden/DigitalGarden/DigitalGarden.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 # ===== Runtime stage =====
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://+:8080
 ENV DOTNET_RUNNING_IN_CONTAINER=true

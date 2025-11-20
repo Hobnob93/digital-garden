@@ -165,10 +165,24 @@ nav.affix {
             }
 
     nav.affix .menu-button-container {
-        width: calc(var(--nav-height) - 2rem);
+        width: calc(var(--nav-height) - 1.8rem);
+        margin-right: var(--rspacing-5);
+        margin-top: calc((var(--rspacing-3) + var(--rspacing-4)) / 2);
+    }
+
+@media (min-width: 768px) {
+    nav .menu-button-container {
+        width: calc(var(--nav-height) - 2.5rem);
+        margin-right: var(--rspacing-6);
+        margin-top: calc((var(--rspacing-5) + var(--rspacing-6)) / 2);
+    }
+
+    nav.affix .menu-button-container {
+        width: calc(var(--nav-height) - 2.5rem);
         margin-right: var(--rspacing-5);
         margin-top: calc((var(--rspacing-4) + var(--rspacing-5)) / 2);
     }
+}
 
 @media (min-width: 1024px) {
     nav .items {

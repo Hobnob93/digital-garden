@@ -11,7 +11,7 @@
     --font-size-h5: clamp(1.10rem, 0.95rem + 0.60vw, 1.30rem);
     --font-size-h6: clamp(1.00rem, 0.90rem + 0.60vw, 1.10rem);
     --font-spacing: 0.01em;
-    --font-default-color: white;
+    --font-default-color: var(--white);
 }
 
 body {

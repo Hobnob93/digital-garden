@@ -17,20 +17,28 @@
 /* GENERAL COLOUR VARIABLES */
 :root {
     --black: #000000;
-    --dark-grey: #121212;
-    --white: #FFFFFF;
-    --cyan: #21ADD7;
-    --dark-cyan: #067ea2;
-    --background-black: rgb(from var(--black) r g b / 0.50);
-    --background-dark-grey: rgb(from var(--dark-grey) r g b / 0.50);
+    --off-black: #001C27;
+    --white: #E2F8F9;
+    --off-white: #e9d8a6;
+    --night-blue: #000009;
+    --dark-blue: #005f73;
+    --blue: #0a9396;
+    --light-blue: #94d2bd;
+    --dark-red: #ae2012;
+    --red: #bb3e03;
+    --light-red: #ca6702;
+    --warning: #ee9b00;
+    --error: #9b2226;
+    --background-dark: rgb(from var(--night-blue) r g b / 0.50);
+    --background-light: rgb(from var(--off-black) r g b / 0.50);
 }
 
 /* UTILITY COLOUR VARIABLES */
 :root {
-    --hover-color: var(--cyan);
-    --active-color: var(--dark-cyan);
+    --hover-color: var(--blue);
+    --active-color: var(--warning);
     --border-color: rgb(from var(--white) r g b / 0.20);
-    --border-hover-color: var(--dark-cyan);
+    --border-hover-color: var(--dark-blue);
 }
 
 .m-0 {
