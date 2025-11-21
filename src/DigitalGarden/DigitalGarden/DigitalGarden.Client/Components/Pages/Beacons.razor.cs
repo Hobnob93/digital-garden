@@ -9,10 +9,11 @@ public partial class Beacons
     [Inject]
     public IBeaconProvider BeaconProvider { get; set; } = default!;
 
-    private ICollection<BeaconCategoryItems>? CategoryItems { get; set; }
+    [PersistentState]
+    public ICollection<BeaconCategoryItems>? CategoryItems { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        CategoryItems = await BeaconProvider.GetAllItems();
+        CategoryItems ??= await BeaconProvider.GetAllItems();
     }
 }
