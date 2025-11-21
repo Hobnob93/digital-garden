@@ -56,7 +56,7 @@ try
         options.GetLevel = (_, _, ex) => ex is null ? LogEventLevel.Information : LogEventLevel.Error;
         options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
         {
-            diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString());
+            diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty);
             diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
         };
     });
@@ -64,6 +64,7 @@ try
     app.UseWorkInProgressMiddleware();
     app.UseHttpsRedirection();
 
+    app.MapStaticAssets();
     app.MapControllers();
 
     app.UseStaticFiles();

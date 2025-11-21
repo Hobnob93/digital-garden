@@ -11,7 +11,6 @@
     --font-size-h5: clamp(1.10rem, 0.95rem + 0.60vw, 1.30rem);
     --font-size-h6: clamp(1.00rem, 0.90rem + 0.60vw, 1.10rem);
     --font-spacing: 0.01em;
-    --font-default-color: white;
 }
 
 body {
@@ -21,7 +20,7 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-optical-sizing: auto;
-    color: var(--font-default-color);
+    color: var(--text);
 }
 
 h1 {
@@ -69,7 +68,7 @@ p, li {
 }
 
 .muted {
-    opacity: .75;
+    color: var(--text-muted);
 }
 
 .button, nav, .label {

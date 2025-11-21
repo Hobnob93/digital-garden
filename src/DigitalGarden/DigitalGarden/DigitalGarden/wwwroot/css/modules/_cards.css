@@ -1,6 +1,6 @@
 ﻿:root {
-    --card-border-color: var(--border-color);
-    --card-sheen-background: linear-gradient(6deg, var(--background-black) 70%, var(--background-dark-grey) 70.5%);
+    --card-border-color: var(--border-transparent);
+    --card-sheen-background: linear-gradient(174deg, var(--bg-light-transparent) 60px, var(--bg-dark-transparent) 61px);
 }
 
 .card {
@@ -31,4 +31,5 @@
 .card.sheen {
     background: var(--card-sheen-background);
     border-width: 3px;
+    border-color: var(--highlight);
 }

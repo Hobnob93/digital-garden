@@ -1,7 +1,7 @@
 ﻿/* Inspired by, and reverse engineered from, https://codepen.io/albizan/pen/mMWdWZ */
 :root {
-    --avatar-border-color: var(--border-color);
-    --transparent-nav-color: rgb(from var(--white) r g b / 0.0);
+    --avatar-border-color: var(--border);
+    --transparent-nav-color: #FFFFFF00;
     --nav-height: 3.5rem;
 }
 
@@ -39,7 +39,7 @@ nav {
     }
 
         nav .avatar a {
-            --avatar-border-color: var(--border-color);
+            --avatar-border-color: var(--border-transparent);
         }
 
             nav .avatar a:hover {
@@ -93,7 +93,7 @@ nav {
 
 nav.affix {
     background-color: rgb(from var(--background-color-darkest) r g b / 0.75);
-    border-color: var(--border-color);
+    border-color: var(--border-transparent);
     backdrop-filter: blur(4px);
 }
 
@@ -120,7 +120,7 @@ nav.affix {
     }
 
         nav .menu-button i {
-            background-color: var(--font-default-color);
+            background-color: var(--text);
             border-radius: 2px;
             content: '';
             display: block;
@@ -165,10 +165,24 @@ nav.affix {
             }
 
     nav.affix .menu-button-container {
-        width: calc(var(--nav-height) - 2rem);
+        width: calc(var(--nav-height) - 1.8rem);
+        margin-right: var(--rspacing-5);
+        margin-top: calc((var(--rspacing-3) + var(--rspacing-4)) / 2);
+    }
+
+@media (min-width: 768px) {
+    nav .menu-button-container {
+        width: calc(var(--nav-height) - 2.5rem);
+        margin-right: var(--rspacing-6);
+        margin-top: calc((var(--rspacing-5) + var(--rspacing-6)) / 2);
+    }
+
+    nav.affix .menu-button-container {
+        width: calc(var(--nav-height) - 2.5rem);
         margin-right: var(--rspacing-5);
         margin-top: calc((var(--rspacing-4) + var(--rspacing-5)) / 2);
     }
+}
 
 @media (min-width: 1024px) {
     nav .items {

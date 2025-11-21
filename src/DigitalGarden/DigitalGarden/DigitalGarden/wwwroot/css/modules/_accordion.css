@@ -1,7 +1,7 @@
 ﻿.accordion {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-muted);
     border-radius: var(--rspacing-4);
     backdrop-filter: blur(1px);
     background-color: transparent;
@@ -26,11 +26,12 @@
 
     .accordion .tab .tab-header {
         cursor: pointer;
-        background-color: var(--background-black);
+        background-color: var(--bg-light-transparent);
     }
 
         .accordion .tab .tab-header:hover {
             background-color: var(--hover-color);
+            color: var(--text-dark);
         }
 
 .accordion .tab .tab-header * {
@@ -53,35 +54,35 @@
 
     .accordion .tab .tab-content .tab-content-container {
         padding: var(--rspacing-3);
-        border-left: var(--rspacing-3) solid var(--background-black);
-        border-right: var(--rspacing-3) solid var(--background-black);
+        border-left: var(--rspacing-3) solid var(--bg-light-transparent);
+        border-right: var(--rspacing-3) solid var(--bg-light-transparent);
     }
 
         .accordion .tab .tab-content .tab-content-container:not(:last-child) {
             background-color: green;
         }
 
-    .tab-header .data-label-area {
-        padding: var(--rspacing-2);
-        text-align: center;
-    }
+.tab-header .data-label-area {
+    padding: var(--rspacing-2);
+    text-align: center;
+}
 
     .tab-header .data-label-area label {
         display: inline-block;
         font-size: var(--font-size-h4);
     }
 
-        .tab-header .data-label-area .count-pill {
-            position: absolute;
-            right: var(--rspacing-2);
-            align-items: center;
-            justify-content: center;
-            padding: 0.1rem 0.6rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            background-color: var(--accent-color, #28a745);
-            color: var(--pill-text-color, #ffffff);
-            text-align: center;
-            white-space: nowrap;
-            float: right;
-        }
+    .tab-header .data-label-area .count-pill {
+        position: absolute;
+        right: var(--rspacing-2);
+        align-items: center;
+        justify-content: center;
+        padding: 0.1rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background-color: var(--info);
+        color: var(--text-dark);
+        text-align: center;
+        white-space: nowrap;
+        float: right;
+    }
