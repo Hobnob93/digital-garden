@@ -25,7 +25,7 @@ ul.gift-list li {
         right: 0;
         bottom: 0;
         width: 75%;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-transparent);
     }
 
 .beacon-content:not(:last-child) {

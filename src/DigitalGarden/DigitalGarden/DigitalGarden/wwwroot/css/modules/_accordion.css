@@ -1,7 +1,7 @@
 ﻿.accordion {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-muted);
     border-radius: var(--rspacing-4);
     backdrop-filter: blur(1px);
     background-color: transparent;
@@ -26,11 +26,12 @@
 
     .accordion .tab .tab-header {
         cursor: pointer;
-        background-color: var(--background-dark);
+        background-color: var(--bg-light-transparent);
     }
 
         .accordion .tab .tab-header:hover {
             background-color: var(--hover-color);
+            color: var(--text-dark);
         }
 
 .accordion .tab .tab-header * {
@@ -53,8 +54,8 @@
 
     .accordion .tab .tab-content .tab-content-container {
         padding: var(--rspacing-3);
-        border-left: var(--rspacing-3) solid var(--background-dark);
-        border-right: var(--rspacing-3) solid var(--background-dark);
+        border-left: var(--rspacing-3) solid var(--bg-light-transparent);
+        border-right: var(--rspacing-3) solid var(--bg-light-transparent);
     }
 
         .accordion .tab .tab-content .tab-content-container:not(:last-child) {
@@ -79,8 +80,8 @@
         padding: 0.1rem 0.6rem;
         border-radius: 999px;
         font-size: 0.75rem;
-        background-color: var(--dark-blue);
-        color: var(--white);
+        background-color: var(--info);
+        color: var(--text-dark);
         text-align: center;
         white-space: nowrap;
         float: right;

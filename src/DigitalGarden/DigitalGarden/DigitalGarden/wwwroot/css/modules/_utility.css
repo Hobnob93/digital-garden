@@ -16,29 +16,32 @@
 
 /* GENERAL COLOUR VARIABLES */
 :root {
-    --black: #000000;
-    --off-black: #001C27;
-    --white: #E2F8F9;
-    --off-white: #e9d8a6;
-    --night-blue: #000009;
-    --dark-blue: #005f73;
-    --blue: #0a9396;
-    --light-blue: #94d2bd;
-    --dark-red: #ae2012;
-    --red: #bb3e03;
-    --light-red: #ca6702;
-    --warning: #ee9b00;
-    --error: #9b2226;
-    --background-dark: rgb(from var(--night-blue) r g b / 0.50);
-    --background-light: rgb(from var(--off-black) r g b / 0.50);
+    --bg-dark: oklch(0.1 0.1 213);
+    --bg: oklch(0.15 0.1 213);
+    --bg-light: oklch(0.2 0.1 213);
+    --text: oklch(0.96 0.1 213);
+    --text-muted: oklch(0.76 0.1 213);
+    --text-dark: var(--bg-dark);
+    --highlight: oklch(0.5 0.2 213);
+    --border: oklch(0.4 0.2 213);
+    --border-muted: oklch(0.3 0.2 213);
+    --primary: oklch(0.76 0.2 213);
+    --secondary: oklch(0.76 0.2 33);
+    --danger: oklch(0.7 0.2 30);
+    --warning: oklch(0.7 0.2 100);
+    --success: oklch(0.7 0.2 160);
+    --info: oklch(0.7 0.2 260);
+    --bg-dark-transparent: rgb(from var(--bg-dark) r g b / 0.50);
+    --bg-transparent: rgb(from var(--bg) r g b / 0.50);
+    --bg-light-transparent: rgb(from var(--bg-light) r g b / 0.50);
 }
 
 /* UTILITY COLOUR VARIABLES */
 :root {
-    --hover-color: var(--blue);
-    --active-color: var(--warning);
-    --border-color: rgb(from var(--white) r g b / 0.20);
-    --border-hover-color: var(--dark-blue);
+    --hover-color: var(--primary);
+    --active-color: var(--secondary);
+    --border-transparent: rgb(from var(--border) r g b / 0.20);
+    --border-hover-color: var(--highlight);
 }
 
 .m-0 {
