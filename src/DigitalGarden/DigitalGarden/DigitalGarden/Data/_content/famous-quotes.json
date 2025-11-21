@@ -1,0 +1,362 @@
+[
+  {
+    "Text": "Life is about making an impact, not making an income.",
+    "Author": "Kevin Kruse",
+    "IsFavourite": true,
+    "Slug": "kevin-kruse-income"
+  },
+  {
+    "Text": "Strive to not be a success, but rather to be of value.",
+    "Author": "Albert Einstein",
+    "IsFavourite": true,
+    "Slug": "einstein-value"
+  },
+  {
+    "Text": "I attribute my success to this: I never gave or took any excuse.",
+    "Author": "Florence Nightingale",
+    "IsFavourite": true,
+    "Slug": "florence-nightingale-success"
+  },
+  {
+    "Text": "You miss 100% of the shots you don't take.",
+    "Author": "Wayne Gretzky",
+    "IsFavourite": false,
+    "Slug": "gretzky-missed-shots"
+  },
+  {
+    "Text": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+    "Author": "Amelia Earhart",
+    "IsFavourite": false,
+    "Slug": "earhart-tenacity"
+  },
+  {
+    "Text": "Every strike brings me closer to the next home run.",
+    "Author": "Babe Ruth",
+    "IsFavourite": false,
+    "Slug": "babe-ruth-home-run"
+  },
+  {
+    "Text": "Life isn't about getting and having, it's about giving and being.",
+    "Author": "Kevin Kruse",
+    "IsFavourite": true,
+    "Slug": "kevin-kruse-being"
+  },
+  {
+    "Text": "Life is what happens to you while you’re busy making other plans.",
+    "Author": "John Lennon",
+    "IsFavourite": false,
+    "Slug": "lennon-life-plans"
+  },
+  {
+    "Text": "Life is 10% what happens to me and 90% of how I react to it.",
+    "Author": "Charles Swindoll",
+    "IsFavourite": false,
+    "Slug": "charles-swindoll-reactions"
+  },
+  {
+    "Text": "The most common way people give up their power is by thinking they don’t have any.",
+    "Author": "Alice Walker",
+    "IsFavourite": true,
+    "Slug": "alice-walker-power"
+  },
+  {
+    "Text": "A lie can travel around the world and back again while the truth is lacing up its boots.",
+    "Author": "Mark Twain (and others)",
+    "IsFavourite": true,
+    "Slug": "mark-twain-truth"
+  },
+  {
+    "Text": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "Author": "Chinese Proverb",
+    "IsFavourite": true,
+    "Slug": "chinese-proverb-tree"
+  },
+  {
+    "Text": "Your time is limited, so don't waste it living someone else’s life.",
+    "Author": "Steve Jobs",
+    "IsFavourite": true,
+    "Slug": "steve-jobs-limited-time"
+  },
+  {
+    "Text": "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
+    "Author": "Maya Angelou",
+    "IsFavourite": true,
+    "Slug": "maya-angelou-feel"
+  },
+  {
+    "Text": "Either you run the day, or the day runs you.",
+    "Author": "Jim Rohn",
+    "IsFavourite": false,
+    "Slug": "jim-rohn-run-the-day"
+  },
+  {
+    "Text": "Whether you think you can or you think you can't, you're right.",
+    "Author": "Henry Ford",
+    "IsFavourite": false,
+    "Slug": "henry-ford-can-cannot"
+  },
+  {
+    "Text": "There is just news. There is no good or bad.",
+    "Author": "Master Oogway",
+    "IsFavourite": false,
+    "Slug": "oogway-news"
+  },
+  {
+    "Text": "Quit; don't quit. Noodles; don't noodles.",
+    "Author": "Master Oogway",
+    "IsFavourite": false,
+    "Slug": "oogway-quit"
+  },
+  {
+    "Text": "One often meets his destiny on the road he takes to avoid it.",
+    "Author": "Master Oogway",
+    "IsFavourite": true,
+    "Slug": "oogway-destiny"
+  },
+  {
+    "Text": "Yesterday is history, Tomorrow is a mystery, but Today is a gift. That is why it is called the present.",
+    "Author": "Master Oogway",
+    "IsFavourite": true,
+    "Slug": "oogway-today"
+  },
+  {
+    "Text": "I definitely need to use my chances when they come because definitely there won't be many.",
+    "Author": "Roger Federer",
+    "IsFavourite": false,
+    "Slug": "federer-chances"
+  },
+  {
+    "Text": "If you can meet with Triumph and Disaster, and treat those two impostors just the same.",
+    "Author": "Rudyard Kipling",
+    "IsFavourite": true,
+    "Slug": "rudyard-kipling-impostors"
+  },
+  {
+    "Text": "The two most important days in your life are the day you are born, and the day you find out why.",
+    "Author": "Mark Twain",
+    "IsFavourite": false,
+    "Slug": "mark-twain-why-born"
+  },
+  {
+    "Text": "There is only one way to avoid criticism; do nothing, say nothing, and be nothing.",
+    "Author": "Aristotle",
+    "IsFavourite": true,
+    "Slug": "aristotle-criticsm"
+  },
+  {
+    "Text": "The only person you are destined to become is the person you decide to be.",
+    "Author": "Ralph Waldo Emerson",
+    "IsFavourite": false,
+    "Slug": "ralph-emerson-destined"
+  },
+  {
+    "Text": "Certain things catch your eye, but pursue only those that capture the heart.",
+    "Author": "Indian Proverb",
+    "IsFavourite": false,
+    "Slug": "indian-proverb-heart-capture"
+  },
+  {
+    "Text": "Believe you can and you're halfway there.",
+    "Author": "Theodore Roosevelt",
+    "IsFavourite": false,
+    "Slug": "roosevelt-believe"
+  },
+  {
+    "Text": "Everything you've ever wanted is on the other side of fear.",
+    "Author": "George Addair",
+    "IsFavourite": false,
+    "Slug": "george-addair-fear"
+  },
+  {
+    "Text": "We can easily forgive a child who is afraid of the dark; the real tragedy of life is when men are afraid of the light.",
+    "Author": "Plato",
+    "IsFavourite": false,
+    "Slug": "plato-fear"
+  },
+  {
+    "Text": "Start where you are. Use what you have. Do what you can.",
+    "Author": "Arthur Ashe",
+    "IsFavourite": true,
+    "Slug": "arthur-ashe-start"
+  },
+  {
+    "Text": "Fall seven times and stand up eight.",
+    "Author": "Japanese Proverb",
+    "IsFavourite": true,
+    "Slug": "japanese-proverb-stand"
+  },
+  {
+    "Text": "Everything has beauty, but not everyone can see.",
+    "Author": "Confucius",
+    "IsFavourite": true,
+    "Slug": "confucius-beauty"
+  },
+  {
+    "Text": "How wonderful it is that nobody need wait a single moment before starting to improve the world.",
+    "Author": "Anne Frank",
+    "IsFavourite": true,
+    "Slug": "anne-frank-improve-world"
+  },
+  {
+    "Text": "Life is not measured by the number of breaths we take, but by the moments that take our breath away.",
+    "Author": "Maya Angelou",
+    "IsFavourite": false,
+    "Slug": "maya-angelou-breaths"
+  },
+  {
+    "Text": "Happiness is not something readymade. It comes from your own actions.",
+    "Author": "Dalai Lama",
+    "IsFavourite": true,
+    "Slug": "dalai-lama-happiness"
+  },
+  {
+    "Text": "If the wind will not serve, take to the oars.",
+    "Author": "Latin Proverb",
+    "IsFavourite": false,
+    "Slug": "latin-proverb-wind"
+  },
+  {
+    "Text": "You can't fall if you don't climb. But there's no joy in living your whole life on the ground.",
+    "Author": "Unknown",
+    "IsFavourite": false,
+    "Slug": "unknown-climb-fall"
+  },
+  {
+    "Text": "Too many of us are not living our dreams because we are living our fears.",
+    "Author": "Les Brown",
+    "IsFavourite": false,
+    "Slug": "les-brown-fears"
+  },
+  {
+    "Text": "If you want to lift yourself up, lift up someone else.",
+    "Author": "Booker T. Washington",
+    "IsFavourite": true,
+    "Slug": "booker-washington-lift"
+  },
+  {
+    "Text": "I didn't fail the test. I just found 100 ways to do it wrong.",
+    "Author": "Benjamin Franklin",
+    "IsFavourite": true,
+    "Slug": "benjamin-franklin-fail"
+  },
+  {
+    "Text": "A person who never made a mistake never tried anything new.",
+    "Author": "Albert Einstein",
+    "IsFavourite": true,
+    "Slug": "einstein-mistake"
+  },
+  {
+    "Text": "There are no traffic jams along the extra mile.",
+    "Author": "Roger Staubach",
+    "IsFavourite": false,
+    "Slug": "roger-staubach-extra-mile"
+  },
+  {
+    "Text": "Build your own dreams, or someone else will hire you to build theirs.",
+    "Author": "Farrah Gray",
+    "IsFavourite": false,
+    "Slug": "farrah-gray-dreams"
+  },
+  {
+    "Text": "Education costs money. But then so does ignorance.",
+    "Author": "Sir Claus Moser",
+    "IsFavourite": true,
+    "Slug": "claus-moser-ignorance"
+  },
+  {
+    "Text": "I have learned over the years that when one's mind is made up, this diminishes fear.",
+    "Author": "Rosa Parks",
+    "IsFavourite": false,
+    "Slug": "rosa-parks-fear"
+  },
+  {
+    "Text": "It does not matter how slowly you go as long as you do not stop.",
+    "Author": "Confucius",
+    "IsFavourite": true,
+    "Slug": "confucius-do-not-stop"
+  },
+  {
+    "Text": "You can't use up creativity. The more you use, the more you have.",
+    "Author": "Maya Angelou",
+    "IsFavourite": false,
+    "Slug": "maya-angelou-creativity"
+  },
+  {
+    "Text": "Do what you can, where you are, with what you have.",
+    "Author": "Teddy Roosevelt",
+    "IsFavourite": false,
+    "Slug": "teddy-roosevelt-start"
+  },
+  {
+    "Text": "Dream big and dare to fail.",
+    "Author": "Norman Vaughan",
+    "IsFavourite": false,
+    "Slug": "norman-vaughan-dream"
+  },
+  {
+    "Text": "Our lives begin to end the day we become silent about things that matter.",
+    "Author": "Martin Luther King Jr.",
+    "IsFavourite": true,
+    "Slug": "luther-king-jr-silence"
+  },
+  {
+    "Text": "Dreaming, after all, is a form of planning.",
+    "Author": "Gloria Steinem",
+    "IsFavourite": false,
+    "Slug": "gloria-steinem-dreams"
+  },
+  {
+    "Text": "You may be disappointed if you fail, but you are doomed if you don't try.",
+    "Author": "Beverly Sills",
+    "IsFavourite": false,
+    "Slug": "beverly-sills-failure"
+  },
+  {
+    "Text": "Remember no one can make you feel inferior without your consent.",
+    "Author": "Eleanor Roosevelt",
+    "IsFavourite": true,
+    "Slug": "eleanor-roosevelt-inferior"
+  },
+  {
+    "Text": "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.",
+    "Author": "Henry Ford",
+    "IsFavourite": true,
+    "Slug": "henry-ford-wind"
+  },
+  {
+    "Text": "It's not the years in your life that count. It's the life in your years.",
+    "Author": "Abraham Lincoln",
+    "IsFavourite": false,
+    "Slug": "abraham-lincoln-life"
+  },
+  {
+    "Text": "Change your thoughts and you change your world.",
+    "Author": "Norman Vincent Peale",
+    "IsFavourite": true,
+    "Slug": "norman-peale-thoughts"
+  },
+  {
+    "Text": "Either write something worth reading or do something worth writing.",
+    "Author": "Benjamin Franklin",
+    "IsFavourite": true,
+    "Slug": "benjamin-franklin-write"
+  },
+  {
+    "Text": "Nothing is impossible, the word itself says, \"I'm possible!\"",
+    "Author": "Audrey Hepburn",
+    "IsFavourite": false,
+    "Slug": "audrey-hepburn-impossible"
+  },
+  {
+    "Text": "If today was your last day, would you live it like your last?",
+    "Author": "Nickelback",
+    "IsFavourite": false,
+    "Slug": "nickelback-last-day"
+  },
+  {
+    "Text": "You can't give up when you're lookin' for a diamond in the rough.",
+    "Author": "Nickelback",
+    "IsFavourite": false,
+    "Slug": "nickelback-diamond"
+  }
+]
