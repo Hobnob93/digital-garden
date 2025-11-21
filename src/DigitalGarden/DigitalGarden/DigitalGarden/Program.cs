@@ -61,10 +61,10 @@ try
         };
     });
 
-    app.UseWorkInProgressMiddleware();
     app.UseHttpsRedirection();
-
     app.MapStaticAssets();
+
+    app.UseWorkInProgressMiddleware();
     app.MapControllers();
 
     app.UseStaticFiles();
