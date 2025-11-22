@@ -41,6 +41,7 @@ public static class WebApplicationExtensions
     {
         return Path.HasExtension(path)
             || path.StartsWith("/_framework")
+            || path.StartsWith("/_blazor")
             || path.StartsWith("/_content")
             || path.StartsWith("/css")
             || path.StartsWith("/js")

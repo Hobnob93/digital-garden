@@ -48,7 +48,7 @@ jobs:
   build:
     name: Build & Push image to GHCR
     needs: test
-    if: github.event_name != 'pull_request'
+    #if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -82,7 +82,7 @@ jobs:
   deploy:
     name: Deploy via SSH (docker compose up)
     needs: build
-    if: github.event_name != 'pull_request'
+    #if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

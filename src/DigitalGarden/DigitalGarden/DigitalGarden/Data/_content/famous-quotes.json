@@ -1,0 +1,638 @@
+[
+  {
+    "Text": "Life is about making an impact, not making an income.",
+    "Author": "Kevin Kruse",
+    "Source": "Forbes",
+    "Year": 2017,
+    "IsFavourite": true,
+    "Slug": "kevin-kruse-income"
+  },
+  {
+    "Text": "Try not to become a man of success, but rather try to become a man of value.",
+    "Author": "Albert Einstein",
+    "Source": "LIFE Interview",
+    "Year": 1955,
+    "IsFavourite": true,
+    "Slug": "einstein-value"
+  },
+  {
+    "Text": "Insanity is doing the same thing over and over again expecting different results.",
+    "Source": "Narcotics Anonymous",
+    "Year": 1980,
+    "IsFavourite": true,
+    "Slug": "unknown-insanity"
+  },
+  {
+    "Text": "I attribute my success to this: I never gave or took an excuse.",
+    "Author": "Florence Nightingale",
+    "Source": "Missive",
+    "Year": 1861,
+    "IsFavourite": true,
+    "Slug": "florence-nightingale-success"
+  },
+  {
+    "Text": "You miss 100% of the shots you don't take.",
+    "Author": "Wayne Gretzky's Coach",
+    "Source": "Taxes 69: 717",
+    "Year": 1991,
+    "Slug": "gretzky-missed-shots"
+  },
+  {
+    "Text": "You can't score if you don't shoot.",
+    "Author": "Sports Proverb",
+    "Year": 1951,
+    "Slug": "sports-proverb-shoot"
+  },
+  {
+    "Text": "You can't hit the ball if you don't swing.",
+    "Author": "John R. Tunis",
+    "Source": "Keystone Kids",
+    "Year": 1943,
+    "Slug": "john-tunis-swing"
+  },
+  {
+    "Text": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+    "Author": "Amelia Earhart",
+    "Source": "Last Flight",
+    "Year": 1937,
+    "Slug": "earhart-tenacity"
+  },
+  {
+    "Text": "Every strike brings me closer to the next home run.",
+    "Author": "Babe Ruth",
+    "IsAttribution": true,
+    "Slug": "babe-ruth-home-run"
+  },
+  {
+    "Text": "Life isn't about getting and having, it's about giving and being.",
+    "Author": "Kevin Kruse",
+    "Source": "Social Media",
+    "Year": 2014,
+    "IsFavourite": true,
+    "Slug": "kevin-kruse-being"
+  },
+  {
+    "Text": "Life is what happens to you while you're busy making other plans.",
+    "Author": "John Lennon",
+    "Source": "Reader's Digest",
+    "Year": 1957,
+    "Slug": "lennon-life-plans"
+  },
+  {
+    "Text": "Life is 10% what happens to me and 90% of how I react to it.",
+    "Author": "Charles R. Swindoll",
+    "Source": "Strengthen Your Group: Essentials in an Aimless World",
+    "Year": 1982,
+    "Slug": "charles-swindoll-reactions"
+  },
+  {
+    "Text": "The most common way people give up their power is by thinking they don’t have any.",
+    "Author": "Alice Walker",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "alice-walker-power"
+  },
+  {
+    "Text": "A lie can travel around the world and back again while the truth is lacing up its boots.",
+    "Author": "Mark Twain",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "mark-twain-truth"
+  },
+  {
+    "Text": "The best time to plant a tree was 30 years ago; the second best time is today.",
+    "Author": "Anonymous Proverb",
+    "Source": "Congressional Record",
+    "Year": 1969,
+    "IsFavourite": true,
+    "Slug": "anonymous-proverb-tree"
+  },
+  {
+    "Text": "Your time is limited, so don't waste it living someone else's life.",
+    "Author": "Steve Jobs",
+    "Source": "Standford Commencement Speech",
+    "Year": 2005,
+    "IsFavourite": true,
+    "Slug": "steve-jobs-limited-time"
+  },
+  {
+    "Text": "They may forget what you said; but they will never forget how you made them feel.",
+    "Author": "Carl W. Buehner",
+    "Source": "Richard Evans' Quote Book",
+    "Year": 1971,
+    "IsFavourite": true,
+    "Slug": "carl-buehner-feel"
+  },
+  {
+    "Text": "Either you run the day, or the day runs you.",
+    "Author": "Jim Rohn",
+    "Source": "The Treasury of Quotes",
+    "Year": 1994,
+    "Slug": "jim-rohn-run-the-day"
+  },
+  {
+    "Text": "Whether you believe you can do a thing or not, you are right.",
+    "Author": "Henry Ford",
+    "IsAttribution": true,
+    "Slug": "henry-ford-can-cannot"
+  },
+  {
+    "Text": "There is just news. There is no good or bad.",
+    "Author": "Master Oogway",
+    "Source": "Kung Fu Panda",
+    "Year": 2008,
+    "Slug": "oogway-news"
+  },
+  {
+    "Text": "Quit; don't quit. Noodles; don't noodles...",
+    "Author": "Master Oogway",
+    "Source": "Kung Fu Panda",
+    "Year": 2008,
+    "Slug": "oogway-quit"
+  },
+  {
+    "Text": "One often meets his destiny on the road he takes to avoid it.",
+    "Author": "Master Oogway",
+    "Source": "Kung Fu Panda",
+    "Year": 2008,
+    "IsFavourite": true,
+    "Slug": "oogway-destiny"
+  },
+  {
+    "Text": "Yesterday is history, tomorrow is a mystery, but today is a gift; that is why it is called the present.",
+    "Author": "Master Oogway",
+    "Source": "Kung Fu Panda",
+    "Year": 2008,
+    "IsFavourite": true,
+    "Slug": "oogway-today"
+  },
+  {
+    "Text": "The people who are crazy enough to think they can change the world are the ones who do.",
+    "Author": "Steve Jobs",
+    "Source": "Apple Commercial",
+    "Year": 1997,
+    "Slug": "steve-jobs-change"
+  },
+  {
+    "Text": "You are never too old to set another goal or to dream a new dream.",
+    "Author": "Les Brown",
+    "Source": "Motivational Seminar",
+    "Year": 1992,
+    "Slug": "les-brown-goals"
+  },
+  {
+    "Text": "I definitely need to use my chances when they come because definitely there won't be many.",
+    "Author": "Roger Federer",
+    "Source": "BBC Sport",
+    "Year": 2004,
+    "Slug": "federer-chances"
+  },
+  {
+    "Text": "If you can meet with Triumph and Disaster, and treat those two impostors just the same.",
+    "Author": "Rudyard Kipling",
+    "Source": "Poem \"If-\"",
+    "Year": 1910,
+    "IsFavourite": true,
+    "Slug": "rudyard-kipling-impostors"
+  },
+  {
+    "Text": "The two most important days in your life are the day you are born, and the day you find out why.",
+    "Slug": "unknown--two-important-days"
+  },
+  {
+    "Text": "There is only one way to avoid criticism; do nothing, say nothing, and be nothing.",
+    "Author": "Elbert Hubbard",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "elbert-hubbard-criticism"
+  },
+  {
+    "Text": "The only person you are destined to become is the person you decide to be.",
+    "IsAttribution": true,
+    "Slug": "unknown-destined"
+  },
+  {
+    "Text": "Certain things catch your eye, but pursue only those that capture the heart.",
+    "Author": "Ancient Indian Proverb",
+    "Slug": "indian-proverb-heart-capture"
+  },
+  {
+    "Text": "Believe you can and you're halfway there.",
+    "Author": "Theodore Roosevelt",
+    "IsAttribution": true,
+    "Slug": "roosevelt-believe"
+  },
+  {
+    "Text": "Everything you've ever wanted is on the other side of fear.",
+    "Author": "George Addair",
+    "IsAttribution": true,
+    "Slug": "george-addair-fear"
+  },
+  {
+    "Text": "We can easily forgive a child who is afraid of the dark; the real tragedy of life is when men are afraid of the light.",
+    "Author": "Plato",
+    "IsAttribution": true,
+    "Slug": "plato-fear"
+  },
+  {
+    "Text": "Start where you are. Use what you have. Do what you can.",
+    "Author": "Arthur Ashe",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "arthur-ashe-start"
+  },
+  {
+    "Text": "Fall seven times and stand up eight.",
+    "Author": "Japanese Proverb",
+    "IsFavourite": true,
+    "Slug": "japanese-proverb-stand"
+  },
+  {
+    "Text": "Everything has beauty, but not everyone can see.",
+    "Author": "Confucius",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "confucius-beauty"
+  },
+  {
+    "Text": "How wonderful it is that nobody need wait a single moment before starting to improve the world.",
+    "Author": "Anne Frank",
+    "Source": "The Diary of a Young Girl",
+    "Year": 1944,
+    "IsFavourite": true,
+    "Slug": "anne-frank-improve-world"
+  },
+  {
+    "Text": "Life is not measured by the number of breaths we take, but by the moments that take our breath away.",
+    "Author": "Vicki Corona",
+    "Source": "Tahitian Choreographies",
+    "Year": 1989,
+    "Slug": "vicki-corona-breaths"
+  },
+  {
+    "Text": "Happiness is not something readymade. It comes from your own actions.",
+    "Author": "Dalai Lama",
+    "Source": "The Art of Happiness",
+    "Year": 1998,
+    "IsFavourite": true,
+    "Slug": "dalai-lama-happiness"
+  },
+  {
+    "Text": "If the wind will not serve, take to the oars.",
+    "Author": "Latin Proverb",
+    "Slug": "latin-proverb-wind"
+  },
+  {
+    "Text": "You can't fall if you don't climb. But there's no joy in living your whole life on the ground.",
+    "Slug": "unknown-climb-fall"
+  },
+  {
+    "Text": "Too many of us are not living our dreams because we are living our fears.",
+    "Author": "Les Brown",
+    "Source": "Motivational Seminar",
+    "Slug": "les-brown-fears"
+  },
+  {
+    "Text": "If you want to lift yourself up, lift up someone else.",
+    "Author": "Booker T. Washington",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "booker-washington-lift"
+  },
+  {
+    "Text": "I didn't fail the test. I just found 100 ways to do it wrong.",
+    "IsFavourite": true,
+    "Slug": "unknown-fail"
+  },
+  {
+    "Text": "A person who never made a mistake never tried anything new.",
+    "Author": "Albert Einstein",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "einstein-mistake"
+  },
+  {
+    "Text": "There are no traffic jams along the extra mile.",
+    "Author": "Roger Staubach",
+    "Source": "First Down, Lifetime to Go",
+    "Year": 1974,
+    "Slug": "roger-staubach-extra-mile"
+  },
+  {
+    "Text": "Build your own dreams, or someone else will hire you to build theirs.",
+    "Author": "Farrah Gray",
+    "Source": "Motivational Seminar",
+    "Slug": "farrah-gray-dreams"
+  },
+  {
+    "Text": "Education costs money; but then so does ignorance.",
+    "Author": "Sir Claus Moser",
+    "Source": "Speech",
+    "Year": 1990,
+    "IsFavourite": true,
+    "Slug": "claus-moser-ignorance"
+  },
+  {
+    "Text": "I have learned over the years that when one's mind is made up, this diminishes fear.",
+    "Author": "Rosa Parks",
+    "Source": "Quiet Strength",
+    "Year": 1994,
+    "Slug": "rosa-parks-fear"
+  },
+  {
+    "Text": "It does not matter how slowly you go as long as you do not stop.",
+    "Author": "Confucius",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "confucius-do-not-stop"
+  },
+  {
+    "Text": "You can't use up creativity; the more you use, the more you have.",
+    "Author": "Maya Angelou",
+    "Source": "Resounding Power Article",
+    "Year": 2015,
+    "Slug": "maya-angelou-creativity"
+  },
+  {
+    "Text": "Do what you can, where you are, with what you have.",
+    "Author": "Teddy Roosevelt",
+    "IsAttribution": true,
+    "Slug": "teddy-roosevelt-start"
+  },
+  {
+    "Text": "Dream big and dare to fail.",
+    "Author": "Norman Vaughan",
+    "Source": "Personal Motto",
+    "Slug": "norman-vaughan-dream"
+  },
+  {
+    "Text": "Our lives begin to end the day we become silent about things that matter.",
+    "Author": "Martin Luther King Jr.",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "luther-king-jr-silence"
+  },
+  {
+    "Text": "Dreaming, after all, is a form of planning.",
+    "Author": "Gloria Steinem",
+    "Slug": "gloria-steinem-dreams"
+  },
+  {
+    "Text": "You may be disappointed if you fail, but you are doomed if you don't try.",
+    "Author": "Beverly Sills",
+    "Slug": "beverly-sills-failure"
+  },
+  {
+    "Text": "No one can make you feel inferior without your consent.",
+    "Author": "Eleanor Roosevelt",
+    "Source": "Letter",
+    "Year": 1935,
+    "IsFavourite": true,
+    "Slug": "eleanor-roosevelt-inferior"
+  },
+  {
+    "Text": "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.",
+    "Author": "Henry Ford",
+    "IsFavourite": true,
+    "IsAttribution": true,
+    "Slug": "henry-ford-wind"
+  },
+  {
+    "Text": "It's not the years in your life that count. It's the life in your years.",
+    "Author": "Abraham Lincoln",
+    "IsAttribution": true,
+    "Slug": "abraham-lincoln-life"
+  },
+  {
+    "Text": "Change your thoughts and you change your world.",
+    "Author": "Norman Vincent Peale",
+    "Source": "The Power of Positive Thinking",
+    "Year": 1952,
+    "IsFavourite": true,
+    "Slug": "norman-peale-thoughts"
+  },
+  {
+    "Text": "Either write something worth reading or do something worth writing.",
+    "Author": "Benjamin Franklin",
+    "Source": "Poor Richard's Almanack",
+    "Year": 1738,
+    "IsFavourite": true,
+    "Slug": "benjamin-franklin-write"
+  },
+  {
+    "Text": "Nothing is impossible, the word itself says, \"I'm possible\"!",
+    "Author": "Audrey Hepburn",
+    "Slug": "audrey-hepburn-impossible"
+  },
+  {
+    "Text": "If today was your last day, would you live it like your last?",
+    "Author": "Nickelback",
+    "Source": "Song \"If Today Was Your Last Day\"",
+    "Year": 2008,
+    "Slug": "nickelback-last-day"
+  },
+  {
+    "Text": "You can't give up when you're lookin' for a diamond in the rough.",
+    "Author": "Nickelback",
+    "Source": "Song: \"Gotta Be Somebody\"",
+    "Year": 2008,
+    "Slug": "nickelback-diamond"
+  },
+  {
+    "Text": "You mustn't allow yourself to be chained to fate, to be ruled by your genes. Human beings can choose the kind of life that they want to live. What's important is that you choose life... and then live.",
+    "Author": "Naomi Hunter",
+    "Source": "Game: \"Metal Gear Solid\"",
+    "Year": 1998,
+    "Slug": "mgs-chained"
+  },
+  {
+    "Text": "Life isn't just about passing on your genes. We can leave behind much more than just DNA. Through speech, music, literature and movies... what we've seen, heard, felt... anger, joy and sorrow... these are the things I will pass on.",
+    "Author": "Solid Snake",
+    "Source": "Game: \"Metal Gear Solid\"",
+    "Year": 1998,
+    "Slug": "mgs-pass-on"
+  },
+  {
+    "Text": "Do. Or do not. There is no try.",
+    "Author": "Yoda",
+    "Source": "Film: \"Star Wars: Episode V\"",
+    "Year": 1980,
+    "IsFavourite": true,
+    "Slug": "yoda-do-or-do-not"
+  },
+  {
+    "Text": "It is our choices, Harry, that show what we truly are, far more than our abilities.",
+    "Author": "Albus Dumbledore",
+    "Source": "Book: \"Harry Potter and the Chamber of Secrets\"",
+    "Year": 1998,
+    "IsFavourite": true,
+    "Slug": "rowling-choices-abilities"
+  },
+  {
+    "Text": "Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.",
+    "Author": "Albus Dumbledore",
+    "Source": "Film: \"Harry Potter and the Prisoner of Azkaban\"",
+    "Year": 2004,
+    "IsFavourite": true,
+    "Slug": "dumbledore-darkest-times"
+  },
+  {
+    "Text": "I am not afraid of storms, for I am learning how to sail my ship.",
+    "Author": "Amy March",
+    "Source": "Book: \"Little Women\"",
+    "Year": 1868,
+    "Slug": "alcott-storms-ship"
+  },
+  {
+    "Text": "You must do the thing you think you cannot do.",
+    "Author": "Eleanor Roosevelt",
+    "Source": "You Learn by Living",
+    "Year": 1960,
+    "Slug": "eleanor-roosevelt-cannot-do"
+  },
+  {
+    "Text": "He who has a why to live can bear almost any how.",
+    "Author": "Friedrich Nietzsche",
+    "Source": "Twilight of the Idols",
+    "Year": 1889,
+    "Slug": "nietzsche-why-how"
+  },
+  {
+    "Text": "The only thing we have to fear is fear itself.",
+    "Author": "Franklin D. Roosevelt",
+    "Source": "First Inaugural Address",
+    "Year": 1933,
+    "Slug": "franklin-roosevelt-fear-itself"
+  },
+  {
+    "Text": "A journey of a thousand miles begins with a single step.",
+    "Author": "Lao Tzu",
+    "Source": "Chinese Proverb",
+    "Slug": "chinese-proverb-single-step"
+  },
+  {
+    "Text": "Faith is the bird that feels the light and sings when the dawn is still dark.",
+    "Author": "Rabindranath Tagore",
+    "Source": "Fireflies",
+    "Year": 1928,
+    "Slug": "tagore-bird-light"
+  },
+  {
+    "Text": "Success is the sum of small efforts, repeated day in and day out.",
+    "Author": "Robert Collier",
+    "Source": "Riches Within Your Reach!",
+    "Year": 1947,
+    "Slug": "robert-collier-small-efforts"
+  },
+  {
+    "Text": "Not all those who wander are lost.",
+    "Author": "J.R.R. Tolkien",
+    "Source": "Book: \"The Fellowship of the Ring\"",
+    "Year": 1954,
+    "Slug": "tolkien-not-all-wander"
+  },
+  {
+    "Text": "The Universe is under no obligation to make sense to you.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "Astrophysics for People in a Hurry",
+    "Year": 2017,
+    "Slug": "ndgt-universe-sense"
+  },
+  {
+    "Text": "Not only do we live among the stars, the stars live within us.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "Death by Black Hole",
+    "Year": 2005,
+    "Slug": "ndgt-stars-within"
+  },
+  {
+    "Text": "In life and in the universe it's always best to keep looking up.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "StarTalk",
+    "IsFavourite": true,
+    "Slug": "ndgt-look-up"
+  },
+  {
+    "Text": "Life moves pretty fast. If you don't stop and look around once in a while, you could miss it.",
+    "Author": "Ferris Bueller",
+    "Source": "Film: \"Ferris Bueller's Day Off\"",
+    "Year": 1986,
+    "Slug": "ferris-bueller-life-moves-fast"
+  },
+  {
+    "Text": "Oh yes, the past can hurt. But you can either run from it, or learn from it.",
+    "Author": "Rafiki",
+    "Source": "Film: \"The Lion King\"",
+    "Year": 1994,
+    "IsFavourite": true,
+    "Slug": "rafiki-past-can-hurt"
+  },
+  {
+    "Text": "There is a difference between knowing the path and walking the path.",
+    "Author": "Morpheus",
+    "Source": "Film: \"The Matrix\"",
+    "Year": 1999,
+    "IsFavourite": true,
+    "Slug": "morpheus-knowing-the-path"
+  },
+  {
+    "Text": "Why do we fall, sir? So that we can learn to pick ourselves up.",
+    "Author": "Alfred Pennyworth",
+    "Source": "Film: \"Batman Begins\"",
+    "Year": 2005,
+    "Slug": "alfred-why-do-we-fall"
+  },
+  {
+    "Text": "Be curious, not judgmental.",
+    "Author": "Ted Lasso",
+    "Source": "Show: \"The Diamond Dogs\"",
+    "Year": 2020,
+    "Slug": "ted-lasso-be-curious"
+  },
+  {
+    "Text": "I look up at the night sky, and I know that, yes, we are part of this Universe, we are in this Universe, but perhaps more important than both of those facts is that the Universe is in us.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "TIME Magazine",
+    "Year": 2008,
+    "IsFavourite": true,
+    "Slug": "ndgt-universe-in-us"
+  },
+  {
+    "Text": "My view is that if your philosophy is not unsettled daily then you are blind to all the universe has to offer.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "Reddit AMA",
+    "Year": 2011,
+    "Slug": "ndgt-philosophy-unsettled"
+  },
+  {
+    "Text": "We are stardust brought to life, then empowered by the universe to figure itself out—and we have only just begun.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "Astrophysics for People in a Hurry",
+    "Year": 2017,
+    "Slug": "ndgt-stardust"
+  },
+  {
+    "Text": "Science literacy is a vaccine against the charlatans of the world that would exploit your ignorance.",
+    "Author": "Neil deGrasse Tyson",
+    "Source": "The Sky Is Not the Limit",
+    "Year": 2000,
+    "IsFavourite": true,
+    "Slug": "ndgt-science-literacy"
+  },
+  {
+    "Text": "Everyone you will ever meet knows something you don't.",
+    "Author": "Bill Nye",
+    "Source": "Unstoppable: Harnessing Science to Change the World",
+    "Year": 2015,
+    "IsFavourite": true,
+    "Slug": "bill-nye-everyone-knows-something"
+  },
+  {
+    "Text": "We are going to die, and that makes us the lucky ones. Most people are never going to die because they are never going to be born.",
+    "Author": "Richard Dawkins",
+    "Source": "Unweaving the Rainbow",
+    "Year": 1998,
+    "IsFavourite": true,
+    "Slug": "richard-dawkins-lucky-ones"
+  }
+]
