@@ -76,7 +76,7 @@ public class SyncBeaconsContent : ISyncContent
         if (deletionTargets.Length > 0)
             _dbContext.BeaconCategories.RemoveRange(deletionTargets);
 
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
     private async Task SyncBeaconsAsync(Dictionary<string, SyncBeaconData[]> beaconsInCategoriesToSync, CancellationToken cancellationToken)

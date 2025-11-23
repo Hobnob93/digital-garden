@@ -1,4 +1,6 @@
-﻿using DigitalGarden.Data.Sync.Models;
+﻿using DigitalGarden.Data.Dtos;
+using DigitalGarden.Data.Sync.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace DigitalGarden.Data.Sync;
@@ -44,6 +46,44 @@ public class SyncFamousQuotesContent : ISyncContent
                 throw new InvalidOperationException($"Duplicate quote slug '{quoteToSync.Slug}'");
 
             itemSlugs.Add(quoteToSync.Slug);
+
+            var quoteItem = await _dbContext.FamousQuotes
+                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, quoteToSync.Slug), cancellationToken);
+
+            if (quoteItem is null)
+            {
+                quoteItem = new FamousQuoteDto
+                {
+                    Text = quoteToSync.Text,
+                    Author = quoteToSync.Author,
+                    IsAttribution = quoteToSync.IsAttribution,
+                    IsFavourite = quoteToSync.IsFavourite,
+                    Source = quoteToSync.Source,
+                    Year = quoteToSync.Year,
+                    Slug = quoteToSync.Slug,
+                    AddedAtUtc = DateTime.UtcNow
+                };
+
+                await _dbContext.FamousQuotes.AddAsync(quoteItem, cancellationToken);
+            }
+            else
+            {
+                quoteItem.Text = quoteToSync.Text;
+                quoteItem.Author = quoteToSync.Author;
+                quoteItem.IsFavourite = quoteToSync.IsFavourite;
+                quoteItem.IsAttribution = quoteToSync.IsAttribution;
+                quoteItem.Source = quoteToSync.Source;
+                quoteItem.Year = quoteToSync.Year;
+            }
         }
+
+        var deletionTargets = await _dbContext.FamousQuotes
+            .Where(dto => !itemSlugs.Contains(dto.Slug))
+            .ToArrayAsync(cancellationToken);
+
+        if (deletionTargets.Length > 0)
+            _dbContext.FamousQuotes.RemoveRange(deletionTargets);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

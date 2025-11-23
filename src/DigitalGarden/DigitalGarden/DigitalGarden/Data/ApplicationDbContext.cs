@@ -8,6 +8,7 @@ public class ApplicationDbContext : DbContext
 {
     public DbSet<BeaconCategoryDto> BeaconCategories => Set<BeaconCategoryDto>();
     public DbSet<BeaconDto> Beacons => Set<BeaconDto>();
+    public DbSet<FamousQuoteDto> FamousQuotes => Set<FamousQuoteDto>();
 
     public DbSet<ContentCategory> ContentCategories => Set<ContentCategory>();
 
