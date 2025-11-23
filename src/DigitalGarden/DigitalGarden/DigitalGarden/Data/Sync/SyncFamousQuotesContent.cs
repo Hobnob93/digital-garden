@@ -39,18 +39,20 @@ public class SyncFamousQuotesContent : ISyncContent
 
     private async Task SyncFamousQuotesAsync(SyncFamousQuoteData[] quotesToSync, CancellationToken cancellationToken)
     {
-        var itemSlugs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var itemSlugsFromSync = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        var storedQuotes = (await _dbContext.FamousQuotes
+            .ToArrayAsync(cancellationToken))
+            .ToDictionary(c => c.Slug, StringComparer.OrdinalIgnoreCase);
+
         foreach (var quoteToSync in quotesToSync)
         {
-            if (itemSlugs.Contains(quoteToSync.Slug))
+            if (itemSlugsFromSync.Contains(quoteToSync.Slug))
                 throw new InvalidOperationException($"Duplicate quote slug '{quoteToSync.Slug}'");
 
-            itemSlugs.Add(quoteToSync.Slug);
+            itemSlugsFromSync.Add(quoteToSync.Slug);
 
-            var quoteItem = await _dbContext.FamousQuotes
-                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, quoteToSync.Slug), cancellationToken);
-
-            if (quoteItem is null)
+            if (!storedQuotes.TryGetValue(quoteToSync.Slug, out var quoteItem))
             {
                 quoteItem = new FamousQuoteDto
                 {
@@ -78,7 +80,7 @@ public class SyncFamousQuotesContent : ISyncContent
         }
 
         var deletionTargets = await _dbContext.FamousQuotes
-            .Where(dto => !itemSlugs.Contains(dto.Slug))
+            .Where(dto => !itemSlugsFromSync.Contains(dto.Slug))
             .ToArrayAsync(cancellationToken);
 
         if (deletionTargets.Length > 0)
