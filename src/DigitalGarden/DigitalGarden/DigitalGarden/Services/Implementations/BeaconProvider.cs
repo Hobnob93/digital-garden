@@ -22,7 +22,7 @@ public class BeaconProvider : IBeaconProvider
             .ToListAsync();
 
         return data
-            .Select(d => d.FromDtoToItems())
+            .Select(d => d.ToDomainWithItems())
             .ToArray();
     }
 }

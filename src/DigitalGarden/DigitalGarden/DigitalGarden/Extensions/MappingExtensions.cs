@@ -5,7 +5,7 @@ namespace DigitalGarden.Extensions;
 
 public static class MappingExtensions
 {
-    public static BeaconCategory FromDtoToCategory(this BeaconCategoryDto dto)
+    public static BeaconCategory ToDomain(this BeaconCategoryDto dto)
     {
         return new BeaconCategory
         {
@@ -14,23 +14,38 @@ public static class MappingExtensions
         };
     }
 
-    public static BeaconCategoryItems FromDtoToItems(this BeaconCategoryDto dto)
+    public static BeaconCategoryItems ToDomainWithItems(this BeaconCategoryDto dto)
     {
         return new BeaconCategoryItems
         {
             Name = dto.Name,
             Description = dto.Description,
-            Beacons = dto.Beacons.Select(b => b.FromDto()).ToArray()
+            Beacons = dto.Beacons
+                .Select(b => b.ToDomain())
+                .ToArray()
         };
     }
 
-    public static Beacon FromDto(this BeaconDto dto)
+    public static Beacon ToDomain(this BeaconDto dto)
     {
         return new Beacon
         {
             Title = dto.Title,
             Description = dto.Description,
             Url = dto.Url
+        };
+    }
+
+    public static FamousQuote ToDomain(this FamousQuoteDto dto)
+    {
+        return new FamousQuote
+        {
+            Text = dto.Text,
+            Author = dto.Author ?? "Unknown",
+            Source = dto.Source,
+            Year = dto.Year,
+            IsFavourite = dto.IsFavourite,
+            IsAttribution = dto.IsAttribution
         };
     }
 }
