@@ -1,0 +1,12 @@
+﻿@if (!RendererInfo.IsInteractive)
+{
+    @ChildContent
+}
+else
+{
+    <div class="planet-spinner mt-4 mb-6">
+        <div class="planet-solid"></div>
+        <div class="planet-ring-1"></div>
+        <div class="planet-ring-2"></div>
+    </div>
+}
