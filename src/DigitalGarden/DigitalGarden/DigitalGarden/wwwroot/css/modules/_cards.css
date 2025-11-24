@@ -1,5 +1,4 @@
 ﻿:root {
-    --card-border-color: var(--border-transparent);
     --card-sheen-background: linear-gradient(174deg, var(--bg-light-transparent) 60px, var(--bg-dark-transparent) 61px);
 }
 
@@ -8,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     backdrop-filter: blur(1px);
-    border: 1px solid var(--card-border-color);
+    border: 1px solid var(--border-transparent);
     border-radius: var(--rspacing-4);
 }
 
@@ -21,7 +20,7 @@
         height: 2px;
         margin: var(--rspacing-2);
         width: calc(100% - var(--rspacing-5) - var(--rspacing-5));
-        background-color: var(--card-border-color);
+        background-color: var(--border-transparent);
     }
 
     .card .body {
@@ -33,3 +32,25 @@
     border-width: 3px;
     border-color: var(--highlight);
 }
+
+.quote-card {
+    background-color: transparent;
+    backdrop-filter: blur(1px);
+}
+
+    .quote-card blockquote {
+        display: inline-block;
+        color: var(--text-muted);
+    }
+
+    .quote-card cite {
+        display: block;
+        color: var(--text);
+        font-style: italic;
+        float: right;
+    }
+
+        .quote-card cite:before {
+            content: "— ";
+            color: var(--text-muted);
+        }
