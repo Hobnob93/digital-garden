@@ -35,20 +35,52 @@
 
 .quote-card {
     background-color: transparent;
-    backdrop-filter: blur(1px);
 }
 
     .quote-card blockquote {
         display: inline-block;
+        width: 100%;
         color: var(--text-muted);
     }
+
+        .quote-card blockquote q {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+            .quote-card blockquote q span {
+                display: inline-block;
+                will-change: opacity, filter;
+                opacity: 0;
+                filter: blur(5px);
+                transition: filter 0.5s ease-in, opacity 0.5s ease-in;
+            }
+
+                .quote-card blockquote q span.show {
+                    opacity: 1;
+                    filter: blur(0px);
+                }
+
+            .quote-card blockquote q span:not(:last-child) {
+                margin-right: 0.25rem;
+            }
 
     .quote-card cite {
         display: block;
         color: var(--text);
         font-style: italic;
         float: right;
+        will-change: opacity, filter;
+        opacity: 0;
+        filter: blur(5px);
+        transition: filter 0.5s ease-in, opacity 0.5s ease-in;
     }
+
+        .quote-card cite.show {
+            opacity: 1;
+            filter: blur(0px);
+        }
 
         .quote-card cite:before {
             content: "— ";

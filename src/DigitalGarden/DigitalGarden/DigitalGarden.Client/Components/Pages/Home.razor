@@ -1,5 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveAuto
+@implements IDisposable
 
 <PageTitle>Home</PageTitle>
 
@@ -15,15 +16,22 @@
     
     <div class="grid-12 mt-4 mb-6">
         <div class="quote-card col-12 col-start-m-3 col-m-8 py-3 px-4">
-            @if (QuoteOfTheDay is null)
+            @if (QuoteOfTheDay is null || QuoteWords is null)
             {
                 <PlanetSpinner />
             }
             else
             {
                 <blockquote>
-                    <p>@QuoteOfTheDay.Text</p>
-                    <cite>@QuoteOfTheDay.Author</cite>
+                    <q>
+                        @for (var i = 0; i < QuoteWords.Length; i++)
+                        {
+                            var word = QuoteWords[i];
+                            var spanClass = ShowWordIndices.Contains(i) ? ShowClassName : string.Empty;
+                            <span class="@spanClass">@word</span>
+                        }
+                    </q>
+                    <cite class="@(ShowWordsCompleted ? ShowClassName : string.Empty)">@QuoteOfTheDay.Author</cite>
                 </blockquote>
             }            
         </div>
