@@ -22,7 +22,7 @@ public class SyncBeaconsContent : ISyncContent
         var beaconsFilePath = $"{contentRootPath}/beacons.json";
         if (!File.Exists(beaconsFilePath))
         {
-            _logger.LogError("JSON file in {ContentClass} not found.", nameof(SyncBeaconsContent));
+            _logger.LogError("JSON file '{File}' in {ContentClass} not found.", beaconsFilePath, nameof(SyncBeaconsContent));
             return;
         }
 
