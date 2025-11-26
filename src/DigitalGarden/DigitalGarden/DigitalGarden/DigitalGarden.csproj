@@ -37,7 +37,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Content Update="Data\_content\beacons.json">
+    <Content Update="Data\_content\beacon-items.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Data\_content\famous-quotes.json">

@@ -20,11 +20,11 @@ public class SyncBeaconsContent : ISyncContent
 
     public async Task SynchronizeAsync(JsonSerializerOptions serializerOptions, string contentRootPath, CancellationToken cancellationToken)
     {
-        var beaconsFilePath = $"{contentRootPath}/beacons.json";
+        var beaconsFilePath = $"{contentRootPath}/beacon-items.json";
+        _logger.LogWarning("Files list: {Files}", string.Join(",", Directory.GetFiles(contentRootPath)));
         if (!File.Exists(beaconsFilePath))
         {
             _logger.LogError("JSON file '{File}' in {ContentClass} not found.", beaconsFilePath, nameof(SyncBeaconsContent));
-            _logger.LogWarning("Files list: {Files}", string.Join(",", Directory.GetFiles(contentRootPath)));
             return;
         }
 
