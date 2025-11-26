@@ -1,0 +1,30 @@
+﻿@page "/"
+@rendermode InteractiveAuto
+
+<PageTitle>Home</PageTitle>
+
+<WaitForInteractivity>
+    <PageHeroCard>
+        <HeaderFragment>
+            <h1>Welcome Aboard</h1>
+        </HeaderFragment>
+        <BodyFragment>
+            <p>I am Kyle Hobdey, a UK-based senior software developer.</p>
+            <p>This is my digital garden in the stars, where I archive my projects, reviews, and stray thoughts.</p>
+            <p>It's still very much in-development (slowly but surely), so please watch this space! For now, enjoy my quote of the day below.</p>
+        </BodyFragment>
+    </PageHeroCard>
+    
+    <div class="grid-12 mt-4 mb-6">
+        <div class="quote-card col-12 col-start-m-3 col-m-8 py-3 px-4">
+            @if (QuoteOfTheDay is null)
+            {
+                <PlanetSpinner />
+            }
+            else
+            {
+                <AnimatedFamousQuote Quote="QuoteOfTheDay" />
+            }            
+        </div>
+    </div>    
+</WaitForInteractivity>

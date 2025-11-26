@@ -15,10 +15,11 @@ services.AddHttpClient(ApiClientNames.AnonymousClientName,
 
 services.AddTransient<ISiteConfigurationProvider, SiteConfigurationClient>();
 services.AddTransient<IBeaconProvider, BeaconClient>();
+services.AddTransient<ILifeDataProvider, LifeDataClient>();
 
 await builder.Build().RunAsync();
 
-void AddDefaultRequestHeaders(HttpClient client)
+static void AddDefaultRequestHeaders(HttpClient client)
 {
     client.DefaultRequestHeaders.Add("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests;");
     client.DefaultRequestHeaders.Add("Referrer-Policy", "strict-origin-when-cross-origin");

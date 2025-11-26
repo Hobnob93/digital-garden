@@ -1,0 +1,13 @@
+﻿@implements IDisposable
+
+<blockquote>
+    <q>
+        @for (var i = 0; i < QuoteWords.Length; i++)
+        {
+            var word = QuoteWords[i];
+            var spanClass = ShowWordIndices.Contains(i) ? ShowClassName : string.Empty;
+            <span class="@spanClass">@word</span>
+        }
+    </q>
+    <cite class="@(ShowWordsCompleted? ShowClassName : string.Empty)">@Quote.Author</cite>
+</blockquote>

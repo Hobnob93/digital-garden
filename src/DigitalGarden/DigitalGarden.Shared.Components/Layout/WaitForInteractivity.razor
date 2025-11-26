@@ -1,0 +1,10 @@
+﻿@if (RendererInfo.IsInteractive)
+{
+    @ChildContent
+}
+else
+{
+    <div class="mt-4 mb-6">
+        <PlanetSpinner />
+    </div>
+}

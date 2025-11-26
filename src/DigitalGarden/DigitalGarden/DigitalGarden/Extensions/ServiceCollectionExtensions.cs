@@ -56,6 +56,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ISitemapRelativeUrlsProvider, SitemapRelativeUrlsProvider>();
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
         services.AddTransient<IBeaconProvider, BeaconProvider>();
+        services.AddTransient<ILifeDataProvider, LifeDataProvider>();
 
         return services;
     }
@@ -64,6 +65,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ContentSyncService>();
         services.AddTransient<ISyncContent, SyncBeaconsContent>();
+        services.AddTransient<ISyncContent, SyncFamousQuotesContent>();
 
         return services;
     }

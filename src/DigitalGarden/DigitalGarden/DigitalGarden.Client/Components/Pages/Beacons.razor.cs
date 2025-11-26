@@ -12,8 +12,15 @@ public partial class Beacons
     [PersistentState]
     public ICollection<BeaconCategoryItems>? CategoryItems { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        CategoryItems ??= await BeaconProvider.GetAllItems();
+        if (firstRender)
+        {
+            if (CategoryItems is null)
+            {
+                CategoryItems = await BeaconProvider.GetAllItems();
+                await InvokeAsync(StateHasChanged);
+            }            
+        }
     }
 }

@@ -41,15 +41,16 @@ public class SyncBeaconsContent : ISyncContent
 
     private async Task SyncBeaconCategoriesAsync(SyncBeaconCategoryData[] categoriesToSync, CancellationToken cancellationToken)
     {
-        var categorySlugs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var categorySlugsFromSync = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var storedCategories = (await _dbContext.BeaconCategories
+            .ToArrayAsync(cancellationToken))
+            .ToDictionary(c => c.Slug, StringComparer.OrdinalIgnoreCase);
+
         foreach (var categoryToSync in categoriesToSync)
         {
-            categorySlugs.Add(categoryToSync.UrlSlug);
+            categorySlugsFromSync.Add(categoryToSync.UrlSlug);
 
-            var category = await _dbContext.BeaconCategories
-                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, categoryToSync.UrlSlug), cancellationToken);
-
-            if (category is null)
+            if (!storedCategories.TryGetValue(categoryToSync.UrlSlug, out var category))
             {
                 category = new BeaconCategoryDto
                 {
@@ -70,25 +71,32 @@ public class SyncBeaconsContent : ISyncContent
         }
 
         var deletionTargets = await _dbContext.BeaconCategories
-            .Where(dto => !categorySlugs.Contains(dto.Slug))
+            .Where(dto => !categorySlugsFromSync.Contains(dto.Slug))
             .ToArrayAsync(cancellationToken);
 
         if (deletionTargets.Length > 0)
             _dbContext.BeaconCategories.RemoveRange(deletionTargets);
 
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
     private async Task SyncBeaconsAsync(Dictionary<string, SyncBeaconData[]> beaconsInCategoriesToSync, CancellationToken cancellationToken)
     {
-        var beaconSlugs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var beaconSlugsFromSync = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        var storedCategories = (await _dbContext.BeaconCategories
+            .ToArrayAsync(cancellationToken))
+            .ToDictionary(c => c.Slug, StringComparer.OrdinalIgnoreCase);
+
+        var storedBeacons = (await _dbContext.Beacons
+            .ToArrayAsync(cancellationToken))
+            .ToDictionary(c => c.Slug, StringComparer.OrdinalIgnoreCase);
+
         foreach (var beaconsInCategoryToSync in beaconsInCategoriesToSync)
         {
             var categorySlug = beaconsInCategoryToSync.Key.ToSlugString();
 
-            var category = await _dbContext.BeaconCategories
-                .FirstOrDefaultAsync(bc => EF.Functions.ILike(bc.Slug, categorySlug), cancellationToken);
-
+            var category = storedCategories.GetValueOrDefault(categorySlug);
             if (category is null)
             {
                 _logger.LogError("Could not find category slug {CategorySlug} in {ContentClass}.", categorySlug, nameof(SyncBeaconsContent));
@@ -97,12 +105,9 @@ public class SyncBeaconsContent : ISyncContent
 
             foreach (var beaconToSync in beaconsInCategoryToSync.Value)
             {
-                beaconSlugs.Add(beaconToSync.UrlSlug);
+                beaconSlugsFromSync.Add(beaconToSync.UrlSlug);
 
-                var beacon = await _dbContext.Beacons
-                    .FirstOrDefaultAsync(b => EF.Functions.ILike(b.Slug, beaconToSync.UrlSlug), cancellationToken);
-
-                if (beacon is null)
+                if (!storedBeacons.TryGetValue(beaconToSync.UrlSlug, out var beacon))
                 {
                     beacon = new BeaconDto
                     {
@@ -127,7 +132,7 @@ public class SyncBeaconsContent : ISyncContent
         }
 
         var deletionTargets = await _dbContext.Beacons
-            .Where(dto => !beaconSlugs.Contains(dto.Slug))
+            .Where(dto => !beaconSlugsFromSync.Contains(dto.Slug))
             .ToArrayAsync(cancellationToken);
 
         if (deletionTargets.Length > 0)
