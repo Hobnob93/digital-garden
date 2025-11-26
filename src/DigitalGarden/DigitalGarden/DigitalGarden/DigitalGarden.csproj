@@ -35,5 +35,14 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="Data\_content\beacon-items.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Data\_content\famous-quotes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>
