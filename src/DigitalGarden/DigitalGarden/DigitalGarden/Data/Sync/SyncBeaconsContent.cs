@@ -2,6 +2,7 @@
 using DigitalGarden.Data.Sync.Models;
 using DigitalGarden.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Text.Json;
 
 namespace DigitalGarden.Data.Sync;
@@ -23,6 +24,7 @@ public class SyncBeaconsContent : ISyncContent
         if (!File.Exists(beaconsFilePath))
         {
             _logger.LogError("JSON file '{File}' in {ContentClass} not found.", beaconsFilePath, nameof(SyncBeaconsContent));
+            _logger.LogWarning("Files list: {Files}", string.Join(",", Directory.GetFiles(contentRootPath)));
             return;
         }
 
