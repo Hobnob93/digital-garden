@@ -22,6 +22,7 @@ public static class MappingExtensions
             Description = dto.Description,
             Beacons = dto.Beacons
                 .Select(b => b.ToDomain())
+                .OrderBy(b => b.Title)
                 .ToArray()
         };
     }
