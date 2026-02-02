@@ -9,6 +9,10 @@
       "Description": "Learning material and/or sources for games development."
     },
     {
+      "Name": "Authoring",
+      "Description": "Learning material and/or sources for writing books."
+    },
+    {
       "Name": "Ukraine",
       "Description": "Commentators and other content to help keep up to date with the Russia's invasion of Ukraine."
     }
@@ -30,6 +34,16 @@
         "Name": "Codecks",
         "Description": "A kanban baord-style application intended to make the process easier and prettier. I use it for many of my projects, though perhaps not as much as I should.",
         "Url": "https://www.codecks.io/showcase/"
+      },
+      {
+        "Name": "Reedsy Editor",
+        "Description": "Incredibly useful for writing books with a professional format, and it's easy to share drafts with others for proof reading.",
+        "Url": "https://editor.reedsy.com"
+      },
+      {
+        "Name": "ProWritingAid",
+        "Description": "Superb tool that goes well beyond basic spelling and grammar checks; it's been super useful for making sure my writing is more active rather than passive.",
+        "Url": "https://prowritingaid.com"
       }
     ],
     "Games Dev": [
@@ -50,7 +64,35 @@
         "Url": "https://github.com/dawdle-deer/awesome-learn-gamedev?tab=readme-ov-file#gameplay"
       }
     ],
+    "Authoring": [
+      {
+        "Name": "Brandon Sanderson",
+        "Description": "A profesisonal author in the Sci-Fi Fantasy genre looking to share and educate with his wealth of knowledge and experience through lectures.",
+        "Url": "https://www.youtube.com/@BrandSanderson"
+      },
+      {
+        "Name": "Jed Herne",
+        "Description": "A less experienced, yet very professional, author in the fantasy genre. uses well-edited videos to educate and share his knowledge.",
+        "Url": "https://www.youtube.com/@Jed_Herne"
+      },
+      {
+        "Name": "Bookfox",
+        "Description": "More general writing advice not necessarily focusing in on a specific genre.",
+        "Url": "https://www.youtube.com/@Bookfox"
+      },
+      {
+        "Name": "Reedsy Blog",
+        "Description": "Along with their editor for book writing, they also have an active blog where they share many aspects from plot, structure, prose, character arcs, dialog, and much more.",
+        "Url": "https://reedsy.com/blog"
+      }
+    ],
     "Ukraine": [
+      {
+        "Name": "Donate to AFU",
+        "Description": "Through NAFO (not NATO!) there are community-lead donation campaigns primarily to help the Armed Forces of Ukraine.",
+        "Slug": "nafo-afu",
+        "Url": "https://www.help99.co"
+      },
       {
         "Name": "Institute for the Study of War",
         "Description": "Analytical coverage of Putin's war of conquest in Ukraine.",
