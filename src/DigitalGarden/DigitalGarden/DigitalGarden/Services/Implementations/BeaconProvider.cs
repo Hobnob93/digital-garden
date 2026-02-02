@@ -19,6 +19,7 @@ public class BeaconProvider : IBeaconProvider
     {
         return await _dbContext.BeaconCategories
             .Include(bc => bc.Beacons)
+            .OrderBy(bc => bc.Name)
             .Select(bc => bc.ToDomainWithItems())
             .ToArrayAsync();
     }
