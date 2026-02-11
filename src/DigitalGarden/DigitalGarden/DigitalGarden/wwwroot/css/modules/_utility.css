@@ -26,7 +26,7 @@
 
     /* Text */
     --text: oklch(0.95 0.025 205);
-    --text-muted: oklch(0.78 0.02 213);
+    --text-muted: oklch(0.6 0.03 213);
     --text-dark: var(--bg-dark);
     --link: oklch(0.78 0.14 230);
 

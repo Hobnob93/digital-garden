@@ -86,3 +86,26 @@
             content: "— ";
             color: var(--text-muted);
         }
+
+.page-head {
+    backdrop-filter: blur(1px);
+    border-radius: var(--rspacing-4);
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--rspacing-6);
+}
+
+    .page-head .header {
+        display: table-caption;
+        text-align: end;
+        border-right-color: var(--text-muted);
+        border-right-style: double;
+        border-right-width: 3px;
+        padding-right: var(--rspacing-2);
+        align-content: center;
+    }
+
+    .page-head .content {
+        align-content: center;
+        padding-left: var(--rspacing-2);
+    }
