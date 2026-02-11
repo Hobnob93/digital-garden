@@ -16,29 +16,39 @@
 
 /* GENERAL COLOUR VARIABLES */
 :root {
-    --bg-dark: oklch(0.1 0.1 213);
-    --bg: oklch(0.15 0.1 213);
-    --bg-light: oklch(0.2 0.1 213);
-    --text: oklch(0.96 0.1 213);
-    --text-muted: oklch(0.76 0.1 213);
+    /* Background */
+    --bg-dark: oklch(0.08 0.02 213);
+    --bg: oklch(0.11 0.02 213);
+    --bg-light: oklch(0.14 0.02 213);
+    --bg-dark-transparent: rgb(from var(--bg-dark) r g b / 0.50);
+    --bg-transparent: rgb(from var(--bg) r g b / 0.50);
+    --bg-light-transparent: rgb(from var(--bg-light) r g b / 0.50);
+
+    /* Text */
+    --text: oklch(0.95 0.025 205);
+    --text-muted: oklch(0.78 0.02 213);
     --text-dark: var(--bg-dark);
-    --highlight: oklch(0.5 0.2 213);
-    --border: oklch(0.4 0.2 213);
-    --border-muted: oklch(0.3 0.2 213);
+    --link: oklch(0.78 0.14 230);
+
+    /* Surfaces */
+    --highlight: oklch(0.62 0.08 213);
+    --border: oklch(0.30 0.04 213);
+    --border-muted: oklch(0.22 0.03 213);
+
+    /* Brand */
     --primary: oklch(0.76 0.2 213);
     --secondary: oklch(0.76 0.2 33);
+
+    /* Semantic */
     --danger: oklch(0.7 0.2 30);
     --warning: oklch(0.7 0.2 100);
     --success: oklch(0.7 0.2 160);
     --info: oklch(0.7 0.2 260);
-    --bg-dark-transparent: rgb(from var(--bg-dark) r g b / 0.50);
-    --bg-transparent: rgb(from var(--bg) r g b / 0.50);
-    --bg-light-transparent: rgb(from var(--bg-light) r g b / 0.50);
 }
 
 /* UTILITY COLOUR VARIABLES */
 :root {
-    --hover-color: var(--primary);
+    --hover-color: var(--highlight);
     --active-color: var(--secondary);
     --border-transparent: rgb(from var(--border) r g b / 0.20);
     --border-hover-color: var(--highlight);
