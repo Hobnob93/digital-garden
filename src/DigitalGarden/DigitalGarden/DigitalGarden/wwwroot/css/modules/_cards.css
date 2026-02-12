@@ -98,7 +98,7 @@
     .page-head .header {
         display: table-caption;
         text-align: end;
-        border-right-color: var(--text-muted);
+        border-right-color: var(--border);
         border-right-style: double;
         border-right-width: 3px;
         padding-right: var(--rspacing-2);
