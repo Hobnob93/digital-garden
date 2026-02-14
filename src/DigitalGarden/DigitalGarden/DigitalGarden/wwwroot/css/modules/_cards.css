@@ -114,21 +114,75 @@
     border-width: 3px;
     border-color: var(--info);
     flex-direction: row;
+    align-items: stretch;
 }
 
-.link-with-content.pulse-A {
-    animation: pulse-A 1s;
-    box-shadow: 0 0 0 2em transparent;
-}
+    .card.link-with-content:hover {
+        cursor: pointer;
+        border-color: var(--highlight);
+    }
 
-.link-with-content.pulse-B {
-    animation: pulse-B 1s;
-    box-shadow: 0 0 0 2em transparent;
-}
+    .card.link-with-content.pulse-A {
+        animation: pulse-A 0.75s;
+        box-shadow: 0 0 0 2em transparent;
+    }
+
+    .card.link-with-content.pulse-B {
+        animation: pulse-B 0.75s;
+        box-shadow: 0 0 0 2em transparent;
+    }
+
+    .card.link-with-content .link-icon {
+        display: flex;
+        align-items: center;
+        padding-left: var(--rspacing-2);
+        will-change: margin-right;
+        margin-right: var(--rspacing-2);
+        transition: margin-right 0.25s ease-in;
+    }
+
+    .card.link-with-content:hover .link-icon {
+        margin-right: 0;
+    }
+
+        .card.link-with-content .link-icon i {
+            will-change: margin-left;
+            margin-left: 0;
+            transition: margin-left 0.25s ease-in;
+        }
+
+        .card.link-with-content:hover .link-icon i {
+            margin-left: var(--rspacing-2);
+        }
+
+    .card.link-with-content .text-content {
+        height: 100%;
+        margin: var(--rspacing-2);
+    }
+
+    .card.link-with-content:hover .text-content .link-name {
+        color: var(--highlight);
+    }
+
+    .card.link-with-content .arrow-container {
+        display: flex;
+        align-items: center;
+        will-change: box-shadow, color;
+        background-color: transparent;
+        border-top-right-radius: var(--rspacing-2);
+        border-bottom-right-radius: var(--rspacing-2);
+        color: var(--text);
+        transition: color 0.5s ease-in, box-shadow 0.5s ease-in;
+    }
+
+    .card.link-with-content:hover .arrow-container {
+        color: var(--bg-dark);
+        box-shadow: inset -6.5em 0 0 0 var(--highlight);
+    }
 
 @keyframes pulse-A {
     0% {
-        box-shadow: 0 0 0 0 var(--info);
+        box-shadow: 0 0 0 0 var(--highlight);
     }
 
     100% {
@@ -138,7 +192,7 @@
 
 @keyframes pulse-B {
     0% {
-        box-shadow: 0 0 0 0 var(--info);
+        box-shadow: 0 0 0 0 var(--highlight);
     }
 
     100% {
