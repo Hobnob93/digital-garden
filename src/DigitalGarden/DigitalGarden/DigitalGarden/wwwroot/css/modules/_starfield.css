@@ -82,60 +82,95 @@ html {
     }
 }
 
-.planet-spinner {
-    width: 100%;
-    min-height: 5rem;
+#planet-spinner {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: 50%;
+    border: 2px solid var(--text);
+    background: transparent;
+    animation: outer-circle 1.5s ease-in-out infinite;
 }
 
-    .planet-spinner .planet-solid, .planet-spinner .planet-ring-1, .planet-spinner .planet-ring-2 {
+    #planet-spinner:before {
+        content: '';
+        display: block;
         position: absolute;
         top: 50%;
         left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        width: 30px;
+        height: 30px;
+        background: transparent;
         border-radius: 50%;
+        border: 2px solid var(--text);
+        animation: inner-circle 1.5s ease-in-out infinite;
     }
 
-    .planet-spinner .planet-solid {
-        width: 1.5rem;
-        height: 1.5rem;
-        transform: translate(-50%, -50%);
-        background: radial-gradient(circle at 25% 25%, var(--info) 10%, var(--bg-dark) 65%);
+#planet-1, #planet-2 {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#planet-1 {
+    animation: rotate 2s linear infinite;
+}
+
+#planet-2 {
+    animation: rotate 2.5s linear infinite;
+}
+
+    #planet-1:before, #planet-2:before {
+        display: block;
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        top: calc(50% - 10px);
     }
 
-    .planet-spinner .planet-ring-1 {
-        width: 4.8rem;
-        height: 4.8rem;
-        margin: -2.4rem 0 0 -2.4rem;
-        z-index: 1;
-        border: 5px solid var(--secondary);
-        transform: rotate(45deg);
-        animation: planetRing1 2s infinite cubic-bezier(0.76, 0, 0.24, 1);
+    #planet-1:before {
+        left: -35px;
+        background: var(--text);
     }
 
-    .planet-spinner .planet-ring-2 {
-        width: 3rem;
-        height: 3rem;
-        margin: -1.5rem 0 0 -1.5rem;
-        border: 5px solid var(--primary);
-        transform: rotate(-45deg);
-        animation: planetRing2 2s .3s infinite cubic-bezier(0.76, 0, 0.24, 1);
+    #planet-2:before {
+        right: -70px;
+        background: var(--text);
     }
 
-@keyframes planetRing1 {
-    0% {
-        transform: rotate(45deg) scaleY(1);
+@keyframes outer-circle {
+    0%, 100% {
+        border-width: 4px;
     }
 
     50% {
-        transform: rotate(45deg) scaleY(-1);
+        border-width: 12px;
     }
 }
 
-@keyframes planetRing2 {
-    0% {
-        transform: rotate(-45deg) scaleY(1);
+@keyframes inner-circle {
+    0%, 100% {
+        border-width: 2px;
     }
 
-    50% {
-        transform: rotate(-45deg) scaleY(-1);
+    40% {
+        border-width: 12px;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(360deg);
     }
 }

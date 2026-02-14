@@ -109,3 +109,9 @@
         align-content: center;
         padding-left: var(--rspacing-2);
     }
+
+.card.link-with-content {
+    border-width: 3px;
+    border-color: var(--info);
+    flex-direction: row;
+}
