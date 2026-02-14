@@ -115,3 +115,33 @@
     border-color: var(--info);
     flex-direction: row;
 }
+
+.link-with-content.pulse-A {
+    animation: pulse-A 1s;
+    box-shadow: 0 0 0 2em transparent;
+}
+
+.link-with-content.pulse-B {
+    animation: pulse-B 1s;
+    box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse-A {
+    0% {
+        box-shadow: 0 0 0 0 var(--info);
+    }
+
+    100% {
+        box-shadow: 0 0 0 2em transparent;
+    }
+}
+
+@keyframes pulse-B {
+    0% {
+        box-shadow: 0 0 0 0 var(--info);
+    }
+
+    100% {
+        box-shadow: 0 0 0 2em transparent;
+    }
+}
