@@ -199,3 +199,23 @@
         box-shadow: 0 0 0 2em transparent;
     }
 }
+
+.mouse-over-cards .card {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: var(--rspacing-3);
+}
+
+    .mouse-over-cards .card .icon-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: var(--rspacing-2);
+    }
+
+    .mouse-over-cards .card .info-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }

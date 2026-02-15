@@ -11,21 +11,43 @@
             <p>It's important to be proud of what you've been through and place on a pedestal what you feel belongs there.</p>
         </BodyFragment>
     </PageHeaderContent>
-
-    <div class="grid-12">
+    
+    <h2 class="center-text muted mb-2">Onward Logs</h2>
+    <div class="grid-12 mb-2">
         <div class="mb-4 col-12 col-start-l-3 col-l-8">
             <ContentCardLink FontAwesomeIcon="fa-heart" Name="Wedding & Honeymoon!" ClickedCallback="GoToWedding"
-                Description="A collage of photos from the wedding and the honeymoon, along with a copy of my speech from the special day!" />
+                             Description="A collage of photos from the wedding and the honeymoon, along with a copy of my speech from the special day!" />
         </div>
 
         <div class="mb-4 col-12 col-start-l-3 col-l-8">
             <ContentCardLink FontAwesomeIcon="fa-suitcase" Name="Holidays" ClickedCallback="GoToHolidays"
-                Description="Want to make more effort to digitise and memorialise holidays to help them never be forgotten (as long as the internet doesn't go out)." />
+                             Description="Want to make more effort to digitise and memorialise holidays to help them never be forgotten (as long as the internet doesn't go out)." />
         </div>
 
         <div class="col-12 col-start-l-3 col-l-8">
             <ContentCardLink FontAwesomeIcon="fa-file" Name="Professional Profile / CV" ClickedCallback="GoToProfessionalProfile"
-                Description="A digital representation of my professional experience, much of which you'd find on my CV." />
+                             Description="A digital representation of my professional experience, much of which you'd find on my CV." />
         </div>
-    </div>    
+    </div>
+
+    <h2 class="center-text muted mt-6 mb-2">Recent Logs</h2>
+    <div class="grid-12 mt-2">
+        <div class="mb-2 col-12">
+            <h3 class="muted">TV, Film & Books</h3>
+            <p>Books read, and shows and films watched in recent times.</p>
+            <MouseOverCards Cards="@EntertainmentCards" />
+        </div>
+
+        <div class="mb-2 mt-2 col-12">
+            <h3 class="muted">Games</h3>
+            <p>Games that have been ont he agenda.</p>
+            <MouseOverCards Cards="@EntertainmentCards" />
+        </div>
+
+        <div class="mb-2 mt-2 col-12">
+            <h3 class="muted">Music</h3>
+            <p>My top 5 artists of late.</p>
+            <MouseOverCards Cards="@EntertainmentCards" />
+        </div>
+    </div>     
 </WaitForInteractivity>

@@ -813,13 +813,13 @@
 }
 
 .flex-row {
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
 .flex-col {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .flex-1 {
-    flex: 1;
+    flex: 1 !important;
 }

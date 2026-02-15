@@ -1,3 +1,4 @@
+using DigitalGarden.Shared.Components.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace DigitalGarden.Client.Components.Pages;
@@ -21,4 +22,8 @@ public partial class LifeLog
     {
         Navigation.NavigateTo("/life-log/journeys");
     }
+
+    private SimpleCardData[] EntertainmentCards = [
+        new SimpleCardData("fa-suitcase", "Test 1", "Test desc")
+    ];
 }
