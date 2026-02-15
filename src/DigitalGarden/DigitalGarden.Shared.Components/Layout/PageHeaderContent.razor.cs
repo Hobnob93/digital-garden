@@ -1,9 +1,13 @@
+using DigitalGarden.Shared.Components.Extensions;
+using DigitalGarden.Shared.Components.Models.Enums;
 using Microsoft.AspNetCore.Components;
 
 namespace DigitalGarden.Shared.Components.Layout;
 
 public partial class PageHeaderContent
 {
+    public string HeaderColorClass => HeaderColor.GetCssClassFromTextColor();
+
     [Parameter, EditorRequired]
     public string PageTitle { get; set; } = string.Empty;
 
@@ -12,4 +16,7 @@ public partial class PageHeaderContent
 
     [Parameter, EditorRequired]
     public RenderFragment? BodyFragment { get; set; }
+
+    [Parameter]
+    public TextColor HeaderColor { get; set; }
 }

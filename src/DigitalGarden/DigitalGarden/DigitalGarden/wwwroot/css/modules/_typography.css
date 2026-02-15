@@ -71,6 +71,22 @@ p, li {
     color: var(--text-muted);
 }
 
+.warning {
+    color: var(--warning);
+}
+
+.info {
+    color: var(--info);
+}
+
+.success {
+    color: var(--success);
+}
+
+.danger {
+    color: var(--danger);
+}
+
 .button, nav, .label {
     letter-spacing: var(--font-spacing);
     font-weight: 400;
