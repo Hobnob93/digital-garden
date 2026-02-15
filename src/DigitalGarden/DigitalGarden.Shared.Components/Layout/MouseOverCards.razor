@@ -3,11 +3,14 @@
     {
         <div class="col-6 col-m-4 col-l-3 card">
             <div class="icon-container">
-                <i class="fa-solid @card.FontAwesomeIcon fa-xl"></i>
+                <i class="@card.FontAwesomeType @card.FontAwesomeIcon fa-xl"></i>
             </div>
             <div class="info-container">
                 <h6 class="mb-2">@card.Title</h6>
-                <p>@card.Description</p>
+                @if (!string.IsNullOrWhiteSpace(card.Description))
+                {
+                    <p>@card.Description</p>
+                }
             </div>
         </div>
     }

@@ -4,5 +4,6 @@ public record SimpleCardData
 (
     string FontAwesomeIcon,
     string Title,
-    string Description
+    string? Description = null,
+    string FontAwesomeType = "fa-solid"
 );
