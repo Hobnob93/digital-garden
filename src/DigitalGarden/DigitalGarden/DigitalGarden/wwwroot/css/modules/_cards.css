@@ -203,7 +203,6 @@
 .mouse-over-cards .card {
     width: 100%;
     flex-direction: row;
-    align-items: flex-start;
     padding: var(--rspacing-3);
 }
 
