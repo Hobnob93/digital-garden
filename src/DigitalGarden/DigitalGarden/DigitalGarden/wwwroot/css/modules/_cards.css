@@ -212,6 +212,7 @@
         display: flex;
         align-items: center;
         margin-right: var(--rspacing-2);
+        color: var(--info);
     }
 
     .mouse-over-cards .card .info-container {
