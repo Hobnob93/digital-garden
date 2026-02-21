@@ -124,6 +124,8 @@ jobs:
             echo "PGADMIN_BASIC_AUTH=$esc_pgadmin_basic_auth"
             echo "PGADMIN_EMAIL=$PGADMIN_EMAIL"
             echo "PGADMIN_PASSWORD=$PGADMIN_PASSWORD"
+            echo "LAST_FM_KEY=$LAST_FM_KEY"
+            echo "LAST_FM_SECRET=$LAST_FM_SECRET"
           } > .env
           
       # Send files to Ubuntu server using SSH
