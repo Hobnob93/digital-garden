@@ -1,11 +1,13 @@
-﻿<div class="mouse-over-cards mt-2 grid-12">
-    @if (Cards is null && !DisableSpinner)
-    {
+﻿@if (Cards is null && !DisableSpinner)
+{
+    <div class="w-100">
         <PlanetSpinner />
-    }
+    </div>
+}
 
-    @if (Cards is not null)
-    {
+@if (Cards is not null)
+{
+    <div class="mouse-over-cards mt-2 grid-12">
         @foreach (var card in Cards)
         {
             <div class="col-6 col-m-4 col-l-3 card">
@@ -21,5 +23,5 @@
                 </div>
             </div>
         }
-    }
-</div>
+    </div>
+}
