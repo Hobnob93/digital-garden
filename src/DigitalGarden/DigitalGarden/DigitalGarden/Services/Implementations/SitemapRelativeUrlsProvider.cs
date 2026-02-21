@@ -10,7 +10,12 @@ public class SitemapRelativeUrlsProvider : ISitemapRelativeUrlsProvider
         // TODO: fetch digital garden content slugs from db to add here, too
         return
         [
-            "/"
+            "/",
+            "/beacons",
+            "/life-log",
+            "/life-log/mission",
+            "/life-log/09-09-2025",
+            "/life-log/journeys"
         ];
     }
 }
