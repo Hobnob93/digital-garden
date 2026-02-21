@@ -103,6 +103,8 @@ jobs:
           PGADMIN_BASIC_AUTH_SECRET: ${{ secrets.PGADMIN_BASIC_AUTH }}
           PGADMIN_EMAIL: ${{ secrets.PGADMIN_EMAIL }}
           PGADMIN_PASSWORD: ${{ secrets.PGADMIN_PASSWORD }}
+          LAST_FM_KEY: ${{ secrets.LAST_FM_KEY }}
+          LAST_FM_SECRET: ${{ secrets.LAST_FM_SECRET }}
         run: |
           # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
           esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
