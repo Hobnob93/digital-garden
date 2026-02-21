@@ -3,4 +3,20 @@
         <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
+    <NotFound>
+        <HeadContent>
+               <meta name="robots" content="noindex" />
+        </HeadContent>
+
+        <Nav />
+
+        <div class="page">
+            <PageHeaderContent PageTitle="404" HeaderText="Content Not Found" HeaderColor="Shared.Components.Models.Enums.TextColor.Danger">
+                <BodyFragment>
+                    <p>Very sorry, but the page you're looking for is either a work in progress or doesn't exist.</p>
+                    <p>Please use the navbar to get back to safety!</p>
+                </BodyFragment>
+            </PageHeaderContent>
+        </div>
+    </NotFound>
 </Router>

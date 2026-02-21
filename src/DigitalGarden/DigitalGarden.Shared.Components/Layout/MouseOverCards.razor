@@ -1,0 +1,27 @@
+﻿@if (Cards is null && !DisableSpinner)
+{
+    <div class="w-100">
+        <PlanetSpinner />
+    </div>
+}
+
+@if (Cards is not null)
+{
+    <div class="mouse-over-cards mt-2 grid-12">
+        @foreach (var card in Cards)
+        {
+            <div class="col-6 col-m-4 col-l-3 card">
+                <div class="icon-container">
+                    <i class="@card.FontAwesomeType @card.FontAwesomeIcon fa-xl"></i>
+                </div>
+                <div class="info-container">
+                    <h6>@card.Title</h6>
+                    @if (!string.IsNullOrWhiteSpace(card.Description))
+                    {
+                        <p class="muted mt-2">@card.Description</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -1,6 +1,9 @@
 using DigitalGarden.Components;
 using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
+using DigitalGarden.Shared.Constants;
+using DigitalGarden.Shared.Models.Options;
+using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Events;
 
@@ -21,6 +24,13 @@ try
     {
         services.AddDataSynchronisation();
     }
+
+    services.AddHttpClient(ApiClientNames.LastFmClientName,
+        (sp, client) =>
+        {
+            var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
+            client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+        });
 
     Log.Information("Building app");
     var app = builder.Build();

@@ -3,18 +3,13 @@
 @page "/beacons"
 @rendermode InteractiveAuto
 
-<PageTitle>Beacons</PageTitle>
-
 <WaitForInteractivity>
-    <PageHeroCard>
-        <HeaderFragment>
-            <h1>Beacons</h1>
-        </HeaderFragment>
+    <PageHeaderContent PageTitle="Beacons" HeaderText="Beacons">
         <BodyFragment>
             <p>A collection of links for various tools, sources, resources, and other content that I make use of.</p>
             <p>Figured if I find them useful then others may, too!</p>
         </BodyFragment>
-    </PageHeroCard>
+    </PageHeaderContent>
 
     <div class="grid-12 mt-4 mb-6">
         @if (CategoryItems is null)

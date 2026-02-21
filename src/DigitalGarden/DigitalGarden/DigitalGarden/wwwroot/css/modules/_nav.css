@@ -60,6 +60,10 @@ nav {
         font-size: var(--font-size-h5);
     }
 
+        nav .items a {
+            color: var(--link);
+        }
+
         nav .items ul {
             display: flex;
             flex-direction: column;

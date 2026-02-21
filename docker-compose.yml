@@ -7,6 +7,8 @@ services:
       ASPNETCORE_URLS: http://0.0.0.0:8080
       SERILOG__WRITETO__2__ARGS__APIKEY: ${SEQ_API_KEY:-}
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=${PG_DB};Username=${PG_USER};Password=${PG_PASSWORD}
+      LastFm__ApiKey: ${LAST_FM_KEY}
+      LastFm__Secret: ${LAST_FM_SECRET}
     volumes:
       - file-logs:/app/logs
     depends_on: [seq, postgres]

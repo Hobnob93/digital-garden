@@ -3,4 +3,5 @@
 public static class ApiClientNames
 {
     public const string AnonymousClientName = "AnyonymousClient";
+    public const string LastFmClientName = "LastFmClient";
 }

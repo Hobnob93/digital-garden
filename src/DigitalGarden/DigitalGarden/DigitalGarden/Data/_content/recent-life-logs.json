@@ -1,0 +1,100 @@
+[
+  {
+    "Slug": "cavern-critters-dev",
+    "Name": "Cavern Critters",
+    "Description": "Games Dev Project",
+    "Type": "UnityDeveloping",
+    "IsCurrent": true
+  },
+  {
+    "Slug": "comissioners-conscience-novella",
+    "Name": "Comissioner's Conscience",
+    "Description": "Paxium Chronicles Novella",
+    "Type": "Writing",
+    "IsCurrent": true
+  },
+  {
+    "Slug": "personal-website",
+    "Name": "This Website",
+    "Description": "Takes so long...",
+    "Type": "Developing",
+    "IsCurrent": true
+  },
+  {
+    "Slug": "mistborn-1-sanderson",
+    "Name": "Mistborn (Book 1)",
+    "Description": "Brandon Sanderson",
+    "Type": "Reading",
+    "IsCurrent": true
+  },
+  {
+    "Slug": "no-mans-sky-steam",
+    "Name": "No Man's Sky",
+    "Description": "w/ Brandon",
+    "Type": "PlayingSteam",
+    "IsCurrent": true
+  },
+  {
+    "Slug": "hunger-games-catching-fire-film",
+    "Name": "The Hunger Games: Catching Fire",
+    "Type": "WatchingFilm"
+  },
+  {
+    "Slug": "stranger-things-s5-show",
+    "Name": "Stranger Things",
+    "Description": "Season 5",
+    "Type": "WatchingShow"
+  },
+  {
+    "Slug": "traitors-s4-show",
+    "Name": "The Traitors",
+    "Description": "Season 4",
+    "Type": "WatchingShow"
+  },
+  {
+    "Slug": "1984-book",
+    "Name": "1984",
+    "Description": "George Orwell",
+    "Type": "Reading"
+  },
+  {
+    "Slug": "captain-phillips-film",
+    "Name": "Captain Phillips",
+    "Type": "WatchingFilm"
+  },
+  {
+    "Slug": "hades-2-steam",
+    "Name": "Hades II",
+    "Description": "100% Achievements!",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "mass-effect-le-steam",
+    "Name": "Mass Effect: LE",
+    "Description": "100% Achievements!",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "halo-4-xbox",
+    "Name": "Halo 4",
+    "Description": "w/ Brandon",
+    "Type": "PlayingXbox"
+  },
+  {
+    "Slug": "sequence-board",
+    "Name": "Sequence",
+    "Description": "w/ Brandon & Thomas",
+    "Type": "PlayingBoardGame"
+  },
+  {
+    "Slug": "hues-and-cues-board",
+    "Name": "Hues & Cues",
+    "Description": "w/ Brandon, Thomas, Hannah",
+    "Type": "PlayingBoardGame"
+  },
+  {
+    "Slug": "baldurs-gate-3-steam",
+    "Name": "Baldur's Gate 3",
+    "Type": "PlayingSteam"
+  }
+]

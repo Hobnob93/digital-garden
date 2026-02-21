@@ -3,7 +3,7 @@ using DigitalGarden.Shared.Models.Data;
 
 namespace DigitalGarden.Extensions;
 
-public static class MappingExtensions
+public static class DtoMappingExtensions
 {
     public static BeaconCategory ToDomain(this BeaconCategoryDto dto)
     {
@@ -47,6 +47,18 @@ public static class MappingExtensions
             Year = dto.Year,
             IsFavourite = dto.IsFavourite,
             IsAttribution = dto.IsAttribution
+        };
+    }
+
+    public static RecentLifeLog ToDomain(this LifeLogItemDto dto)
+    {
+        return new RecentLifeLog
+        {
+            Title = dto.Title,
+            Description = dto.Description,
+            IsCurrent = dto.IsCurrent,
+            Type = dto.Type,
+            AddedAtUtc = dto.AddedAtUtc
         };
     }
 }

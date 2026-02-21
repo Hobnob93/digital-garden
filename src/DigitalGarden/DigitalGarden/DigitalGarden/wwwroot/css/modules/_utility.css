@@ -16,32 +16,34 @@
 
 /* GENERAL COLOUR VARIABLES */
 :root {
-    --bg-dark: oklch(0.1 0.1 213);
-    --bg: oklch(0.15 0.1 213);
-    --bg-light: oklch(0.2 0.1 213);
-    --text: oklch(0.96 0.1 213);
-    --text-muted: oklch(0.76 0.1 213);
-    --text-dark: var(--bg-dark);
-    --highlight: oklch(0.5 0.2 213);
-    --border: oklch(0.4 0.2 213);
-    --border-muted: oklch(0.3 0.2 213);
-    --primary: oklch(0.76 0.2 213);
-    --secondary: oklch(0.76 0.2 33);
-    --danger: oklch(0.7 0.2 30);
-    --warning: oklch(0.7 0.2 100);
-    --success: oklch(0.7 0.2 160);
-    --info: oklch(0.7 0.2 260);
+    /* Background */
+    --bg-dark: oklch(0.1066 0.0072 285.93);
+    --bg: oklch(0.1566 0.0072 285.93);
+    --bg-light: oklch(0.2066 0.0072 285.93);
     --bg-dark-transparent: rgb(from var(--bg-dark) r g b / 0.50);
     --bg-transparent: rgb(from var(--bg) r g b / 0.50);
     --bg-light-transparent: rgb(from var(--bg-light) r g b / 0.50);
-}
-
-/* UTILITY COLOUR VARIABLES */
-:root {
-    --hover-color: var(--primary);
-    --active-color: var(--secondary);
+    /* Text */
+    --text: oklch(0.95 0.005 205);
+    --text-muted: oklch(0.7 0.005 205);
+    --text-dark: var(--bg-dark);
+    --link: var(--info);
+    /* Surfaces */
+    --highlight: oklch(0.8042 0.0994 199.29);
+    --border: oklch(0.6 0.03 213);
+    --border-muted: oklch(0.5 0.02 213);
     --border-transparent: rgb(from var(--border) r g b / 0.20);
     --border-hover-color: var(--highlight);
+    /* Brand */
+    --primary: oklch(0.7067 0.1 228.07);
+    --secondary: oklch(0.7067 0.1 299.64);
+    --hover-color: var(--highlight);
+    --active-color: var(--highlight);
+    /* Semantic */
+    --danger: oklch(0.7567 0.1 13.76);
+    --warning: oklch(0.7567 0.1 56.08);
+    --success: oklch(0.7567 0.1 139.41);
+    --info: oklch(0.7567 0.1 264.39);
 }
 
 .m-0 {
@@ -811,13 +813,13 @@
 }
 
 .flex-row {
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
 .flex-col {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .flex-1 {
-    flex: 1;
+    flex: 1 !important;
 }

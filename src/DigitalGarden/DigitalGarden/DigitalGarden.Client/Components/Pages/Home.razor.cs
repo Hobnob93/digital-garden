@@ -20,7 +20,7 @@ public partial class Home
         if (QuoteOfTheDay is not null)
             return;
 
-        QuoteOfTheDay = await LifeDataProvider.GetQuoteOfTheDay();
+        QuoteOfTheDay = await LifeDataProvider.GetQuoteOfTheDayAsync();
 
         await InvokeAsync(StateHasChanged);
     }

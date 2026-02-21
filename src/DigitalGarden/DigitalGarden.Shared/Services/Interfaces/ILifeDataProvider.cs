@@ -4,5 +4,7 @@ namespace DigitalGarden.Shared.Services.Interfaces;
 
 public interface ILifeDataProvider
 {
-    Task<FamousQuote> GetQuoteOfTheDay();
+    Task<FamousQuote> GetQuoteOfTheDayAsync();
+    Task<RecentLifeLog[]> GetRecentLifeLogsAsync();
+    Task<LastFmTopArtistsResponse> GetLastFmTopArtists();
 }

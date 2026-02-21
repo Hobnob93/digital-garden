@@ -10,9 +10,21 @@ public class LifeDataClient : BaseClient, ILifeDataProvider
     {
     }
 
-    public async Task<FamousQuote> GetQuoteOfTheDay()
+    public async Task<FamousQuote> GetQuoteOfTheDayAsync()
     {
         var apiResult = await Get<FamousQuote>("Life/QuoteOfTheDay");
+        return apiResult.AsExpectedType;
+    }
+
+    public async Task<RecentLifeLog[]> GetRecentLifeLogsAsync()
+    {
+        var apiResult = await Get<RecentLifeLog[]>("Life/RecentLifeLogs");
+        return apiResult.AsExpectedType;
+    }
+
+    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtists()
+    {
+        var apiResult = await Get<LastFmTopArtistsResponse>("Life/TopArtists");
         return apiResult.AsExpectedType;
     }
 }
