@@ -3,7 +3,7 @@ using DigitalGarden.Shared.Models.Data;
 
 namespace DigitalGarden.Extensions;
 
-public static class MappingExtensions
+public static class DtoMappingExtensions
 {
     public static BeaconCategory ToDomain(this BeaconCategoryDto dto)
     {

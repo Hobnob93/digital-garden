@@ -1,4 +1,7 @@
+using DigitalGarden.Shared.Components.Extensions;
 using DigitalGarden.Shared.Components.Models;
+using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 
 namespace DigitalGarden.Client.Components.Pages;
@@ -7,6 +10,54 @@ public partial class LifeLog
 {
     [Inject]
     private NavigationManager Navigation { get; set; } = default!;
+
+    [Inject]
+    private ILifeDataProvider LifeDataProvider { get; set; } = default!;
+
+    [PersistentState]
+    public RecentLifeLog[]? LifeLogItems { get; set; }
+
+    [PersistentState]
+    public SimpleCardData[]? RightNowCards { get; set; }
+
+    [PersistentState]
+    public SimpleCardData[]? EntertainmentCards { get; set; }
+
+    [PersistentState]
+    public SimpleCardData[]? GameCards { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (LifeLogItems is null)
+            {
+                var items = await LifeDataProvider.GetRecentLifeLogsAsync();
+                LifeLogItems = items.OrderByDescending(i => i.AddedAtUtc).ToArray();
+
+                SetLogCollections();
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+    }
+
+    private void SetLogCollections()
+    {
+        RightNowCards = LifeLogItems
+            ?.Where(i => i.IsCurrent)
+            ?.Select(i => i.ToSimpleCardData())
+            ?.ToArray();
+
+        EntertainmentCards = LifeLogItems
+            ?.Where(i => !i.IsCurrent && i.IsEntertainment)
+            ?.Select(i => i.ToSimpleCardData())
+            ?.ToArray();
+
+        GameCards = LifeLogItems
+            ?.Where(i => !i.IsCurrent && i.IsGame)
+            ?.Select(i => i.ToSimpleCardData())
+            ?.ToArray();
+    }
 
     private void GoToProfessionalProfile()
     {
@@ -22,30 +73,6 @@ public partial class LifeLog
     {
         Navigation.NavigateTo("/life-log/journeys");
     }
-
-    private SimpleCardData[] RightNowCards = [
-        new SimpleCardData("fa-book", "Mistborn (Book 1)", "Brandon Sanderson"),
-        new SimpleCardData("fa-code", "This Website", "Takes so long..."),
-        new SimpleCardData("fa-unity", "Cavern Critters", "Games dev project", FontAwesomeType: "fa-brands"),
-        new SimpleCardData("fa-pen-fancy", "Comissioner's Conscience", "Paxium Chronicles novella")
-    ];
-
-    private SimpleCardData[] EntertainmentCards = [
-        new SimpleCardData("fa-film", "Captain Phillips"),
-        new SimpleCardData("fa-book", "1984", "George Orwell"),
-        new SimpleCardData("fa-tv", "The Traitors", "Season 4"),
-        new SimpleCardData("fa-tv", "Stranger Things", "Season 5"),
-        new SimpleCardData("fa-film", "The Hunger Games: Catching Fire")
-    ];
-
-    private SimpleCardData[] GameCards = [
-        new SimpleCardData("fa-steam", "Baldur's Gate 3", FontAwesomeType: "fa-brands"),
-        new SimpleCardData("fa-dice", "Hues & Cues"),
-        new SimpleCardData("fa-dice", "Sequence"),
-        new SimpleCardData("fa-xbox", "Halo 4", FontAwesomeType: "fa-brands"),
-        new SimpleCardData("fa-steam", "Mass Effect: LE", "100% Achievements!", FontAwesomeType: "fa-brands"),
-        new SimpleCardData("fa-steam", "Hades II", "100% Achievements!", FontAwesomeType: "fa-brands")
-    ];
 
     private SimpleCardData[] MusicCards = [
         new SimpleCardData("fa-8", "Jay Smith", "209 plays"),
