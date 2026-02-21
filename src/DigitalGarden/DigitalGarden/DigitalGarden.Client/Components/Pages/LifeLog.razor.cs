@@ -26,23 +26,27 @@ public partial class LifeLog
     [PersistentState]
     public SimpleCardData[]? GameCards { get; set; }
 
+    [PersistentState]
+    public SimpleCardData[]? MusicCards { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             if (LifeLogItems is null)
             {
-                var items = await LifeDataProvider.GetRecentLifeLogsAsync();
-                LifeLogItems = items.OrderByDescending(i => i.AddedAtUtc).ToArray();
-
-                SetLogCollections();
+                await SetLogCollectionsAsync();
+                await SetTopArtistsAsync();
                 await InvokeAsync(StateHasChanged);
             }
         }
     }
 
-    private void SetLogCollections()
+    private async Task SetLogCollectionsAsync()
     {
+        var items = await LifeDataProvider.GetRecentLifeLogsAsync();
+        LifeLogItems = items.OrderByDescending(i => i.AddedAtUtc).ToArray();
+
         RightNowCards = LifeLogItems
             ?.Where(i => i.IsCurrent)
             ?.Select(i => i.ToSimpleCardData())
@@ -59,6 +63,16 @@ public partial class LifeLog
             ?.ToArray();
     }
 
+    private async Task SetTopArtistsAsync()
+    {
+        var topArtistsResponse = await LifeDataProvider.GetLastFmTopArtists();
+
+        MusicCards = topArtistsResponse.TopArtists.Artists
+            .OrderByDescending(a => a.PlayCount)
+            .Select((a, i) => a.ToSimpleCardData(i + 1))
+            .ToArray();
+    }
+
     private void GoToProfessionalProfile()
     {
         Navigation.NavigateTo("/life-log/mission");
@@ -73,15 +87,4 @@ public partial class LifeLog
     {
         Navigation.NavigateTo("/life-log/journeys");
     }
-
-    private SimpleCardData[] MusicCards = [
-        new SimpleCardData("fa-8", "Jay Smith", "209 plays"),
-        new SimpleCardData("fa-7", "Hinder", "220 plays"),
-        new SimpleCardData("fa-6", "Fall Out Boy", "263 plays"),
-        new SimpleCardData("fa-5", "Citizen Soldier", "302 plays"),
-        new SimpleCardData("fa-4", "Five Finger Death Punch", "381 plays"),
-        new SimpleCardData("fa-3", "Blue October", "469 plays"),
-        new SimpleCardData("fa-2", "Shinedown", "488 plays"),
-        new SimpleCardData("fa-1", "Nickelback", "1,186 plays"),
-    ];
 }
