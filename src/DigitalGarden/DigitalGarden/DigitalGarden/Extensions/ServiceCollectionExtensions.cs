@@ -63,9 +63,12 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddDataSynchronisation(this IServiceCollection services)
     {
+        Log.Information("Adding data sync dependencies to DI");
+
         services.AddTransient<ContentSyncService>();
         services.AddTransient<ISyncContent, SyncBeaconsContent>();
         services.AddTransient<ISyncContent, SyncFamousQuotesContent>();
+        services.AddTransient<ISyncContent, SyncRecentLifeLogsContent>();
 
         return services;
     }
