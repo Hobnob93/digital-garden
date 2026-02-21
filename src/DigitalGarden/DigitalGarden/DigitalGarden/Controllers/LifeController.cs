@@ -19,7 +19,16 @@ public class LifeController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FamousQuote))]
     public async Task<IActionResult> QuoteOfTheDay()
     {
-        var result = await _lifeDataProvider.GetQuoteOfTheDay();
+        var result = await _lifeDataProvider.GetQuoteOfTheDayAsync();
+
+        return Ok(result);
+    }
+
+    [HttpGet(Name = nameof(RecentLifeLogs))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecentLifeLog[]))]
+    public async Task<IActionResult> RecentLifeLogs()
+    {
+        var result = await _lifeDataProvider.GetRecentLifeLogsAsync();
 
         return Ok(result);
     }

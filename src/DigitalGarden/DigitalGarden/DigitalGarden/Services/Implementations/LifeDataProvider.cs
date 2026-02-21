@@ -15,7 +15,7 @@ public class LifeDataProvider : ILifeDataProvider
         _dbContext = dbContext;
     }
 
-    public async Task<FamousQuote> GetQuoteOfTheDay()
+    public async Task<FamousQuote> GetQuoteOfTheDayAsync()
     {
         var allQuotes = await _dbContext.FamousQuotes.ToListAsync();
         var today = DateOnly.FromDateTime(DateTime.UtcNow).DayNumber;
@@ -24,5 +24,14 @@ public class LifeDataProvider : ILifeDataProvider
         var randomIndex = random.Next(allQuotes.Count);
 
         return allQuotes[randomIndex].ToDomain();
+    }
+
+    public async Task<RecentLifeLog[]> GetRecentLifeLogsAsync()
+    {
+        var allRecentLifeLogs = await _dbContext.RecentLifeLogItems.ToListAsync();
+
+        return allRecentLifeLogs
+            .Select(l => l.ToDomain())
+            .ToArray();
     }
 }

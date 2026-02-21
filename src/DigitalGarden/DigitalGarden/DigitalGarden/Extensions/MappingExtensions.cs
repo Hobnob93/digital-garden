@@ -49,4 +49,16 @@ public static class MappingExtensions
             IsAttribution = dto.IsAttribution
         };
     }
+
+    public static RecentLifeLog ToDomain(this LifeLogItemDto dto)
+    {
+        return new RecentLifeLog
+        {
+            Title = dto.Title,
+            Description = dto.Description,
+            IsCurrent = dto.IsCurrent,
+            Type = dto.Type,
+            AddedAtUtc = dto.AddedAtUtc
+        };
+    }
 }
