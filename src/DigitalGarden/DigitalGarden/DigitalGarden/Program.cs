@@ -3,6 +3,7 @@ using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Options;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Events;
@@ -17,13 +18,23 @@ try
         .SetupLogging(configuration, builder.Host)
         .AddInteractiveAutoBlazorWithControllers()
         .ConfigureApplication(configuration)
-        .AddInternalDependencies();
+        .AddInternalDependencies()
+        .AddAntiforgery();
 
     var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
     if (isSyncContent)
     {
         services.AddDataSynchronisation();
     }
+
+    services.AddRateLimiter(options =>
+    {
+        options.AddFixedWindowLimiter("api", o =>
+        {
+            o.PermitLimit = 15;
+            o.Window = TimeSpan.FromMinutes(1);
+        });
+    });
 
     services.AddHttpClient(ApiClientNames.LastFmClientName,
         (sp, client) =>
@@ -75,10 +86,10 @@ try
     app.MapStaticAssets();
 
     app.UseWorkInProgressMiddleware();
-    app.MapControllers();
-
     app.UseStaticFiles();
+
     app.UseAntiforgery();
+    app.MapControllers();
 
     app.MapRazorComponents<App>()
         .AddInteractiveServerRenderMode()

@@ -6,6 +6,7 @@ namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
+[ValidateAntiForgeryToken]
 public class BeaconsController : ControllerBase
 {
     private readonly IBeaconProvider _beaconProvider;

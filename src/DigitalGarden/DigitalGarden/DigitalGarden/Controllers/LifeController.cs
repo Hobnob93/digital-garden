@@ -6,6 +6,7 @@ namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[ValidateAntiForgeryToken]
 public class LifeController : ControllerBase
 {
     private readonly ILifeDataProvider _lifeDataProvider;

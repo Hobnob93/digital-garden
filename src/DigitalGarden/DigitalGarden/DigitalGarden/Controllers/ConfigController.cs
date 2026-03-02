@@ -6,6 +6,7 @@ namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
+[ValidateAntiForgeryToken]
 public class ConfigController : ControllerBase
 {
     private readonly ISiteConfigurationProvider _siteConfigurationProvider;
