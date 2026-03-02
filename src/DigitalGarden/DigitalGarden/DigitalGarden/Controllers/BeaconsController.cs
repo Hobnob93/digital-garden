@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Shared.Models.Data;
 using DigitalGarden.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalGarden.Controllers;

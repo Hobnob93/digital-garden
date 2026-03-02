@@ -36,6 +36,18 @@ try
         });
     });
 
+    var allowedOrigin = builder.Configuration["AllowedOrigin"]
+        ?? throw new InvalidOperationException("'AllowedOrigin' coudl not be found in configuration!");
+
+    services.AddCors(options =>
+    {
+        options.AddPolicy("BlazorClientOnly", policy =>
+            policy.WithOrigins(allowedOrigin)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
+    });
+
     services.AddHttpClient(ApiClientNames.LastFmClientName,
         (sp, client) =>
         {
@@ -89,6 +101,7 @@ try
     app.UseStaticFiles();
 
     app.UseAntiforgery();
+    app.UseCors("BlazorClientOnly");
     app.MapControllers();
 
     app.MapRazorComponents<App>()
