@@ -1,12 +1,13 @@
 ﻿using DigitalGarden.Shared.Models.Options;
 using DigitalGarden.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-[ValidateAntiForgeryToken]
+[RequireAntiforgeryToken]
 public class ConfigController : ControllerBase
 {
     private readonly ISiteConfigurationProvider _siteConfigurationProvider;

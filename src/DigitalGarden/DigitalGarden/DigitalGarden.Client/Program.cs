@@ -1,3 +1,4 @@
+using DigitalGarden.Client.MessageHandlers;
 using DigitalGarden.Client.Services.Implementations;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Services.Interfaces;
@@ -6,13 +7,21 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 var services = builder.Services;
 
-services.AddHttpClient(ApiClientNames.AnonymousClientName,
+services.AddHttpClient(ApiClientNames.MainClientName,
     (sp, client) =>
     {
         client.BaseAddress = new Uri($"{builder.HostEnvironment.BaseAddress}api/");
         AddDefaultRequestHeaders(client);
+    }).AddHttpMessageHandler<AntiforgeryTokenHandler>();
+
+services.AddHttpClient(ApiClientNames.AntiforgeryClient,
+    (sp, client) =>
+    {
+        client.BaseAddress = new Uri($"{builder.HostEnvironment.BaseAddress}");
+        AddDefaultRequestHeaders(client);
     });
 
+services.AddSingleton<AntiforgeryTokenHandler>();
 services.AddTransient<ISiteConfigurationProvider, SiteConfigurationClient>();
 services.AddTransient<IBeaconProvider, BeaconClient>();
 services.AddTransient<ILifeDataProvider, LifeDataClient>();

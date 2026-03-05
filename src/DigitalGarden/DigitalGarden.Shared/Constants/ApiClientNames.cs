@@ -2,6 +2,7 @@
 
 public static class ApiClientNames
 {
-    public const string AnonymousClientName = "AnyonymousClient";
+    public const string MainClientName = "MainClient";
     public const string LastFmClientName = "LastFmClient";
+    public const string AntiforgeryClient = "AntiforgeryClient";
 }

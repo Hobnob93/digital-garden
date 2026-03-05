@@ -3,6 +3,7 @@ using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Options;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -31,7 +32,7 @@ try
     {
         options.AddFixedWindowLimiter("api", o =>
         {
-            o.PermitLimit = 15;
+            o.PermitLimit = 30;
             o.Window = TimeSpan.FromMinutes(1);
         });
     });
@@ -97,11 +98,16 @@ try
     app.UseHttpsRedirection();
     app.MapStaticAssets();
 
-    app.UseWorkInProgressMiddleware();
     app.UseStaticFiles();
-
     app.UseAntiforgery();
     app.UseCors("BlazorClientOnly");
+
+    app.MapGet("/antiforgery/token", (IAntiforgery antiforgery, HttpContext context) =>
+    {
+        var tokens = antiforgery.GetAndStoreTokens(context);
+        return Results.Ok(new { token = tokens.RequestToken });
+    }).DisableAntiforgery();
+
     app.MapControllers();
 
     app.MapRazorComponents<App>()
