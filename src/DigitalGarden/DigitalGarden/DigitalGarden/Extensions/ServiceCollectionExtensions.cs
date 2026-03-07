@@ -4,6 +4,7 @@ using DigitalGarden.Services.Implementations;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Models.Options;
 using DigitalGarden.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -57,7 +58,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddInternalDependencies(this IServiceCollection services)
+    public static IServiceCollection AddInternalDependencies(this IServiceCollection services, bool isSyncContent)
     {
         Log.Information("Adding internal dependencies to DI");
 
@@ -65,6 +66,11 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
         services.AddTransient<IBeaconProvider, BeaconProvider>();
         services.AddTransient<ILifeDataProvider, LifeDataProvider>();
+
+        if (isSyncContent)
+        {
+            services.AddDataSynchronisation();
+        }
 
         return services;
     }
@@ -79,5 +85,32 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ISyncContent, SyncRecentLifeLogsContent>();
 
         return services;
+    }
+
+    public static IServiceCollection ConfigureSecurity(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddRateLimiter(options =>
+        {
+            options.AddFixedWindowLimiter("api", o =>
+            {
+                o.PermitLimit = 30;
+                o.Window = TimeSpan.FromMinutes(1);
+            });
+        });
+
+        var allowedOrigin = configuration["AllowedOrigin"]
+            ?? throw new InvalidOperationException("'AllowedOrigin' coudl not be found in configuration!");
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("BlazorClientOnly", policy =>
+                policy.WithOrigins(allowedOrigin)
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .AllowCredentials());
+        });
+
+        return services
+            .AddAntiforgery();
     }
 }

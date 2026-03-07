@@ -1,53 +1,23 @@
 using DigitalGarden.Components;
-using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Options;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Serilog;
-using Serilog.Events;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
     var services = builder.Services;
     var configuration = builder.Configuration;
+    var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
 
     services
         .SetupLogging(configuration, builder.Host)
         .AddInteractiveAutoBlazorWithControllers()
         .ConfigureApplication(configuration)
-        .AddInternalDependencies()
-        .AddAntiforgery();
-
-    var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
-    if (isSyncContent)
-    {
-        services.AddDataSynchronisation();
-    }
-
-    services.AddRateLimiter(options =>
-    {
-        options.AddFixedWindowLimiter("api", o =>
-        {
-            o.PermitLimit = 30;
-            o.Window = TimeSpan.FromMinutes(1);
-        });
-    });
-
-    var allowedOrigin = builder.Configuration["AllowedOrigin"]
-        ?? throw new InvalidOperationException("'AllowedOrigin' coudl not be found in configuration!");
-
-    services.AddCors(options =>
-    {
-        options.AddPolicy("BlazorClientOnly", policy =>
-            policy.WithOrigins(allowedOrigin)
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .AllowCredentials());
-    });
+        .AddInternalDependencies(isSyncContent)
+        .ConfigureSecurity(configuration);
 
     services.AddHttpClient(ApiClientNames.LastFmClientName,
         (sp, client) =>
@@ -62,11 +32,7 @@ try
     // Sync content when requested and exit application
     if (isSyncContent)
     {
-        using var scope = app.Services.CreateScope();
-        var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
-
-        Log.Information("Synchronising DB Data...");
-        await syncService.SyncAsync(CancellationToken.None);
+        await app.SyncDataAsync();
 
         Log.Information("Sync done! Exiting...");
         return;
@@ -85,29 +51,12 @@ try
         app.UseHsts();
     }
 
-    app.UseSerilogRequestLogging(options =>
-    {
-        options.GetLevel = (_, _, ex) => ex is null ? LogEventLevel.Information : LogEventLevel.Error;
-        options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
-        {
-            diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty);
-            diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
-        };
-    });
-
+    app.UseRequestLogging();
     app.UseHttpsRedirection();
     app.MapStaticAssets();
-
     app.UseStaticFiles();
-    app.UseAntiforgery();
-    app.UseCors("BlazorClientOnly");
 
-    app.MapGet("/antiforgery/token", (IAntiforgery antiforgery, HttpContext context) =>
-    {
-        var tokens = antiforgery.GetAndStoreTokens(context);
-        return Results.Ok(new { token = tokens.RequestToken });
-    }).DisableAntiforgery();
-
+    app.UseSecurity();
     app.MapControllers();
 
     app.MapRazorComponents<App>()

@@ -1,5 +1,9 @@
-﻿using DigitalGarden.Shared.Models.Options;
+﻿using DigitalGarden.Data.Sync;
+using DigitalGarden.Shared.Models.Options;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Options;
+using Serilog;
+using Serilog.Events;
 
 namespace DigitalGarden.Extensions;
 
@@ -35,6 +39,40 @@ public static class WebApplicationExtensions
 
             await nextDelegate();
         });
+    }
+
+    public static async Task SyncDataAsync(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
+
+        Log.Information("Synchronising DB Data...");
+        await syncService.SyncAsync(CancellationToken.None);
+    }
+
+    public static void UseRequestLogging(this WebApplication app)
+    {
+        app.UseSerilogRequestLogging(options =>
+        {
+            options.GetLevel = (_, _, ex) => ex is null ? LogEventLevel.Information : LogEventLevel.Error;
+            options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+            {
+                diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty);
+                diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
+            };
+        });
+    }
+
+    public static void UseSecurity(this WebApplication app)
+    {
+        app.UseAntiforgery();
+        app.UseCors("BlazorClientOnly");
+
+        app.MapGet("/antiforgery/token", (IAntiforgery antiforgery, HttpContext context) =>
+        {
+            var tokens = antiforgery.GetAndStoreTokens(context);
+            return Results.Ok(new { token = tokens.RequestToken });
+        }).DisableAntiforgery();
     }
 
     private static bool IsStaticFile(this string path)
