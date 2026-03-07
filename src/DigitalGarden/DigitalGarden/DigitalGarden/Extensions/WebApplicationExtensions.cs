@@ -67,7 +67,6 @@ public static class WebApplicationExtensions
 
     public static void UseSecurity(this WebApplication app)
     {
-        app.UseAntiforgery();
         app.UseCors(ApiConstants.BlazorClientCorsPolicyName);
 
         app.MapGet("/antiforgery/token", (IAntiforgery antiforgery, HttpContext context) =>
@@ -89,6 +88,7 @@ public static class WebApplicationExtensions
             return Results.Ok(new { token });
         }).DisableAntiforgery();
 
+        app.UseAntiforgery();
         app.UseSession();
     }
 

@@ -4,7 +4,7 @@ public static class ApiConstants
 {
     public const string MainClientName = "MainClient";
     public const string LastFmClientName = "LastFmClient";
-    public const string TokenClient = "AntiforgeryClient";
+    public const string TokenClientName = "TokenClient";
 
     public const string BlazorClientCorsPolicyName = "BlazorClientOnly";
     public const string SessionTokenName = "ApiToken";

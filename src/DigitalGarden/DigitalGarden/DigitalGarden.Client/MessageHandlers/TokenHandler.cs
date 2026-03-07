@@ -1,42 +1,50 @@
-﻿using DigitalGarden.Shared.Constants;
+﻿using DigitalGarden.Client.Services;
+using DigitalGarden.Shared.Constants;
+using DigitalGarden.Shared.Helpers;
 using System.Net.Http.Json;
 
 namespace DigitalGarden.Client.MessageHandlers;
 
 public class TokenHandler : DelegatingHandler
 {
-    private readonly HttpClient _httpClient;
-    private string? _cachedAntiforgeryToken;
-    private string? _cachedSessionToken;
+    private readonly IHttpClientFactory _clientFactory;
+    private readonly TokenCache _tokenCache;
 
-    public TokenHandler(IHttpClientFactory httpClientFactory)
+    public TokenHandler(IHttpClientFactory clientFactory, TokenCache tokenCache)
     {
-        _httpClient = httpClientFactory.CreateClient(ApiConstants.TokenClient);
+        _clientFactory = clientFactory;
+        _tokenCache = tokenCache;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        _cachedAntiforgeryToken ??= await FetchAntiforgeryTokenAsync();
-        request.Headers.Add(ApiConstants.AntiforgeryTokenHeader, _cachedAntiforgeryToken);
+        if (_tokenCache.NeedsRefresh)
+        {
+            await RefreshTokensAsync();
+        }
 
-        _cachedSessionToken ??= await FetchSessionTokenAsync();
-        request.Headers.Add(ApiConstants.SessionTokenHeader, _cachedSessionToken);
+        request.Headers.Add(ApiConstants.AntiforgeryTokenHeader, _tokenCache.AntiforgeryToken);
+        request.Headers.Add(ApiConstants.SessionTokenHeader, _tokenCache.SessionToken);
 
         return await base.SendAsync(request, cancellationToken);
     }
 
-    private async Task<string> FetchAntiforgeryTokenAsync()
+    private async Task RefreshTokensAsync()
     {
-        var response = await _httpClient.GetFromJsonAsync<TokenResponse>("/antiforgery/token")
-            ?? throw new InvalidOperationException("Could not fetch/deserialize antiforgery token!");
+        var client = _clientFactory.CreateClient(ApiConstants.TokenClientName);
+        HttpClientHelper.AddDefaultRequestHeaders(client);
 
-        return response.Token;
+        var antiforgeryToken = await FetchTokenAsync(client, "/antiforgery/token");
+        var sessionToken = await FetchTokenAsync(client, "/session/token");
+
+        _tokenCache.Store(antiforgeryToken, sessionToken);
     }
 
-    private async Task<string> FetchSessionTokenAsync()
+    private static async Task<string> FetchTokenAsync(HttpClient client, string endpoint)
     {
-        var response = await _httpClient.GetFromJsonAsync<TokenResponse>("/session/token")
-            ?? throw new InvalidOperationException("Could not fetch/deserialize session token!");
+        var response = await client.GetFromJsonAsync<TokenResponse>(endpoint)
+            ?? throw new InvalidOperationException($"Could not fetch token from {endpoint}");
 
         return response.Token;
     }

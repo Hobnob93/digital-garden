@@ -1,6 +1,7 @@
 using DigitalGarden.Components;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Constants;
+using DigitalGarden.Shared.Helpers;
 using DigitalGarden.Shared.Models.Options;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -24,6 +25,7 @@ try
         {
             var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
             client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+            HttpClientHelper.AddDefaultRequestHeaders(client);
         });
 
     Log.Information("Building app");
