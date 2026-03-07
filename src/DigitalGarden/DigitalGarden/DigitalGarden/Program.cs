@@ -1,35 +1,31 @@
 using DigitalGarden.Components;
-using DigitalGarden.Data.Sync;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Constants;
+using DigitalGarden.Shared.Helpers;
 using DigitalGarden.Shared.Models.Options;
 using Microsoft.Extensions.Options;
 using Serilog;
-using Serilog.Events;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
     var services = builder.Services;
     var configuration = builder.Configuration;
+    var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
 
     services
         .SetupLogging(configuration, builder.Host)
         .AddInteractiveAutoBlazorWithControllers()
         .ConfigureApplication(configuration)
-        .AddInternalDependencies();
+        .AddInternalDependencies(isSyncContent)
+        .ConfigureSecurity(configuration);
 
-    var isSyncContent = args.Contains("sync-content", StringComparer.OrdinalIgnoreCase);
-    if (isSyncContent)
-    {
-        services.AddDataSynchronisation();
-    }
-
-    services.AddHttpClient(ApiClientNames.LastFmClientName,
+    services.AddHttpClient(ApiConstants.LastFmClientName,
         (sp, client) =>
         {
             var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
             client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+            HttpClientHelper.AddDefaultRequestHeaders(client);
         });
 
     Log.Information("Building app");
@@ -38,11 +34,7 @@ try
     // Sync content when requested and exit application
     if (isSyncContent)
     {
-        using var scope = app.Services.CreateScope();
-        var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
-
-        Log.Information("Synchronising DB Data...");
-        await syncService.SyncAsync(CancellationToken.None);
+        await app.SyncDataAsync();
 
         Log.Information("Sync done! Exiting...");
         return;
@@ -61,24 +53,13 @@ try
         app.UseHsts();
     }
 
-    app.UseSerilogRequestLogging(options =>
-    {
-        options.GetLevel = (_, _, ex) => ex is null ? LogEventLevel.Information : LogEventLevel.Error;
-        options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
-        {
-            diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty);
-            diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
-        };
-    });
-
+    app.UseRequestLogging();
     app.UseHttpsRedirection();
     app.MapStaticAssets();
-
-    app.UseWorkInProgressMiddleware();
-    app.MapControllers();
-
     app.UseStaticFiles();
-    app.UseAntiforgery();
+
+    app.UseSecurity();
+    app.MapControllers();
 
     app.MapRazorComponents<App>()
         .AddInteractiveServerRenderMode()

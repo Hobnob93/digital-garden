@@ -1,5 +1,11 @@
-﻿using DigitalGarden.Shared.Models.Options;
+﻿using DigitalGarden.Data.Sync;
+using DigitalGarden.Shared.Constants;
+using DigitalGarden.Shared.Models.Options;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.Extensions.Options;
+using Serilog;
+using Serilog.Events;
+using System.Security.Cryptography;
 
 namespace DigitalGarden.Extensions;
 
@@ -35,6 +41,55 @@ public static class WebApplicationExtensions
 
             await nextDelegate();
         });
+    }
+
+    public static async Task SyncDataAsync(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        var syncService = scope.ServiceProvider.GetRequiredService<ContentSyncService>();
+
+        Log.Information("Synchronising DB Data...");
+        await syncService.SyncAsync(CancellationToken.None);
+    }
+
+    public static void UseRequestLogging(this WebApplication app)
+    {
+        app.UseSerilogRequestLogging(options =>
+        {
+            options.GetLevel = (_, _, ex) => ex is null ? LogEventLevel.Information : LogEventLevel.Error;
+            options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+            {
+                diagnosticContext.Set("ClientIP", httpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty);
+                diagnosticContext.Set("UserAgent", httpContext.Request.Headers.UserAgent.ToString());
+            };
+        });
+    }
+
+    public static void UseSecurity(this WebApplication app)
+    {
+        app.UseCors(ApiConstants.BlazorClientCorsPolicyName);
+
+        app.MapGet("/antiforgery/token", (IAntiforgery antiforgery, HttpContext context) =>
+        {
+            var tokens = antiforgery.GetAndStoreTokens(context);
+
+            return Results.Ok(new { token = tokens.RequestToken });
+        }).DisableAntiforgery();
+
+        app.MapGet("/session/token", (HttpContext context) =>
+        {
+            var token = context.Session.GetString(ApiConstants.SessionTokenName);
+            if (token is null)
+            {
+                token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+                context.Session.SetString(ApiConstants.SessionTokenName, token);
+            }
+
+            return Results.Ok(new { token });
+        }).DisableAntiforgery();
+
+        app.UseAntiforgery();
+        app.UseSession();
     }
 
     private static bool IsStaticFile(this string path)

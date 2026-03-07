@@ -1,11 +1,15 @@
-﻿using DigitalGarden.Shared.Models.Data;
+﻿using DigitalGarden.Attributes;
+using DigitalGarden.Shared.Models.Data;
 using DigitalGarden.Shared.Services.Interfaces;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalGarden.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
+[SessionToken]
+[RequireAntiforgeryToken]
 public class BeaconsController : ControllerBase
 {
     private readonly IBeaconProvider _beaconProvider;

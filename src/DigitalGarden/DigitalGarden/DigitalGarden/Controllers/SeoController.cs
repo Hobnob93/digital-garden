@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Helpers;
 using DigitalGarden.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
@@ -8,6 +9,7 @@ namespace DigitalGarden.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[DisableCors]
 public class SeoController : ControllerBase
 {
     private readonly ISitemapRelativeUrlsProvider _sitemapRelativeUrlsProvider;
