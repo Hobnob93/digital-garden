@@ -53,3 +53,29 @@ ul.gift-list li {
         .link-title-container:hover .link-favicon {
             margin-right: var(--rspacing-3);
         }
+
+table {
+    width: 100%;
+    backdrop-filter: blur(1px);
+    border: 1px solid var(--border-transparent);
+}
+
+thead {
+    background-color: var(--bg-dark-transparent);
+}
+
+    thead th {
+        padding: var(--rspacing-3);
+    }
+
+tbody tr:nth-child(odd) {
+    background-color: var(--bg-transparent);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-light-transparent);
+}
+
+tbody td {
+    padding: var(--rspacing-2);
+}

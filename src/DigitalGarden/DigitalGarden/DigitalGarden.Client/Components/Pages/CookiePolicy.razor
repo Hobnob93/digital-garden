@@ -1,0 +1,41 @@
+﻿@page "/cookie-policy"
+@rendermode InteractiveAuto
+
+<WaitForInteractivity>
+    <PageHeaderContent PageTitle="Cookie Policy" HeaderText="Cookie Policy">
+        <BodyFragment>
+            <p>This site uses cookies in order to function.</p>
+            <p>There are no tracking or customisation cookies implemented.</p>
+            <p>This page will update as circumstances change.</p>
+        </BodyFragment>
+    </PageHeaderContent>
+
+    <div class="grid-12 mt-4 mb-6">
+        <div class="col-12 py-3 px-4">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="25%">Cookie</th>
+                        <th width="50%">Purpose</th>
+                        <th width="15%">Type</th>
+                        <th width="10%">Expiry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.AspNetCore.Session</code></td>
+                        <td>Maintains your session for security purposes</td>
+                        <td>Strictly necessary</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td><code>.AspNetCore.Antiforgery.*</code></td>
+                        <td>Protects against cross-site request forgery</td>
+                        <td>Strictly necessary</td>
+                        <td>Session</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</WaitForInteractivity>
