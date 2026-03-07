@@ -19,7 +19,7 @@ try
         .AddInternalDependencies(isSyncContent)
         .ConfigureSecurity(configuration);
 
-    services.AddHttpClient(ApiClientNames.LastFmClientName,
+    services.AddHttpClient(ApiConstants.LastFmClientName,
         (sp, client) =>
         {
             var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;

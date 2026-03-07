@@ -2,6 +2,7 @@
 using DigitalGarden.Data.Sync;
 using DigitalGarden.Services.Implementations;
 using DigitalGarden.Services.Interfaces;
+using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Options;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.RateLimiting;
@@ -103,14 +104,23 @@ public static class ServiceCollectionExtensions
 
         services.AddCors(options =>
         {
-            options.AddPolicy("BlazorClientOnly", policy =>
+            options.AddPolicy(ApiConstants.BlazorClientCorsPolicyName, policy =>
                 policy.WithOrigins(allowedOrigin)
                       .AllowAnyMethod()
                       .AllowAnyHeader()
                       .AllowCredentials());
         });
 
+        services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(30);
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        });
+
         return services
+            .AddDistributedMemoryCache()
             .AddAntiforgery();
     }
 }

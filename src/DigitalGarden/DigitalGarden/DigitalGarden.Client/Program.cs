@@ -7,21 +7,21 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 var services = builder.Services;
 
-services.AddHttpClient(ApiClientNames.MainClientName,
+services.AddHttpClient(ApiConstants.MainClientName,
     (sp, client) =>
     {
         client.BaseAddress = new Uri($"{builder.HostEnvironment.BaseAddress}api/");
         AddDefaultRequestHeaders(client);
-    }).AddHttpMessageHandler<AntiforgeryTokenHandler>();
+    }).AddHttpMessageHandler<TokenHandler>();
 
-services.AddHttpClient(ApiClientNames.AntiforgeryClient,
+services.AddHttpClient(ApiConstants.TokenClient,
     (sp, client) =>
     {
         client.BaseAddress = new Uri($"{builder.HostEnvironment.BaseAddress}");
         AddDefaultRequestHeaders(client);
     });
 
-services.AddSingleton<AntiforgeryTokenHandler>();
+services.AddSingleton<TokenHandler>();
 services.AddTransient<ISiteConfigurationProvider, SiteConfigurationClient>();
 services.AddTransient<IBeaconProvider, BeaconClient>();
 services.AddTransient<ILifeDataProvider, LifeDataClient>();

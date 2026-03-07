@@ -48,7 +48,7 @@ public abstract class BaseClient
 
     protected HttpClient CreateClient()
     {
-        var apiClientName = ApiClientNames.MainClientName;
+        var apiClientName = ApiConstants.MainClientName;
         return _httpFactory.CreateClient(apiClientName);
     }
 

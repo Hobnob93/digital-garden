@@ -44,7 +44,7 @@ public class LifeDataProvider : ILifeDataProvider
 
     public async Task<LastFmTopArtistsResponse> GetLastFmTopArtists()
     {
-        var client = _httpClientFactory.CreateClient(ApiClientNames.LastFmClientName);
+        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
 
         var endpoint = string.Format(_lastFmOptions.TopArtistsEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
         var result = await client.GetAsync(endpoint);
