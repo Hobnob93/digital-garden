@@ -2,7 +2,7 @@
 
 public class TokenCache
 {
-    private static readonly TimeSpan TokenLifetime = TimeSpan.FromMinutes(1);
+    private static readonly TimeSpan TokenLifetime = TimeSpan.FromMinutes(25);
 
     public string? AntiforgeryToken { get; private set; }
     public string? SessionToken { get; private set; }

@@ -7,10 +7,10 @@
 
 @if (Cards is not null)
 {
-    <div class="mouse-over-cards mt-2 grid-12">
+    <div class="mouse-over-cards horizontal mt-2" @ref="_mouseOverCardsRoot">
         @foreach (var card in Cards)
         {
-            <div class="col-6 col-m-4 col-l-3 card">
+            <div class="card">
                 <div class="icon-container">
                     <i class="@card.FontAwesomeType @card.FontAwesomeIcon fa-xl"></i>
                 </div>
