@@ -33,27 +33,24 @@
     <h2 class="center-text muted mt-6 mb-2">Recent Logs</h2>
     <div class="grid-12 mt-2">
         <div class="mb-2 col-12">
-            <h3 class="muted">Current</h3>
-            <p>What am I up to these days?</p>
+            <h3 class="muted">Entertainment</h3>
+            <p>Actively engaged entertainment</p>
             <MouseOverCards Cards="@RightNowCards" />
-        </div>
 
-        <div class="mb-2 col-12">
-            <h3 class="muted">TV, Film & Books</h3>
             <p>Books read, and shows and films watched in recent times.</p>
             <MouseOverCards Cards="@EntertainmentCards" />
-        </div>
 
-        <div class="mb-2 mt-2 col-12">
-            <h3 class="muted">Games</h3>
-            <p>Video and board games that have been on the agenda.</p>
+            <p>Video and board games that have been played.</p>
             <MouseOverCards Cards="@GameCards" />
         </div>
 
         <div class="mb-2 mt-2 col-12">
             <h3 class="muted">Music</h3>
-            <p>My top artists of the last 180 days.</p>
-            <MouseOverCards Cards="@MusicCards" />
+            <p>My top artists of the last 6 months.</p>
+            <MouseOverCards Cards="@ArtistsCards" />
+
+            <p>My top tracks of the last 6 months.</p>
+            <MouseOverCards Cards="@TracksCards" />
         </div>
     </div>     
 </WaitForInteractivity>

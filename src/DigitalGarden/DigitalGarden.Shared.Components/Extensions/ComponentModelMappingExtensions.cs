@@ -31,6 +31,17 @@ public static class ComponentModelMappingExtensions
         );
     }
 
+    public static SimpleCardData ToSimpleCardData(this LastFmTrack lastFmTrack, int rank)
+    {
+        return new SimpleCardData
+        (
+            FontAwesomeIcon: $"fa-{rank}",
+            Title: lastFmTrack.Name,
+            Description: $"{lastFmTrack.Artist.Name} ({lastFmTrack.PlayCount} plays)",
+            BrandsFontAwesomeType
+        );
+    }
+
     private static string FontAwesomeIconFromLifeLogItemType(LifeLogItemType type)
     {
         return type switch

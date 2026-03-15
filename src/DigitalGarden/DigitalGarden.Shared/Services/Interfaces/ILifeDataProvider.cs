@@ -7,4 +7,5 @@ public interface ILifeDataProvider
     Task<FamousQuote> GetQuoteOfTheDayAsync();
     Task<RecentLifeLog[]> GetRecentLifeLogsAsync();
     Task<LastFmTopArtistsResponse> GetLastFmTopArtists();
+    Task<LastFmTopTracksResponse> GetLastFmTopTracks();
 }

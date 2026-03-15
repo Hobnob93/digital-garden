@@ -48,7 +48,8 @@ public static class ServiceCollectionExtensions
             .Validate(o => !string.IsNullOrWhiteSpace(o.ApiKey), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.ApiKey)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.UserId), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.UserId)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.BaseAddress), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.BaseAddress)} is required")
-            .Validate(o => !string.IsNullOrWhiteSpace(o.TopArtistsEndpoint), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.TopArtistsEndpoint)} is required");
+            .Validate(o => !string.IsNullOrWhiteSpace(o.TopArtistsEndpoint), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.TopArtistsEndpoint)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.TopTracksEndpoint), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.TopTracksEndpoint)} is required");
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {

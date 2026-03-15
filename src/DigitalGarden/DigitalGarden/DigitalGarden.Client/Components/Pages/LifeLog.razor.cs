@@ -27,7 +27,10 @@ public partial class LifeLog
     public SimpleCardData[]? GameCards { get; set; }
 
     [PersistentState]
-    public SimpleCardData[]? MusicCards { get; set; }
+    public SimpleCardData[]? ArtistsCards { get; set; }
+
+    [PersistentState]
+    public SimpleCardData[]? TracksCards { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -67,7 +70,14 @@ public partial class LifeLog
     {
         var topArtistsResponse = await LifeDataProvider.GetLastFmTopArtists();
 
-        MusicCards = topArtistsResponse.TopArtists.Artists
+        ArtistsCards = topArtistsResponse.TopArtists.Artists
+            .OrderByDescending(a => a.PlayCount)
+            .Select((a, i) => a.ToSimpleCardData(i + 1))
+            .ToArray();
+
+        var topTracksResponse = await LifeDataProvider.GetLastFmTopTracks();
+
+        TracksCards = topTracksResponse.TopTracks.Tracks
             .OrderByDescending(a => a.PlayCount)
             .Select((a, i) => a.ToSimpleCardData(i + 1))
             .ToArray();

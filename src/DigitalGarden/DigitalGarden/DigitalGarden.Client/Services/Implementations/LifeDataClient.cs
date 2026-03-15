@@ -27,4 +27,10 @@ public class LifeDataClient : BaseClient, ILifeDataProvider
         var apiResult = await Get<LastFmTopArtistsResponse>("Life/TopArtists");
         return apiResult.AsExpectedType;
     }
+
+    public async Task<LastFmTopTracksResponse> GetLastFmTopTracks()
+    {
+        var apiResult = await Get<LastFmTopTracksResponse>("Life/TopTracks");
+        return apiResult.AsExpectedType;
+    }
 }

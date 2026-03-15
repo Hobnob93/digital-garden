@@ -47,4 +47,14 @@ public class LifeController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet(Name = nameof(TopTracks))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LastFmTopTracksResponse))]
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any, NoStore = false)]
+    public async Task<IActionResult> TopTracks()
+    {
+        var result = await _lifeDataProvider.GetLastFmTopTracks();
+
+        return Ok(result);
+    }
 }

@@ -53,4 +53,16 @@ public class LifeDataProvider : ILifeDataProvider
         return await result.Content.ReadFromJsonAsync<LastFmTopArtistsResponse>()
             ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
     }
+
+    public async Task<LastFmTopTracksResponse> GetLastFmTopTracks()
+    {
+        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
+
+        var endpoint = string.Format(_lastFmOptions.TopTracksEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
+        var result = await client.GetAsync(endpoint);
+        result.EnsureSuccessStatusCode();
+
+        return await result.Content.ReadFromJsonAsync<LastFmTopTracksResponse>()
+            ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
+    }
 }
