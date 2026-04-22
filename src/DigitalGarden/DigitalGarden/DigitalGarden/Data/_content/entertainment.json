@@ -1,0 +1,631 @@
+[
+  {
+    "Slug": "kingom-come-deliverance-II-steam",
+    "Name": "Kingdom Come Deliverance II",
+    "Type": "PlayingSteam",
+    "LastConsumed": "14-03-2026",
+    "Tags": "Action,Rpg",
+    "InProgress": true
+  },
+  {
+    "Slug": "elden-ring-steam",
+    "Name": "Elden Ring",
+    "Type": "PlayingSteam",
+    "LastConsumed": "14-03-2026",
+    "Tags": "Action,Rpg",
+    "InProgress": true
+  },
+  {
+    "Slug": "dispatch-steam",
+    "Name": "Dispatch",
+    "Type": "PlayingSteam",
+    "LastConsumed": "13-03-2026",
+    "Genres": "Adventure,Choice,Narrative",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "the-good-place-show",
+    "Name": "The Good Place",
+    "Seasons": [ 1, 2, 3 ],
+    "LastConsumed": "14-03-2026",
+    "Tags": "Sitcom",
+    "Type": "WatchingShow"
+  },
+  {
+    "Slug": "mistborn-1-sanderson",
+    "Name": "Mistborn (Book 1)",
+    "Description": "By Brandon Sanderson",
+    "LastConsumed": "18-03-2026",
+    "Tags": "Fantasy,EpicFantasy,SciFi",
+    "Type": "Reading",
+    "InProgress": true
+  },
+  {
+    "Slug": "no-mans-sky-steam",
+    "Name": "No Man's Sky",
+    "Description": "w/ Brandon A",
+    "Type": "PlayingSteam",
+    "LastConsumed": "16-03-2026",
+    "Tags": "Action,Adventure",
+    "InProgress": true
+  },
+  {
+    "Slug": "hunger-games-catching-fire-film",
+    "Name": "The Hunger Games: Catching Fire",
+    "LastConsumed": "20-02-2026",
+    "Tags": "Action,Adventure,SciFi",
+    "Type": "WatchingFilm"
+  },
+  {
+    "Slug": "stranger-things-show",
+    "Name": "Stranger Things",
+    "Seasons": [ 1, 2, 3, 4, 5 ],
+    "LastConsumed": "18-02-2026",
+    "Tags": "Thriller,Adventure,Supernatural,SciFi,Drama",
+    "Type": "WatchingShow"
+  },
+  {
+    "Slug": "traitors-show",
+    "Name": "The Traitors",
+    "Seasons": [ 1, 2, 3, 4 ],
+    "LastConsumed": "28-02-2026",
+    "Tags": "Action,Adventure,SciFi",
+    "Type": "WatchingShow"
+  },
+  {
+    "Slug": "1984-book",
+    "Name": "1984",
+    "Description": "By George Orwell",
+    "LastConsumed": "13-02-2026",
+    "Tags": "Dystopia,SciFi",
+    "Type": "Reading"
+  },
+  {
+    "Slug": "captain-phillips-film",
+    "Name": "Captain Phillips",
+    "LastConsumed": "15-02-2026",
+    "Tags": "Action,Thriller",
+    "Type": "WatchingFilm"
+  },
+  {
+    "Slug": "hades-2-steam",
+    "Name": "Hades II",
+    "LastConsumed": "18-01-2026",
+    "Type": "PlayingSteam",
+    "Tags": "Roguelike,Action,Rpg,DungeonCrawl",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "mass-effect-le-steam",
+    "Name": "Mass Effect: LE",
+    "LastConsumed": "31-01-2026",
+    "Tags": "Action,Rpg,ThirdPersonShooter",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "halo-4-xbox",
+    "Name": "Halo 4",
+    "LastConsumed": "07-02-2026",
+    "Tags": "Action,SciFi,FirstPersonShooter",
+    "Type": "PlayingXbox"
+  },
+  {
+    "Slug": "sequence-board",
+    "Name": "Sequence",
+    "LastConsumed": "08-02-2026",
+    "Tags": "Abstract,Strategy",
+    "Type": "PlayingBoardGame"
+  },
+  {
+    "Slug": "hues-and-cues-board",
+    "Name": "Hues & Cues",
+    "LastConsumed": "08-02-2026",
+    "Tags": "Party,Deduction",
+    "Type": "PlayingBoardGame"
+  },
+  {
+    "Slug": "hogwarts-legacy-steam",
+    "Name": "Hogwarts Legacy",
+    "LastConsumed": "04-02-2024",
+    "Tags": "OpenWorld,Action,Rpg",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "horizon-zero-dawn-steam",
+    "Name": "Horizon Zero Dawn Complete Edition",
+    "LastConsumed": "18-05-2023",
+    "Tags": "Action,Rpg,SciFi,OpenWorld,Adventure",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "just-cause-3-steam",
+    "Name": "Just Cause 3",
+    "LastConsumed": "19-10-2024",
+    "Tags": "Action,OpenWorld,ThirdPersonShooter",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "trackmania-steam",
+    "Name": "Trackmania",
+    "LastConsumed": "16-02-2026",
+    "Tags": "Arcade,Racing,TimeAttack",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "lets-build-a-zoo-steam",
+    "Name": "Let's Build a Zoo",
+    "LastConsumed": "19-11-2024",
+    "Tags": "Casual,Tycoon,Simulation",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "satisfactory-steam",
+    "Name": "Satisfactory",
+    "LastConsumed": "14-10-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "beacon-pines-steam",
+    "Name": "Beacon Pines",
+    "LastConsumed": "06-10-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "red-dead-II-steam",
+    "Name": "Red Dead Redemption II",
+    "LastConsumed": "23-08-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "jedi-fallen-order-steam",
+    "Name": "Star Wars: Jedi Fallen Order",
+    "LastConsumed": "23-08-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "autonauts-steam",
+    "Name": "Autonauts",
+    "LastConsumed": "23-08-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "planet-zoo-steam",
+    "Name": "Planet Zoo",
+    "LastConsumed": "11-08-2024",
+    "Tags": "Casual,Tycoon,Simulation",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "dead-cells-steam",
+    "Name": "Dead Cells",
+    "LastConsumed": "30-06-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "terraria-steam",
+    "Name": "Terraria",
+    "LastConsumed": "27-05-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "enter-the-gungeon-steam",
+    "Name": "Enter the Gungeon",
+    "LastConsumed": "14-05-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "stardew-valley-steam",
+    "Name": "Stardew Valley",
+    "LastConsumed": "12-05-2024",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "lego-jurassic-world-steam",
+    "Name": "LEGO Jurassic World",
+    "LastConsumed": "08-05-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "doom-steam",
+    "Name": "DOOM",
+    "LastConsumed": "05-03-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "hitman-steam",
+    "Name": "Hitman",
+    "LastConsumed": "11-02-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "atomic-heart-steam",
+    "Name": "Atomic Heart",
+    "LastConsumed": "05-02-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "ori-will-of-wisps-steam",
+    "Name": "Ori and the Will of the Wisps",
+    "LastConsumed": "12-01-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "melvor-idle-steam",
+    "Name": "Melvor Idle",
+    "LastConsumed": "10-01-2024",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "subnautica-steam",
+    "Name": "Subnautica",
+    "LastConsumed": "04-11-2023",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "digimon-cyber-sleuth-steam",
+    "Name": "Digimon Story Cyber Sleuth",
+    "LastConsumed": "31-03-2023",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "dishonored-2-steam",
+    "Name": "Dishonored 2",
+    "LastConsumed": "26-09-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "halo-infinite-steam",
+    "Name": "Halo Infinite",
+    "LastConsumed": "31-07-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "two-point-hospital-steam",
+    "Name": "Two Point Hospital",
+    "LastConsumed": "20-06-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "monster-sanctuary-steam",
+    "Name": "Monster Sanctuary",
+    "LastConsumed": "31-05-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "destroy-all-humans-steam",
+    "Name": "Destroy All Humans",
+    "LastConsumed": "25-04-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "the-mageseeker-steam",
+    "Name": "The Mageseeker",
+    "LastConsumed": "29-01-2025",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "monster-hunter-world-steam",
+    "Name": "Monster Hunter World",
+    "LastConsumed": "25-08-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "vampire-survivors-steam",
+    "Name": "Vampire Survivors",
+    "LastConsumed": "29-03-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "crash-nsane-trilogy-steam",
+    "Name": "Crash Bandicoot N-Sane Trilogy",
+    "LastConsumed": "16-04-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "firewatch-steam",
+    "Name": "Firewatch",
+    "LastConsumed": "30-05-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "just-cause-2-steam",
+    "Name": "Just Cause 2",
+    "LastConsumed": "29-05-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "lego-2k-drive-steam",
+    "Name": "LEGO 2K Drive",
+    "LastConsumed": "24-07-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "a-little-to-the-left-steam",
+    "Name": "A Little to the Left",
+    "LastConsumed": "23-12-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "wolfenstein-new-order-steam",
+    "Name": "Wolfenstein: The New Order",
+    "LastConsumed": "21-11-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "warhammer-boltgun-steam",
+    "Name": "Warhammer Boltgun",
+    "LastConsumed": "29-06-2025",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "plants-vs-zombies-steam",
+    "Name": "Plants VS Zombies",
+    "LastConsumed": "05-09-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "cult-of-the-lamb-steam",
+    "Name": "Cult of the Lamb",
+    "LastConsumed": "14-07-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "hades-steam",
+    "Name": "Hades",
+    "LastConsumed": "30-06-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "lego-batman-3-steam",
+    "Name": "LEGO Batman 3: Beyond Gotham",
+    "LastConsumed": "04-05-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "lego-star-wars-saga-steam",
+    "Name": "LEGO Star Wars: Skywalker Saga",
+    "LastConsumed": "15-04-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "lego-city-undercover-steam",
+    "Name": "LEGO City: Undercover",
+    "LastConsumed": "28-02-2024",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "the-witness-steam",
+    "Name": "The Witness",
+    "LastConsumed": "08-12-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "spyro-reignited-trilogy-steam",
+    "Name": "Spyro: Reignited Trilogy",
+    "LastConsumed": "15-05-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "ori-forest-steam",
+    "Name": "Ori and the Blind Forest",
+    "LastConsumed": "02-02-2024",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "hollow-knight-steam",
+    "Name": "Hollow Knight",
+    "LastConsumed": "16-12-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "timelie-steam",
+    "Name": "Timelie",
+    "LastConsumed": "28-04-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "rocket-league-steam",
+    "Name": "Rocket League",
+    "LastConsumed": "08-04-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "fallout-new-vegas-steam",
+    "Name": "Fallout New Vegas",
+    "LastConsumed": "24-02-2023",
+    "Type": "PlayingSteam",
+    "AllAchivements": true
+  },
+  {
+    "Slug": "luck-be-a-landlord-steam",
+    "Name": "Luck be a Landlord",
+    "LastConsumed": "23-11-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "sleeping-dogs-steam",
+    "Name": "Sleeping Dogs",
+    "LastConsumed": "28-10-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "final-fantasy-xiii-steam",
+    "Name": "Final Fantasy XIII",
+    "LastConsumed": "19-09-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "witcher-3-steam",
+    "Name": "The Witcher 3: Wild Hunt",
+    "LastConsumed": "30-05-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "tiny-tina-wonderlands-steam",
+    "Name": "Tiny Tina's Wonderlands",
+    "LastConsumed": "03-01-2023",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "dishonored-steam",
+    "Name": "Dishonored",
+    "LastConsumed": "06-09-2022",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "outer-worlds-steam",
+    "Name": "The Outer Worlds",
+    "LastConsumed": "27-02-2022",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "bioshock-infinite-steam",
+    "Name": "Bioshock Infinite",
+    "LastConsumed": "05-12-2021",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "bioshock-2-remastered-steam",
+    "Name": "Bioshock 2 Remastered",
+    "LastConsumed": "31-10-2021",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "bioshock-remastered-steam",
+    "Name": "Bioshock Remastered",
+    "LastConsumed": "30-09-2021",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "deus-ex-human-revolution-steam",
+    "Name": "Deus Ex: Human Revolution",
+    "LastConsumed": "30-09-2021",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "wolfenstein-ii-steam",
+    "Name": "Wolfenstein II: The New Colossus",
+    "LastConsumed": "29-07-2020",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "wolfenstein-old-blood-steam",
+    "Name": "Wolfenstein: The Old Blood",
+    "LastConsumed": "18-07-2020",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "borderlands-3-steam",
+    "Name": "Borderlands 3",
+    "LastConsumed": "04-04-2020",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "borderlands-2-steam",
+    "Name": "Borderlands 2",
+    "LastConsumed": "11-10-2018",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "batman-arkham-city-steam",
+    "Name": "Batman Arkham City",
+    "LastConsumed": "19-06-2015",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "batman-arkham-asylum-steam",
+    "Name": "Batman Arkham Asylum",
+    "LastConsumed": "05-06-2015",
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "deus-ex-mankind-divided-steam",
+    "Name": "Deus Ex: Mankind Divided",
+    "LastConsumed": "31-05-2022",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "planet-coaster-steam",
+    "Name": "Planet Coaster",
+    "LastConsumed": "24-10-2019",
+    "Tags": "Casual,Tycoon,Simulation",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "thief-steam",
+    "Name": "Thief",
+    "LastConsumed": "23-04-2019",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "injustice-2-steam",
+    "Name": "Injustice 2",
+    "LastConsumed": "21-04-2019",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "dirty-bomb-steam",
+    "Name": "Dirty Bomb",
+    "LastConsumed": "03-09-2018",
+    "Completed": false,
+    "Type": "PlayingSteam"
+  },
+  {
+    "Slug": "insaniquarium-steam",
+    "Name": "Insaniquarium",
+    "LastConsumed": "05-04-2017",
+    "Type": "PlayingSteam"
+  }
+]

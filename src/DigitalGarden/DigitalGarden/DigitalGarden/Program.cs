@@ -1,5 +1,6 @@
 using DigitalGarden.Components;
 using DigitalGarden.Extensions;
+using DigitalGarden.Services.Background;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Helpers;
 using DigitalGarden.Shared.Models.Options;
@@ -19,6 +20,8 @@ try
         .ConfigureApplication(configuration)
         .AddInternalDependencies(isSyncContent)
         .ConfigureSecurity(configuration);
+
+    services.AddHostedService<DailyIngestService>();
 
     services.AddHttpClient(ApiConstants.LastFmClientName,
         (sp, client) =>

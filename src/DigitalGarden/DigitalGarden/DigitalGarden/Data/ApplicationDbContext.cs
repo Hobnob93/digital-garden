@@ -6,6 +6,8 @@ namespace DigitalGarden.Data;
 
 public class ApplicationDbContext : DbContext
 {
+    public DbSet<DailyIngestSnapshotDto> DailySnapshots => Set<DailyIngestSnapshotDto>();
+
     public DbSet<BeaconCategoryDto> BeaconCategories => Set<BeaconCategoryDto>();
     public DbSet<BeaconDto> Beacons => Set<BeaconDto>();
     public DbSet<FamousQuoteDto> FamousQuotes => Set<FamousQuoteDto>();

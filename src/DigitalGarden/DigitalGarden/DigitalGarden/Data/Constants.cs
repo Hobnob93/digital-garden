@@ -2,6 +2,8 @@
 
 public static class Constants
 {
+    public const string DailyIngestSnapshotsTable = "daily_ingests";
+
     public const string BeaconCategoriesTable = "beacon_categories";
     public const string BeaconsTable = "beacons";
     public const string QuotesTable = "famous_quotes";

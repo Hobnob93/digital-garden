@@ -1,0 +1,87 @@
+[
+  {
+    "Slug": "cavern-critters-dev",
+    "Name": "Cavern Critters",
+    "Description": "A zoo game crossed with underground base-building in a post-apocalyptic world.",
+    "Type": "UnityDeveloping",
+    "InProgress": true
+  },
+  {
+    "Slug": "personal-website",
+    "Name": "Digital Garden",
+    "Description": "A Blazor web app where I'd like to slap my interests and logs for future reference and display.",
+    "Type": "Developing",
+    "InProgress": true
+  },
+  {
+    "Slug": "f1-predictions-website",
+    "Name": "F1 Predictions",
+    "Description": "An annually updated web app and Google Forms project that takes friend partcipants' answers to questions so we can rate them at the end of the year.",
+    "Type": "Developing"
+  },
+  {
+    "Slug": "comissioners-conscience-novella",
+    "Name": "Comissioner's Conscience",
+    "Description": "A novella setting the scene in the Paxium Chronies; set before Ortwin's trilogy.",
+    "Type": "Writing",
+    "InProgress": true
+  },
+  {
+    "Slug": "paxium-chronicles",
+    "Name": "Paxium Chronicles Worldbuilding",
+    "Description": "Turns out building the world takes a long time. It's current private; but World Anvil has been so useful for this. Will make it public one day.",
+    "Type": "Writing",
+    "InProgress": true
+  },
+  {
+    "Slug": "silent-seed-novel",
+    "Name": "Silent Seed Novel",
+    "Description": "The first book in Ortwin's trilogy. Still very early in design, and won't work on it much until the novella is complete.",
+    "Type": "Writing",
+    "IsFuture": true
+  },
+  {
+    "Slug": "bleak-bloom-novel",
+    "Name": "Bleak Bloom Novel",
+    "Description": "A future project, and book II in Ortwin's trilogy.",
+    "Type": "Writing",
+    "IsFuture": true
+  },
+  {
+    "Slug": "hopeful-harvest-novel",
+    "Name": "Hopeful Harvest Novel",
+    "Description": "A future project, and book III in Ortwin's trilogy.",
+    "Type": "Writing",
+    "IsFuture": true
+  },
+  {
+    "Slug": "search-for-a-star",
+    "Name": "Search for a Star",
+    "Description": "A Grads In Games competition where I (somehow) managed to win the game development competition with my entry 'Star Wrangler Arena'.",
+    "Type": "UnityDeveloping"
+  },
+  {
+    "Slug": "pixel-path",
+    "Name": "Pixel Path",
+    "Description": "An endless runner made as part of 'Cyberwolf Studios' with friends, intended for mobiles.",
+    "Type": "UnityDeveloping"
+  },
+  {
+    "Slug": "colour-climb",
+    "Name": "Colour Climb",
+    "Description": "Another mobile endless runner made with 'Cyberwolf Studios'.",
+    "Type": "UnityDeveloping"
+  },
+  {
+    "Slug": "dungeon-crawler",
+    "Name": "Unnamed Dungeon Crawler",
+    "Description": "A group project during masters at university, inspired by many popular dungeon crwaler games of the time.",
+    "Type": "UnityDeveloping"
+  },
+  {
+    "Slug": "utility-theory",
+    "Name": "Masters Utility Theory",
+    "Description": "This was an implementation of Utility Theory AI as part of my masters course.",
+    "Type": "UnityDeveloping"
+  }
+]

@@ -42,6 +42,8 @@ public static class ServiceCollectionExtensions
 
         services.Configure<GeneralFlagOptions>(configuration.GetSection(GeneralFlagOptions.SectionName));
 
+        services.Configure<DailyIngestOptions>(configuration.GetSection(DailyIngestOptions.SectionName));
+
         services.AddOptionsWithValidateOnStart<LastFmOptions>()
             .Bind(configuration.GetSection(LastFmOptions.SectionName))
             .Validate(o => !string.IsNullOrWhiteSpace(o.Secret), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.Secret)} is required")
