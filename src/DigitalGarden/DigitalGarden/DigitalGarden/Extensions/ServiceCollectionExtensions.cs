@@ -70,6 +70,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ISiteConfigurationProvider, SiteConfigurationProvider>();
         services.AddTransient<IBeaconProvider, BeaconProvider>();
         services.AddTransient<ILifeDataProvider, LifeDataProvider>();
+        services.AddTransient<IMusicIngester, LastFmIngester>();
 
         if (isSyncContent)
         {

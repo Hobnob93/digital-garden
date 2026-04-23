@@ -1,25 +1,19 @@
 ﻿using DigitalGarden.Data;
+using DigitalGarden.Data.Dtos;
 using DigitalGarden.Extensions;
-using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Data;
-using DigitalGarden.Shared.Models.Options;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace DigitalGarden.Services.Implementations;
 
 public class LifeDataProvider : ILifeDataProvider
 {
     private readonly ApplicationDbContext _dbContext;
-    private readonly IHttpClientFactory _httpClientFactory;
-    private readonly LastFmOptions _lastFmOptions;
 
-    public LifeDataProvider(ApplicationDbContext dbContext, IHttpClientFactory httpClientFactory, IOptions<LastFmOptions> lastFmOptions)
+    public LifeDataProvider(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        _httpClientFactory = httpClientFactory;
-        _lastFmOptions = lastFmOptions.Value;
     }
 
     public async Task<FamousQuote> GetQuoteOfTheDayAsync()
@@ -42,27 +36,59 @@ public class LifeDataProvider : ILifeDataProvider
             .ToArray();
     }
 
-    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtists()
+    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtistsAsync()
     {
-        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
+        var latest = await GetLatestMusicSnapshotOrDefault();
 
-        var endpoint = string.Format(_lastFmOptions.TopArtistsEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        var result = await client.GetAsync(endpoint);
-        result.EnsureSuccessStatusCode();
+        List<LastFmArtist> artists = [];
+        if (latest != null)
+        {
+            foreach (var artist in latest.TopArtists)
+            {
+                artists.Add(new LastFmArtist
+                (
+                    artist.Name,
+                    artist.PlayCount
+                ));
+            }
+        }
 
-        return await result.Content.ReadFromJsonAsync<LastFmTopArtistsResponse>()
-            ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
+        return new LastFmTopArtistsResponse(new LastFmTopArtists
+        (
+            artists.ToArray()
+        ));
     }
 
-    public async Task<LastFmTopTracksResponse> GetLastFmTopTracks()
+    public async Task<LastFmTopTracksResponse> GetLastFmTopTracksAsync()
     {
-        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
+        var latest = await GetLatestMusicSnapshotOrDefault();
 
-        var endpoint = string.Format(_lastFmOptions.TopTracksEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        var result = await client.GetAsync(endpoint);
-        result.EnsureSuccessStatusCode();
+        List<LastFmTrack> tracks = [];
+        if (latest != null)
+        {
+            foreach (var track in latest.TopTracks)
+            {
+                tracks.Add(new LastFmTrack
+                (
+                    track.Name,
+                    new LastFmTrackArtist(track.ArtistName),
+                    track.PlayCount
+                ));
+            }
+        }
 
-        return await result.Content.ReadFromJsonAsync<LastFmTopTracksResponse>()
-            ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
+        return new LastFmTopTracksResponse(new LastFmTopTracks
+        (
+            tracks.ToArray()
+        ));
+    }
+
+    private async Task<LastFmSnapshotDto?> GetLatestMusicSnapshotOrDefault()
+    {
+        return await _dbContext.LastFmSnapshots
+            .Include(s => s.TopArtists.OrderBy(a => a.Rank))
+            .Include(s => s.TopTracks.OrderBy(t => t.Rank))
+            .OrderByDescending(s => s.CapturedAtUtc)
+            .FirstOrDefaultAsync();
     }
 }

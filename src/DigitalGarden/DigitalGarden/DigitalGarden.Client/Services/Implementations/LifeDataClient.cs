@@ -22,13 +22,13 @@ public class LifeDataClient : BaseClient, ILifeDataProvider
         return apiResult.AsExpectedType;
     }
 
-    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtists()
+    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtistsAsync()
     {
         var apiResult = await Get<LastFmTopArtistsResponse>("Life/TopArtists");
         return apiResult.AsExpectedType;
     }
 
-    public async Task<LastFmTopTracksResponse> GetLastFmTopTracks()
+    public async Task<LastFmTopTracksResponse> GetLastFmTopTracksAsync()
     {
         var apiResult = await Get<LastFmTopTracksResponse>("Life/TopTracks");
         return apiResult.AsExpectedType;

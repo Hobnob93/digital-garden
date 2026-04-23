@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Data;
 using DigitalGarden.Data.Dtos;
+using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Models.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -10,17 +11,22 @@ public class DailyIngestService : BackgroundService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly DailyIngestOptions _options;
+    private readonly IMusicIngester _musicIngester;
     private readonly ILogger<DailyIngestService> _logger;
 
-    public DailyIngestService(IServiceScopeFactory scopeFactory, IOptions<DailyIngestOptions> options, ILogger<DailyIngestService> logger)
+    public DailyIngestService(IServiceScopeFactory scopeFactory, IOptions<DailyIngestOptions> options, IMusicIngester musicIngester, ILogger<DailyIngestService> logger)
     {
         _scopeFactory = scopeFactory;
         _options = options.Value;
+        _musicIngester = musicIngester;
         _logger = logger;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        // Allow for general application setup before running background process
+        await Task.Delay(TimeSpan.FromMinutes(_options.MinimumDelayMinutes), stoppingToken);
+
         while (!stoppingToken.IsCancellationRequested)
         {
             var delay = await TimeUntilNextAsync(stoppingToken);
@@ -50,8 +56,10 @@ public class DailyIngestService : BackgroundService
         };
 
         dbContext.DailySnapshots.Add(dailySnapshot);
-
         await dbContext.SaveChangesAsync(stoppingToken);
+
+        var musicIngester = scope.ServiceProvider.GetRequiredService<IMusicIngester>();
+        await musicIngester.RunIngestAsync(dbContext, dailySnapshot.CapturedAtUtc, stoppingToken);
 
         _logger.LogInformation("Daily ingestion ran at {DateTimeUtc}", dailySnapshot.CapturedAtUtc);
     }

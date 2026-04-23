@@ -68,14 +68,14 @@ public partial class LifeLog
 
     private async Task SetTopArtistsAsync()
     {
-        var topArtistsResponse = await LifeDataProvider.GetLastFmTopArtists();
+        var topArtistsResponse = await LifeDataProvider.GetLastFmTopArtistsAsync();
 
         ArtistsCards = topArtistsResponse.TopArtists.Artists
             .OrderByDescending(a => a.PlayCount)
             .Select((a, i) => a.ToSimpleCardData(i + 1))
             .ToArray();
 
-        var topTracksResponse = await LifeDataProvider.GetLastFmTopTracks();
+        var topTracksResponse = await LifeDataProvider.GetLastFmTopTracksAsync();
 
         TracksCards = topTracksResponse.TopTracks.Tracks
             .OrderByDescending(a => a.PlayCount)

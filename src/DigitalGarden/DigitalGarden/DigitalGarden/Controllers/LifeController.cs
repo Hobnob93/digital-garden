@@ -43,7 +43,7 @@ public class LifeController : ControllerBase
     [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any, NoStore = false)]
     public async Task<IActionResult> TopArtists()
     {
-        var result = await _lifeDataProvider.GetLastFmTopArtists();
+        var result = await _lifeDataProvider.GetLastFmTopArtistsAsync();
 
         return Ok(result);
     }
@@ -53,7 +53,7 @@ public class LifeController : ControllerBase
     [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any, NoStore = false)]
     public async Task<IActionResult> TopTracks()
     {
-        var result = await _lifeDataProvider.GetLastFmTopTracks();
+        var result = await _lifeDataProvider.GetLastFmTopTracksAsync();
 
         return Ok(result);
     }
