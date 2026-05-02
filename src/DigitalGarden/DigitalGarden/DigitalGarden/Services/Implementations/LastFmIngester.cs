@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Data;
 using DigitalGarden.Data.Dtos;
+using DigitalGarden.Extensions;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Constants;
 using DigitalGarden.Shared.Models.Data;
@@ -52,25 +53,13 @@ public class LastFmIngester : IMusicIngester
 
     private async Task<LastFmTopArtistsResponse> GetLastFmTopArtistsAsync(CancellationToken cancellationToken)
     {
-        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
-
         var endpoint = string.Format(_lastFmOptions.TopArtistsEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        var result = await client.GetAsync(endpoint, cancellationToken);
-        result.EnsureSuccessStatusCode();
-
-        return await result.Content.ReadFromJsonAsync<LastFmTopArtistsResponse>(cancellationToken)
-            ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
+        return await _httpClientFactory.GetDataUsingClientAsync<LastFmTopArtistsResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
     }
 
     private async Task<LastFmTopTracksResponse> GetLastFmTopTracksAsync(CancellationToken cancellationToken)
     {
-        var client = _httpClientFactory.CreateClient(ApiConstants.LastFmClientName);
-
         var endpoint = string.Format(_lastFmOptions.TopTracksEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        var result = await client.GetAsync(endpoint, cancellationToken);
-        result.EnsureSuccessStatusCode();
-
-        return await result.Content.ReadFromJsonAsync<LastFmTopTracksResponse>(cancellationToken)
-            ?? throw new InvalidDataException($"GET result for endpoint '{endpoint}' could not be parsed!");
+        return await _httpClientFactory.GetDataUsingClientAsync<LastFmTopTracksResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
     }
 }

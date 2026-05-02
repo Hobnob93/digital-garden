@@ -11,14 +11,12 @@ public class DailyIngestService : BackgroundService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly DailyIngestOptions _options;
-    private readonly IMusicIngester _musicIngester;
     private readonly ILogger<DailyIngestService> _logger;
 
-    public DailyIngestService(IServiceScopeFactory scopeFactory, IOptions<DailyIngestOptions> options, IMusicIngester musicIngester, ILogger<DailyIngestService> logger)
+    public DailyIngestService(IServiceScopeFactory scopeFactory, IOptions<DailyIngestOptions> options, ILogger<DailyIngestService> logger)
     {
         _scopeFactory = scopeFactory;
         _options = options.Value;
-        _musicIngester = musicIngester;
         _logger = logger;
     }
 
@@ -55,13 +53,45 @@ public class DailyIngestService : BackgroundService
             CapturedAtUtc = DateTime.UtcNow
         };
 
+        //await RunMusicIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+        await RunGameIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+
         dbContext.DailySnapshots.Add(dailySnapshot);
         await dbContext.SaveChangesAsync(stoppingToken);
 
-        var musicIngester = scope.ServiceProvider.GetRequiredService<IMusicIngester>();
-        await musicIngester.RunIngestAsync(dbContext, dailySnapshot.CapturedAtUtc, stoppingToken);
-
         _logger.LogInformation("Daily ingestion ran at {DateTimeUtc}", dailySnapshot.CapturedAtUtc);
+    }
+
+    private async Task RunMusicIngestionAsync(IServiceScope scope, ApplicationDbContext dbContext, DailyIngestSnapshotDto snapshot, CancellationToken stoppingToken)
+    {
+        try
+        {
+            var musicIngester = scope.ServiceProvider.GetRequiredService<IMusicIngester>();
+            await musicIngester.RunIngestAsync(dbContext, snapshot.CapturedAtUtc, stoppingToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to run music ingestion!");
+        }
+    }
+
+    private async Task RunGameIngestionAsync(IServiceScope scope, ApplicationDbContext dbContext, DailyIngestSnapshotDto snapshot, CancellationToken stoppingToken)
+    {
+        try
+        {
+            var gameIngester = scope.ServiceProvider.GetRequiredService<IGameIngester>();
+            var shouldDoFullGameRun = await gameIngester.ShouldDoFullFetch(dbContext, stoppingToken);
+            await gameIngester.RunIngestAsync(dbContext, snapshot.CapturedAtUtc, shouldDoFullGameRun, stoppingToken);
+
+            if (shouldDoFullGameRun)
+            {
+                snapshot.FullGameFetchAtUtc = DateTime.UtcNow;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to run game ingestion!");
+        }
     }
 
     private async Task<TimeSpan> TimeUntilNextAsync(CancellationToken stoppingToken)

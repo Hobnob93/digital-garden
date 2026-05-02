@@ -21,15 +21,22 @@ try
         .AddInternalDependencies(isSyncContent)
         .ConfigureSecurity(configuration);
 
-    services.AddHostedService<DailyIngestService>();
+    if (!isSyncContent)
+        services.AddHostedService<DailyIngestService>();
 
-    services.AddHttpClient(ApiConstants.LastFmClientName,
-        (sp, client) =>
-        {
-            var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
-            client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
-            HttpClientHelper.AddDefaultRequestHeaders(client);
-        });
+    services.AddHttpClient(ApiConstants.LastFmClientName, (sp, client) =>
+    {
+        var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
+        client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+        HttpClientHelper.AddDefaultRequestHeaders(client);
+    });
+
+    services.AddHttpClient(ApiConstants.SteamClientName, (sp, client) =>
+    {
+        var steamOptions = sp.GetRequiredService<IOptions<SteamOptions>>().Value;
+        client.BaseAddress = new Uri(steamOptions.BaseAddress);
+        HttpClientHelper.AddDefaultRequestHeaders(client);
+    });
 
     Log.Information("Building app");
     var app = builder.Build();

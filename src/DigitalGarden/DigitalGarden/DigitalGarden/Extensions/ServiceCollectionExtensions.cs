@@ -53,6 +53,19 @@ public static class ServiceCollectionExtensions
             .Validate(o => !string.IsNullOrWhiteSpace(o.TopArtistsEndpoint), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.TopArtistsEndpoint)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.TopTracksEndpoint), $"{LastFmOptions.SectionName}:{nameof(LastFmOptions.TopTracksEndpoint)} is required");
 
+        services.AddOptionsWithValidateOnStart<SteamOptions>()
+            .Bind(configuration.GetSection(SteamOptions.SectionName))
+            .Validate(o => !string.IsNullOrWhiteSpace(o.UserId), $"{SteamOptions.SectionName}:{nameof(SteamOptions.UserId)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.ApiKey), $"{SteamOptions.SectionName}:{nameof(SteamOptions.ApiKey)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.BaseAddress), $"{SteamOptions.SectionName}:{nameof(SteamOptions.BaseAddress)} is required")
+            .Validate(o => o.MaxFullUpdates > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.MaxFullUpdates)} most be positive")
+            .Validate(o => o.UpdateDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.UpdateDelayDays)} most be positive")
+            .Validate(o => o.FullFetchDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.FullFetchDelayDays)} most be positive")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetSchemaForGame), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetSchemaForGame)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetPlayerAchievements), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetPlayerAchievements)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetGlobalGameAchievements), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetGlobalGameAchievements)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetOwnedGames), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetOwnedGames)} is required");
+
         services.AddDbContext<ApplicationDbContext>(options =>
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
@@ -71,6 +84,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IBeaconProvider, BeaconProvider>();
         services.AddTransient<ILifeDataProvider, LifeDataProvider>();
         services.AddTransient<IMusicIngester, LastFmIngester>();
+        services.AddTransient<IGameIngester, SteamIngester>();
 
         if (isSyncContent)
         {
