@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Data;
 using DigitalGarden.Data.Sync;
+using DigitalGarden.Services.Background;
 using DigitalGarden.Services.Implementations;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Constants;
@@ -7,7 +8,9 @@ using DigitalGarden.Shared.Models.Options;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Serilog;
+using System.Net.Http.Headers;
 
 namespace DigitalGarden.Extensions;
 
@@ -58,13 +61,21 @@ public static class ServiceCollectionExtensions
             .Validate(o => !string.IsNullOrWhiteSpace(o.UserId), $"{SteamOptions.SectionName}:{nameof(SteamOptions.UserId)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.ApiKey), $"{SteamOptions.SectionName}:{nameof(SteamOptions.ApiKey)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.BaseAddress), $"{SteamOptions.SectionName}:{nameof(SteamOptions.BaseAddress)} is required")
-            .Validate(o => o.MaxFullUpdates > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.MaxFullUpdates)} most be positive")
-            .Validate(o => o.UpdateDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.UpdateDelayDays)} most be positive")
-            .Validate(o => o.FullFetchDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.FullFetchDelayDays)} most be positive")
+            .Validate(o => o.MaxFullUpdates > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.MaxFullUpdates)} must be positive")
+            .Validate(o => o.UpdateDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.UpdateDelayDays)} must be positive")
+            .Validate(o => o.FullFetchDelayDays > 0, $"{SteamOptions.SectionName}:{nameof(SteamOptions.FullFetchDelayDays)} must be positive")
             .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetSchemaForGame), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetSchemaForGame)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetPlayerAchievements), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetPlayerAchievements)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetGlobalGameAchievements), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetGlobalGameAchievements)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetOwnedGames), $"{SteamOptions.SectionName}:{nameof(SteamOptions.Endpoints)}:{nameof(SteamOptionsEndpoints.GetOwnedGames)} is required");
+
+        services.AddOptionsWithValidateOnStart<TraktOptions>()
+            .Bind(configuration.GetSection(TraktOptions.SectionName))
+            .Validate(o => !string.IsNullOrWhiteSpace(o.ClientId), $"{TraktOptions.SectionName}:{nameof(TraktOptions.ClientId)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.ApiKey), $"{TraktOptions.SectionName}:{nameof(TraktOptions.ApiKey)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.BaseAddress), $"{TraktOptions.SectionName}:{nameof(TraktOptions.BaseAddress)} is required")
+            .Validate(o => o.RefreshTokensWithXDaysLeft > 0, $"{TraktOptions.SectionName}:{nameof(TraktOptions.RefreshTokensWithXDaysLeft)} must be positive")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetNewTokens), $"{TraktOptions.SectionName}:{nameof(TraktOptions.Endpoints)}:{nameof(TraktOptionsEndpoints.GetNewTokens)} is required");
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
@@ -85,10 +96,15 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ILifeDataProvider, LifeDataProvider>();
         services.AddTransient<IMusicIngester, LastFmIngester>();
         services.AddTransient<IGameIngester, SteamIngester>();
+        services.AddTransient<IShowIngester, TraktIngester>();
 
         if (isSyncContent)
         {
             services.AddDataSynchronisation();
+        }
+        else
+        {
+            services.AddHostedService<DailyIngestService>();
         }
 
         return services;
@@ -102,6 +118,32 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ISyncContent, SyncBeaconsContent>();
         services.AddTransient<ISyncContent, SyncFamousQuotesContent>();
         services.AddTransient<ISyncContent, SyncRecentLifeLogsContent>();
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureHttpClients(this IServiceCollection services)
+    {
+        services.AddHttpClient(ApiConstants.LastFmClientName, (sp, client) =>
+        {
+            var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
+            client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+        });
+
+        services.AddHttpClient(ApiConstants.SteamClientName, (sp, client) =>
+        {
+            var steamOptions = sp.GetRequiredService<IOptions<SteamOptions>>().Value;
+            client.BaseAddress = new Uri(steamOptions.BaseAddress);
+        });
+
+        services.AddHttpClient(ApiConstants.TraktClientName, (sp, client) =>
+        {
+            var traktOptions = sp.GetRequiredService<IOptions<TraktOptions>>().Value;
+            client.BaseAddress = new Uri(traktOptions.BaseAddress);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("trakt-api-version", "2");
+            client.DefaultRequestHeaders.Add("trakt-api-key", traktOptions.ClientId);
+        });
 
         return services;
     }

@@ -1,4 +1,5 @@
 ﻿using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 
 namespace DigitalGarden.Shared.Services.Interfaces;
 

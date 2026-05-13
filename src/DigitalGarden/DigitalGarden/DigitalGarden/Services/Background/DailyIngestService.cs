@@ -54,7 +54,8 @@ public class DailyIngestService : BackgroundService
         };
 
         //await RunMusicIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
-        await RunGameIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+        //await RunGameIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+        await RunShowIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
 
         dbContext.DailySnapshots.Add(dailySnapshot);
         await dbContext.SaveChangesAsync(stoppingToken);
@@ -91,6 +92,19 @@ public class DailyIngestService : BackgroundService
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to run game ingestion!");
+        }
+    }
+
+    private async Task RunShowIngestionAsync(IServiceScope scope, ApplicationDbContext dbContext, DailyIngestSnapshotDto snapshot, CancellationToken stoppingToken)
+    {
+        try
+        {
+            var musicIngester = scope.ServiceProvider.GetRequiredService<IShowIngester>();
+            await musicIngester.RunIngestAsync(dbContext, snapshot.CapturedAtUtc, stoppingToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to run music ingestion!");
         }
     }
 

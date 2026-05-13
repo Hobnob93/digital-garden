@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace DigitalGarden.Shared.Models.Data;
+namespace DigitalGarden.Shared.Models.Data.Responses;
 
 public sealed record SteamSchemaForGameResponse
 (

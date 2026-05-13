@@ -3,7 +3,7 @@ using DigitalGarden.Data.Dtos;
 using DigitalGarden.Extensions;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Constants;
-using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Models.Options;
 using Microsoft.Extensions.Options;
 
@@ -54,12 +54,12 @@ public class LastFmIngester : IMusicIngester
     private async Task<LastFmTopArtistsResponse> GetLastFmTopArtistsAsync(CancellationToken cancellationToken)
     {
         var endpoint = string.Format(_lastFmOptions.TopArtistsEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        return await _httpClientFactory.GetDataUsingClientAsync<LastFmTopArtistsResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
+        return await _httpClientFactory.GetResponseAsync<LastFmTopArtistsResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
     }
 
     private async Task<LastFmTopTracksResponse> GetLastFmTopTracksAsync(CancellationToken cancellationToken)
     {
         var endpoint = string.Format(_lastFmOptions.TopTracksEndpoint, _lastFmOptions.UserId, _lastFmOptions.ApiKey);
-        return await _httpClientFactory.GetDataUsingClientAsync<LastFmTopTracksResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
+        return await _httpClientFactory.GetResponseAsync<LastFmTopTracksResponse>(ApiConstants.LastFmClientName, endpoint, cancellationToken);
     }
 }

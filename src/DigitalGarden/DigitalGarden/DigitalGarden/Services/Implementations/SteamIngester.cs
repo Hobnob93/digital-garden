@@ -3,7 +3,7 @@ using DigitalGarden.Data.Dtos;
 using DigitalGarden.Extensions;
 using DigitalGarden.Services.Interfaces;
 using DigitalGarden.Shared.Constants;
-using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Models.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -195,13 +195,13 @@ public class SteamIngester : IGameIngester
     private async Task<SteamOwnedGamesResponse> GetAllOwnedGamesAsync(CancellationToken cancellationToken)
     {
         var endpoint = string.Format(_steamOptions.Endpoints.GetOwnedGames, _steamOptions.ApiKey, _steamOptions.UserId);
-        return await _httpClientFactory.GetDataUsingClientAsync<SteamOwnedGamesResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
+        return await _httpClientFactory.GetResponseAsync<SteamOwnedGamesResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
     }
 
     private async Task<SteamSchemaForGameResponse> GetGameSchemaAsync(int appId, CancellationToken cancellationToken)
     {
         var endpoint = string.Format(_steamOptions.Endpoints.GetSchemaForGame, _steamOptions.ApiKey, _steamOptions.UserId, appId);
-        var gameSchema = await _httpClientFactory.GetDataUsingClientAsync<SteamSchemaForGameResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
+        var gameSchema = await _httpClientFactory.GetResponseAsync<SteamSchemaForGameResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
 
         // Some games return empty content as no achievements/schema - need to manually set the inner values toa void errors
         if (gameSchema.Root?.Stats?.Achievements == null)
@@ -226,7 +226,7 @@ public class SteamIngester : IGameIngester
         }
 
         var endpoint = string.Format(_steamOptions.Endpoints.GetPlayerAchievements, _steamOptions.ApiKey, _steamOptions.UserId, appId);
-        return await _httpClientFactory.GetDataUsingClientAsync<SteamPlayerAchievementsResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
+        return await _httpClientFactory.GetResponseAsync<SteamPlayerAchievementsResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
     }
 
     private async Task<SteamGlobalGameAchievementsResponse> GetGameGlobalAchievementsAsync(bool gameHasAchievements, int appId, CancellationToken cancellationToken)
@@ -241,6 +241,6 @@ public class SteamIngester : IGameIngester
 
         var gameId = appId;
         var endpoint = string.Format(_steamOptions.Endpoints.GetGlobalGameAchievements, _steamOptions.ApiKey, _steamOptions.UserId, appId, gameId);
-        return await _httpClientFactory.GetDataUsingClientAsync<SteamGlobalGameAchievementsResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
+        return await _httpClientFactory.GetResponseAsync<SteamGlobalGameAchievementsResponse>(ApiConstants.SteamClientName, endpoint, cancellationToken);
     }
 }

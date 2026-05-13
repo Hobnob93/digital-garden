@@ -14,6 +14,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<SteamGameDto> SteamGames => Set<SteamGameDto>();
     public DbSet<SteamAchievementDto> SteamAchievements => Set<SteamAchievementDto>();
 
+    public DbSet<TraktAuthStateDto> TraktAuthStates => Set<TraktAuthStateDto>();
+
     public DbSet<BeaconCategoryDto> BeaconCategories => Set<BeaconCategoryDto>();
     public DbSet<BeaconDto> Beacons => Set<BeaconDto>();
     public DbSet<FamousQuoteDto> FamousQuotes => Set<FamousQuoteDto>();

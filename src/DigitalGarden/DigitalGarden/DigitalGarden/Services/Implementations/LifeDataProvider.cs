@@ -2,6 +2,7 @@
 using DigitalGarden.Data.Dtos;
 using DigitalGarden.Extensions;
 using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

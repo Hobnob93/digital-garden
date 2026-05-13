@@ -10,6 +10,8 @@ public static class Constants
     public const string GamesTable = "played_games";
     public const string GameAchievementsTable = "played_games_achievements";
 
+    public const string TraktAuthTable = "trakt_auth";
+
     public const string BeaconCategoriesTable = "beacon_categories";
     public const string BeaconsTable = "beacons";
     public const string QuotesTable = "famous_quotes";
