@@ -140,6 +140,7 @@ services:
       traefik.http.routers.files.middlewares: files-auth@docker,files-ips@docker
 
 volumes:
+  traefik-acme:
   file-logs:
   seq-data:
   pg-data:
