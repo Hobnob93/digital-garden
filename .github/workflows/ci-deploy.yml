@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
-        with: { dotnet-version: '8.0.x' }
+        with: { dotnet-version: '10.0.x' }
 
       - name: Restore
         run: dotnet restore ./src/DigitalGarden/DigitalGarden.sln
@@ -91,6 +91,7 @@ jobs:
       - name: Create .env
         shell: bash
         env:
+          ACME_EMAIL: ${{ secrets.ACME_EMAIL }}
           GARDEN_DOMAIN: ${{ secrets.GARDEN_DOMAIN }}
           SEQ_BASIC_AUTH_SECRET: ${{ secrets.SEQ_BASIC_AUTH }}
           SEQ_API_KEY: ${{ secrets.SEQ_API_KEY }}
@@ -112,6 +113,7 @@ jobs:
           esc_pgadmin_basic_auth=$(printf '%s' "$PGADMIN_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
         
           {
+            echo "ACME_EMAIL=$ACME_EMAIL"
             echo "GARDEN_DOMAIN=$GARDEN_DOMAIN"
             echo "SEQ_BASIC_AUTH=$esc_basic_auth"
             echo "SEQ_API_KEY=$SEQ_API_KEY"
