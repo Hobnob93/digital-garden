@@ -75,7 +75,9 @@ public static class ServiceCollectionExtensions
             .Validate(o => !string.IsNullOrWhiteSpace(o.ApiKey), $"{TraktOptions.SectionName}:{nameof(TraktOptions.ApiKey)} is required")
             .Validate(o => !string.IsNullOrWhiteSpace(o.BaseAddress), $"{TraktOptions.SectionName}:{nameof(TraktOptions.BaseAddress)} is required")
             .Validate(o => o.RefreshTokensWithXDaysLeft > 0, $"{TraktOptions.SectionName}:{nameof(TraktOptions.RefreshTokensWithXDaysLeft)} must be positive")
-            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetNewTokens), $"{TraktOptions.SectionName}:{nameof(TraktOptions.Endpoints)}:{nameof(TraktOptionsEndpoints.GetNewTokens)} is required");
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetNewTokens), $"{TraktOptions.SectionName}:{nameof(TraktOptions.Endpoints)}:{nameof(TraktOptionsEndpoints.GetNewTokens)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetWatchedShows), $"{TraktOptions.SectionName}:{nameof(TraktOptions.Endpoints)}:{nameof(TraktOptionsEndpoints.GetWatchedShows)} is required")
+            .Validate(o => !string.IsNullOrWhiteSpace(o.Endpoints.GetWatchedMovies), $"{TraktOptions.SectionName}:{nameof(TraktOptions.Endpoints)}:{nameof(TraktOptionsEndpoints.GetWatchedMovies)} is required");
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
@@ -128,12 +130,14 @@ public static class ServiceCollectionExtensions
         {
             var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
             client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("DigitalGarden/1.0");
         });
 
         services.AddHttpClient(ApiConstants.SteamClientName, (sp, client) =>
         {
             var steamOptions = sp.GetRequiredService<IOptions<SteamOptions>>().Value;
             client.BaseAddress = new Uri(steamOptions.BaseAddress);
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("DigitalGarden/1.0");
         });
 
         services.AddHttpClient(ApiConstants.TraktClientName, (sp, client) =>
@@ -143,6 +147,7 @@ public static class ServiceCollectionExtensions
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("trakt-api-version", "2");
             client.DefaultRequestHeaders.Add("trakt-api-key", traktOptions.ClientId);
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("DigitalGarden/1.0");
         });
 
         return services;

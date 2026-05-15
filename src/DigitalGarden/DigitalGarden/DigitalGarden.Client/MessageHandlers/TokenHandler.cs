@@ -1,6 +1,5 @@
 ﻿using DigitalGarden.Client.Services;
 using DigitalGarden.Shared.Constants;
-using DigitalGarden.Shared.Helpers;
 using System.Net.Http.Json;
 
 namespace DigitalGarden.Client.MessageHandlers;
@@ -33,7 +32,6 @@ public class TokenHandler : DelegatingHandler
     private async Task RefreshTokensAsync()
     {
         var client = _clientFactory.CreateClient(ApiConstants.TokenClientName);
-        HttpClientHelper.AddDefaultRequestHeaders(client);
 
         var antiforgeryToken = await FetchTokenAsync(client, "/antiforgery/token");
         var sessionToken = await FetchTokenAsync(client, "/session/token");

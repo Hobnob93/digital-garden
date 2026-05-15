@@ -53,8 +53,8 @@ public class DailyIngestService : BackgroundService
             CapturedAtUtc = DateTime.UtcNow
         };
 
-        //await RunMusicIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
-        //await RunGameIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+        await RunMusicIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
+        await RunGameIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
         await RunShowIngestionAsync(scope, dbContext, dailySnapshot, stoppingToken);
 
         dbContext.DailySnapshots.Add(dailySnapshot);
@@ -104,7 +104,7 @@ public class DailyIngestService : BackgroundService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to run music ingestion!");
+            _logger.LogError(ex, "Failed to run show ingestion!");
         }
     }
 

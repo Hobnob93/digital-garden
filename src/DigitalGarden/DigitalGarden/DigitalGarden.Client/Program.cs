@@ -2,7 +2,6 @@ using DigitalGarden.Client.MessageHandlers;
 using DigitalGarden.Client.Services;
 using DigitalGarden.Client.Services.Implementations;
 using DigitalGarden.Shared.Constants;
-using DigitalGarden.Shared.Helpers;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -14,14 +13,12 @@ services.AddHttpClient(ApiConstants.MainClientName,
     (sp, client) =>
     {
         client.BaseAddress = new Uri($"{baseEnvAddress}api/");
-        HttpClientHelper.AddDefaultRequestHeaders(client);
     }).AddHttpMessageHandler<TokenHandler>();
 
 services.AddHttpClient(ApiConstants.TokenClientName,
     (sp, client) =>
     {
         client.BaseAddress = new Uri($"{baseEnvAddress}");
-        HttpClientHelper.AddDefaultRequestHeaders(client);
     });
 
 services.AddSingleton<TokenCache>();

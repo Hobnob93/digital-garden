@@ -14,4 +14,6 @@ public class TraktOptions
 public class TraktOptionsEndpoints
 {
     public string GetNewTokens { get; set; } = string.Empty;
+    public string GetWatchedMovies { get; set; } = string.Empty;
+    public string GetWatchedShows {  get; set; } = string.Empty;
 }
