@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Shared.Components.Models;
 using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Models.Enums;
 
 namespace DigitalGarden.Shared.Components.Extensions;
@@ -27,6 +28,17 @@ public static class ComponentModelMappingExtensions
             FontAwesomeIcon: $"fa-{rank}",
             Title: lastFmArtist.Name,
             Description: $"{lastFmArtist.PlayCount} plays",
+            BrandsFontAwesomeType
+        );
+    }
+
+    public static SimpleCardData ToSimpleCardData(this LastFmTrack lastFmTrack, int rank)
+    {
+        return new SimpleCardData
+        (
+            FontAwesomeIcon: $"fa-{rank}",
+            Title: lastFmTrack.Name,
+            Description: $"{lastFmTrack.Artist.Name} ({lastFmTrack.PlayCount} plays)",
             BrandsFontAwesomeType
         );
     }

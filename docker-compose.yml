@@ -33,6 +33,9 @@ services:
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=${PG_DB};Username=${PG_USER};Password=${PG_PASSWORD}
       LastFm__ApiKey: ${LAST_FM_KEY}
       LastFm__Secret: ${LAST_FM_SECRET}
+      Steam__UserId: ${STEAM_USER_ID}
+      Steam__ApiKey: ${STEAM_API_KEY}
+      Trakt__ApiKey: ${TRAKT_API_KEY}
     volumes:
       - file-logs:/app/logs
     depends_on: [seq, postgres]

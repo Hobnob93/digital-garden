@@ -101,6 +101,25 @@ namespace DigitalGarden.Migrations
                     b.ToTable("beacons", (string)null);
                 });
 
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.DailyIngestSnapshotDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CapturedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("FullGameFetchAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("daily_ingests", (string)null);
+                });
+
             modelBuilder.Entity("DigitalGarden.Data.Dtos.FamousQuoteDto", b =>
                 {
                     b.Property<int>("Id")
@@ -147,6 +166,28 @@ namespace DigitalGarden.Migrations
                     b.ToTable("famous_quotes", (string)null);
                 });
 
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.LastFmSnapshotDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CapturedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CapturedAtUtc");
+
+                    b.ToTable("music_snapshots", (string)null);
+                });
+
             modelBuilder.Entity("DigitalGarden.Data.Dtos.LifeLogItemDto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -182,6 +223,265 @@ namespace DigitalGarden.Migrations
                         .IsUnique();
 
                     b.ToTable("recent_life_logs", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.SteamAchievementDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("GameAppId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("GlobalPercentUpdatedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<double?>("GlobalUnlockPercent")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("IsUnlocked")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LockedIcon")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UnlockedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UnlockedIcon")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppId");
+
+                    b.HasIndex("GameAppId");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("played_games_achievements", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.SteamGameDto", b =>
+                {
+                    b.Property<int>("AppId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("HaveAllAchievements")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastFullUpdateUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("LastPlayedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TotalPlayTimeMinutes")
+                        .HasColumnType("integer");
+
+                    b.HasKey("AppId");
+
+                    b.ToTable("played_games", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TopArtistEntryDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SnapshotId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("SnapshotId", "Rank");
+
+                    b.ToTable("top_artists_snapshots", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TopTrackEntryDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ArtistName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SnapshotId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistName", "Name");
+
+                    b.HasIndex("SnapshotId", "Rank");
+
+                    b.ToTable("top_tracks_snapshots", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TraktAuthStateDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccessToken")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("FetchedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("trakt_auth", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TraktMovieDto", b =>
+                {
+                    b.Property<int>("TraktId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ImdbId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("LastWatchedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<int>("TmdbId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TraktId");
+
+                    b.ToTable("trakt_movies", (string)null);
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TraktShowDto", b =>
+                {
+                    b.Property<int>("TraktId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ImdbId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("LastWatchedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("PlayCount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SeasonsWatched")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<int>("TmdbId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TvdbId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TraktId");
+
+                    b.ToTable("trakt_shows", (string)null);
                 });
 
             modelBuilder.Entity("DigitalGarden.Shared.Models.Data.ContentCategory", b =>
@@ -226,9 +526,52 @@ namespace DigitalGarden.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.SteamAchievementDto", b =>
+                {
+                    b.HasOne("DigitalGarden.Data.Dtos.SteamGameDto", "Game")
+                        .WithMany("Achievements")
+                        .HasForeignKey("GameAppId");
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TopArtistEntryDto", b =>
+                {
+                    b.HasOne("DigitalGarden.Data.Dtos.LastFmSnapshotDto", "Snapshot")
+                        .WithMany("TopArtists")
+                        .HasForeignKey("SnapshotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Snapshot");
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.TopTrackEntryDto", b =>
+                {
+                    b.HasOne("DigitalGarden.Data.Dtos.LastFmSnapshotDto", "Snapshot")
+                        .WithMany("TopTracks")
+                        .HasForeignKey("SnapshotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Snapshot");
+                });
+
             modelBuilder.Entity("DigitalGarden.Data.Dtos.BeaconCategoryDto", b =>
                 {
                     b.Navigation("Beacons");
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.LastFmSnapshotDto", b =>
+                {
+                    b.Navigation("TopArtists");
+
+                    b.Navigation("TopTracks");
+                });
+
+            modelBuilder.Entity("DigitalGarden.Data.Dtos.SteamGameDto", b =>
+                {
+                    b.Navigation("Achievements");
                 });
 #pragma warning restore 612, 618
         }

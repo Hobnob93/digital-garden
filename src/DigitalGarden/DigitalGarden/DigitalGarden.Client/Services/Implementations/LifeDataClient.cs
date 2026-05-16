@@ -1,4 +1,5 @@
 ﻿using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Services.Interfaces;
 
 namespace DigitalGarden.Client.Services.Implementations;
@@ -22,9 +23,15 @@ public class LifeDataClient : BaseClient, ILifeDataProvider
         return apiResult.AsExpectedType;
     }
 
-    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtists()
+    public async Task<LastFmTopArtistsResponse> GetLastFmTopArtistsAsync()
     {
         var apiResult = await Get<LastFmTopArtistsResponse>("Life/TopArtists");
+        return apiResult.AsExpectedType;
+    }
+
+    public async Task<LastFmTopTracksResponse> GetLastFmTopTracksAsync()
+    {
+        var apiResult = await Get<LastFmTopTracksResponse>("Life/TopTracks");
         return apiResult.AsExpectedType;
     }
 }

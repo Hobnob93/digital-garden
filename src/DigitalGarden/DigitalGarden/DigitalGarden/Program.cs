@@ -1,9 +1,5 @@
 using DigitalGarden.Components;
 using DigitalGarden.Extensions;
-using DigitalGarden.Shared.Constants;
-using DigitalGarden.Shared.Helpers;
-using DigitalGarden.Shared.Models.Options;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 try
@@ -18,15 +14,8 @@ try
         .AddInteractiveAutoBlazorWithControllers()
         .ConfigureApplication(configuration)
         .AddInternalDependencies(isSyncContent)
+        .ConfigureHttpClients()
         .ConfigureSecurity(configuration);
-
-    services.AddHttpClient(ApiConstants.LastFmClientName,
-        (sp, client) =>
-        {
-            var lastFmOptions = sp.GetRequiredService<IOptions<LastFmOptions>>().Value;
-            client.BaseAddress = new Uri(lastFmOptions.BaseAddress);
-            HttpClientHelper.AddDefaultRequestHeaders(client);
-        });
 
     Log.Information("Building app");
     var app = builder.Build();
@@ -41,6 +30,8 @@ try
     }
 
     Log.Information("Configuring HTTP pipeline");
+    app.UseSecurityHeadersMiddleware();
+
     if (app.Environment.IsDevelopment())
     {
         app.UseWebAssemblyDebugging();
@@ -49,7 +40,6 @@ try
     else
     {
         app.UseExceptionHandler("/Error", createScopeForErrors: true);
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
 
@@ -68,13 +58,15 @@ try
         .AddAdditionalAssemblies(typeof(DigitalGarden.Shared.Components._Imports).Assembly);
 
     Log.Information("Running app...");
-    app.Run();
+    await app.RunAsync();
 
     Log.Information("App finished running!");
 }
 catch (Exception ex)
 {
     Log.Fatal(ex, "Application failed");
+
+    throw;
 }
 finally
 {

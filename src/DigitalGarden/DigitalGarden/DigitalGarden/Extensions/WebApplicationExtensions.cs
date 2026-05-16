@@ -11,6 +11,21 @@ namespace DigitalGarden.Extensions;
 
 public static class WebApplicationExtensions
 {
+    public static void UseSecurityHeadersMiddleware(this WebApplication app)
+    {
+        app.Use(async (context, next) =>
+        {
+            var headers = context.Response.Headers;
+            headers["Content-Security-Policy"] = "frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests;";
+            headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
+            headers["Permissions-Policy"] = "geolocation=(), camera=(), microphone=()";
+            headers["X-Frame-Options"] = "DENY";
+            headers["X-Content-Type-Options"] = "nosniff";
+
+            await next();
+        });
+    }
+
     public static void UseWorkInProgressMiddleware(this WebApplication app)
     {
         app.Use(async (httpContext, nextDelegate) =>

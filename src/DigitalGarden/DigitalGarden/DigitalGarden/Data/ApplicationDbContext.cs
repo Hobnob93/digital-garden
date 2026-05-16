@@ -6,6 +6,18 @@ namespace DigitalGarden.Data;
 
 public class ApplicationDbContext : DbContext
 {
+    public DbSet<DailyIngestSnapshotDto> DailySnapshots => Set<DailyIngestSnapshotDto>();
+    public DbSet<LastFmSnapshotDto> LastFmSnapshots => Set<LastFmSnapshotDto>();
+    public DbSet<TopArtistEntryDto> TopArtistEntries => Set<TopArtistEntryDto>();
+    public DbSet<TopTrackEntryDto> TopTrackEntries => Set<TopTrackEntryDto>();
+
+    public DbSet<SteamGameDto> SteamGames => Set<SteamGameDto>();
+    public DbSet<SteamAchievementDto> SteamAchievements => Set<SteamAchievementDto>();
+
+    public DbSet<TraktAuthStateDto> TraktAuthStates => Set<TraktAuthStateDto>();
+    public DbSet<TraktShowDto> TraktShows => Set<TraktShowDto>();
+    public DbSet<TraktMovieDto> TraktMovies => Set<TraktMovieDto>();
+
     public DbSet<BeaconCategoryDto> BeaconCategories => Set<BeaconCategoryDto>();
     public DbSet<BeaconDto> Beacons => Set<BeaconDto>();
     public DbSet<FamousQuoteDto> FamousQuotes => Set<FamousQuoteDto>();

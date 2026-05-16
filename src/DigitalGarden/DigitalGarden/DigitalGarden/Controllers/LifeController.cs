@@ -1,5 +1,6 @@
 ﻿using DigitalGarden.Attributes;
 using DigitalGarden.Shared.Models.Data;
+using DigitalGarden.Shared.Models.Data.Responses;
 using DigitalGarden.Shared.Services.Interfaces;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,17 @@ public class LifeController : ControllerBase
     [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any, NoStore = false)]
     public async Task<IActionResult> TopArtists()
     {
-        var result = await _lifeDataProvider.GetLastFmTopArtists();
+        var result = await _lifeDataProvider.GetLastFmTopArtistsAsync();
+
+        return Ok(result);
+    }
+
+    [HttpGet(Name = nameof(TopTracks))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LastFmTopTracksResponse))]
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any, NoStore = false)]
+    public async Task<IActionResult> TopTracks()
+    {
+        var result = await _lifeDataProvider.GetLastFmTopTracksAsync();
 
         return Ok(result);
     }
