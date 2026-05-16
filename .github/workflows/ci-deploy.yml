@@ -106,6 +106,10 @@ jobs:
           PGADMIN_PASSWORD: ${{ secrets.PGADMIN_PASSWORD }}
           LAST_FM_KEY: ${{ secrets.LAST_FM_KEY }}
           LAST_FM_SECRET: ${{ secrets.LAST_FM_SECRET }}
+          N8N_DB: ${{ secrets.N8N_DB }}
+          N8N_DB_USER: ${{ secrets.N8N_DB_USER }}
+          N8N_DB_PASSWORD: ${{ secrets.N8N_DB_PASSWORD }}
+          N8N_ENCRYPTION_KEY: ${{ secrets.N8N_ENCRYPTION_KEY }}
         run: |
           # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
           esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
@@ -128,6 +132,10 @@ jobs:
             echo "PGADMIN_PASSWORD=$PGADMIN_PASSWORD"
             echo "LAST_FM_KEY=$LAST_FM_KEY"
             echo "LAST_FM_SECRET=$LAST_FM_SECRET"
+            echo "N8N_DB=$N8N_DB"
+            echo "N8N_DB_USER=$N8N_DB_USER"
+            echo "N8N_DB_PASSWORD=$N8N_DB_PASSWORD"
+            echo "N8N_ENCRYPTION_KEY=$N8N_ENCRYPTION_KEY"
           } > .env
           
       # Send files to Ubuntu server using SSH
