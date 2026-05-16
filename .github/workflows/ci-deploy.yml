@@ -110,6 +110,9 @@ jobs:
           N8N_DB_USER: ${{ secrets.N8N_DB_USER }}
           N8N_DB_PASSWORD: ${{ secrets.N8N_DB_PASSWORD }}
           N8N_ENCRYPTION_KEY: ${{ secrets.N8N_ENCRYPTION_KEY }}
+          STEAM_USER_ID: ${{ secrets.STEAM_USER_ID }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          TRAKT_API_KEY: ${{ secrets.TRAKT_API_KEY }}
         run: |
           # Escape $ to $$ so docker compose doesn't try to expand bcrypt segments
           esc_basic_auth=$(printf '%s' "$SEQ_BASIC_AUTH_SECRET" | sed 's/\$/$$/g')
@@ -136,6 +139,9 @@ jobs:
             echo "N8N_DB_USER=$N8N_DB_USER"
             echo "N8N_DB_PASSWORD=$N8N_DB_PASSWORD"
             echo "N8N_ENCRYPTION_KEY=$N8N_ENCRYPTION_KEY"
+            echo "STEAM_USER_ID=$STEAM_USER_ID"
+            echo "STEAM_API_KEY=$STEAM_API_KEY"
+            echo "TRAKT_API_KEY=$TRAKT_API_KEY"
           } > .env
           
       # Send files to Ubuntu server using SSH
