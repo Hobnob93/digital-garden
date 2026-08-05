@@ -32,6 +32,24 @@
     "Type": "WatchingShow"
   },
   {
+    "Slug": "harry-potter-1",
+    "Name": "Harry Potter & Philosopher's Stone",
+    "Description": "By J.K. Rowling",
+    "LastConsumed": "22-07-2026",
+    "Tags": "Fantasy",
+    "Type": "Reading",
+    "Completed": true
+  },
+  {
+    "Slug": "harry-potter-2",
+    "Name": "Harry Potter & Chamber of Secrets",
+    "Description": "By J.K. Rowling",
+    "LastConsumed": "05-08-2026",
+    "Tags": "Fantasy",
+    "Type": "Reading",
+    "Completed": true
+  },
+  {
     "Slug": "mistborn-1-sanderson",
     "Name": "Mistborn (Book 1)",
     "Description": "By Brandon Sanderson",
